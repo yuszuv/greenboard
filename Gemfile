@@ -16,6 +16,7 @@ gem "down", "~> 5.1"
 
 # Database
 gem "sqlite3"
+gem "pg"
 gem "rom", "~> 5.2"
 gem "rom-factory", "~> 0.10"
 gem "rom-sql", "~> 3.2"
