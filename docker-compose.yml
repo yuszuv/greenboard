@@ -19,7 +19,7 @@ services:
       - assets
     links:
       - assets
-    user: ${CURRENT_UID}
+    # user: ${CURRENT_UID}
   assets:
     image: node:alpine
     env_file: ".env"
@@ -30,6 +30,17 @@ services:
     expose:
       - "8080"
     command: "npm start"
+  db:
+    image: postgres:13.2
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - "./postgres/postgres.conf:/usr/local/etc/postgres/postgres.conf"
+      - "./postgres/data:/var/lib/postgresql/data:delegated"
+    command: "postgres -c config_file=/usr/local/etc/postgres/postgres.conf"
+    # ports:
+    #   - "5432:5432"
 volumes:
   bundle_path:
   node_modules:
