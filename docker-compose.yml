@@ -10,12 +10,16 @@ services:
       - bundle_path:/usr/local/bundle
     command: script/puma
     env_file: ".env"
+    environment:
+      - HOME=/app
+    working_dir: /app
     ports:
       - 3000:3000
     depends_on:
       - assets
     links:
       - assets
+    user: ${CURRENT_UID}
   assets:
     image: node:alpine
     env_file: ".env"
