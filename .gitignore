@@ -27,3 +27,5 @@ db/*.sqlite
 /node_modules
 /public/assets
 /.assets/tmp/*
+
+/.local
