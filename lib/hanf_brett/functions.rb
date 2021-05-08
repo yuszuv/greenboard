@@ -3,7 +3,7 @@
 
 require "transproc"
 
-module AppPrototype
+module HanfBrett
   module Functions
     extend Transproc::Registry
 

@@ -2,7 +2,7 @@
 
 require "hanami/view/context"
 
-module AppPrototype
+module HanfBrett
   module View
     class Context < Hanami::View::Context
       include Deps[

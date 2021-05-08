@@ -37,8 +37,8 @@ module Test
               require "main/entities"
               Main::Entities
             else
-              require "app_prototype/entities"
-              AppPrototype::Entities
+              require "hanf_brett/entities"
+              HanfBrett::Entities
             end
           end
       end
