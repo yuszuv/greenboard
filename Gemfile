@@ -13,6 +13,7 @@ end
 # HTTP
 gem "puma", "~> 4.0"
 gem "down", "~> 5.1"
+gem "rerun"
 
 # Database
 gem "sqlite3"
