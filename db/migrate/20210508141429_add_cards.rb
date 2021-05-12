@@ -14,9 +14,11 @@ ROM::SQL.migration do
 
     create_table :cards do
       primary_key :id
+      column :topic, String, null: false
       column :text, String, null: false
       column :type, String, null: false
       column :author, String, null: false
+      column :password, String, null: false
       column :created_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
       column :updated_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
     end

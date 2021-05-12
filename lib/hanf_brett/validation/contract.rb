@@ -4,6 +4,8 @@
 require "dry/validation"
 require "dry/schema/messages/i18n"
 
+Dry::Validation.load_extensions(:monads)
+
 module HanfBrett
   module Validation
     class Contract < Dry::Validation::Contract
