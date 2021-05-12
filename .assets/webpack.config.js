@@ -96,7 +96,7 @@ module.exports = function config(mode) {
           loader: "babel-loader",
         },
         {
-          test: /\.(png|jpe?g|gif|svg|woff2?|mp3|mp4|webm|webp|woff|woff2|mp4|m4v|pdf)$/,
+          test: /\.(png|jpe?g|gif|svg|woff2?|mp3|mp4|webm|webp|woff|woff2|mp4|m4v|pdf|eot|ttf)$/,
           loader: "file-loader",
           options: {
             name:

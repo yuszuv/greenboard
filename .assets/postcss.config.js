@@ -3,6 +3,8 @@ const postcssImport = require("postcss-import");
 const postcssPresetEnv = require("postcss-preset-env");
 const postcssUrl = require("postcss-url");
 const cssnano = require("cssnano");
+// const tailwindcss = require("tailwindcss");
+// const autoprefixer = require("autoprefixer");
 
 function toKebabCase(str) {
   return str.replace(/([a-z])([A-Z0-9])/g, '$1-$2').toLowerCase()
@@ -30,6 +32,8 @@ module.exports = ({ env }) => ({
     // Add module-like @import support to our CSS. This sets the context for all imports
     // to be the base entry point.
     postcssImport,
+    // tailwindcss,
+    // autoprefixer,
     // postcss-url "rebases" any `url()` references in CSS to their original relative
     // position on the filesystem (so that postcss-import doesn't break things)
     postcssUrl(),

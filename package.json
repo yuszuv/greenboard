@@ -5,7 +5,8 @@
   "author": "Your name here",
   "repository": {},
   "devDependencies": {
-    "application-assets": "file:.assets"
+    "application-assets": "file:.assets",
+    "file-loader": "^6.2.0"
   },
   "engines": {
     "node": ">= 12.13.0 <13.0",
@@ -18,6 +19,7 @@
     "heroku-postbuild": "yarn run build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.0",
     "concurrently": "^6.1.0",
