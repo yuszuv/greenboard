@@ -16,5 +16,12 @@
     "build": "NODE_ENV=production node ./.assets/scripts/build.js production",
     "build-production": "yarn run build",
     "heroku-postbuild": "yarn run build"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "bootstrap": "^5.0.0",
+    "concurrently": "^6.1.0",
+    "popper.js": "^1.16.1",
+    "serve": "^11.3.2"
   }
 }
