@@ -14,6 +14,7 @@ end
 gem "puma", "~> 4.0"
 gem "down", "~> 5.1"
 gem "rerun"
+gem "rack-cors"
 
 # Database
 gem "sqlite3"
@@ -41,6 +42,7 @@ group :development, :test do
   gem "guard-rack", "~> 2.2"
   gem "pry"
   gem "standard"
+  gem "faker"
 end
 
 # Test
