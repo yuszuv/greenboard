@@ -8,7 +8,7 @@ module Main
       ]
 
       def handle(req, res)
-        res.render view, form: Entities::CardForm.empty, errors: []
+        res.render view, form: Entities::CardForm::Empty, errors: []
       end
     end
   end

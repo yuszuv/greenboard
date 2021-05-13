@@ -13,7 +13,8 @@ module Main
         end
 
         rule :type do
-          key.failure("must be one of 'BIETE', 'SUCHE'. was: #{value}") unless %w(SUCHE BIETE).include?(value)
+          list = %w(SUCHE BIETE)
+          key.failure(:inclusion?, list: list) unless list.include?(value)
         end
       end
     end

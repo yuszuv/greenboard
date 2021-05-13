@@ -7,9 +7,7 @@ module Main
       attribute :text, HanfBrett::Types::String
       attribute :author, HanfBrett::Types::String
 
-      def self.empty
-        new(id: nil, type: '', topic: '', text: '', author: '')
-      end
+      Empty = new(id: nil, type: '', topic: '', text: '', author: '')
     end
   end
 end

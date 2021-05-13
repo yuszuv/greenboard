@@ -12,7 +12,7 @@ module Main
         if id
           from_record(id)
         else
-          Success(Entities::CardForm.empty)
+          Success(Entities::CardForm::Empty)
         end
       end
 
