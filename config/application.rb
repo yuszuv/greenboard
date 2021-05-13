@@ -6,6 +6,10 @@ rescue LoadError => e
   raise unless e.path == "break"
 end
 
+require 'i18n'
+I18n.load_path << Dir[File.expand_path("config/locales") + "/*.yml"]
+I18n.default_locale = :de
+
 require "hanami"
 
 module HanfBrett
@@ -26,19 +30,20 @@ module HanfBrett
       "X-Content-Type-Options" => "nosniff",
       "X-XSS-Protection" => "1; mode=block",
       "Content-Security-Policy" => \
-        "base-uri 'self'; " \
-        "child-src 'self'; " \
-        "connect-src 'self'; " \
-        "default-src 'none'; " \
-        "font-src 'self'; " \
-        "form-action 'self'; " \
-        "frame-ancestors 'self'; " \
-        "frame-src 'self'; " \
-        "img-src 'self' https: data:; " \
-        "media-src 'self'; " \
-        "object-src 'none'; " \
-        "script-src 'self' 'unsafe-eval' http://localhost:*; " \
-        "style-src 'self' 'unsafe-inline' http:"
+"default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data:; "
+        # "base-uri 'self'; " \
+        # "child-src 'self'; " \
+        # "connect-src 'self'; " \
+        # "default-src 'none'; " \
+        # "font-src 'self' http:; " \
+        # "form-action 'self'; " \
+        # "frame-ancestors 'self'; " \
+        # "frame-src 'self'; " \
+        # "img-src 'self' https: data:; " \
+        # "media-src 'self'; " \
+        # "object-src 'none'; " \
+        # "script-src 'self' 'unsafe-eval' http://localhost:*; " \
+        # "style-src 'self' 'unsafe-inline' http:"
     }
   end
 end

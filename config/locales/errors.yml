@@ -1,0 +1,7 @@
+de:
+  validation:
+    rules:
+      foo: 'aldjf'
+    errors:
+      rules:
+          invalid: 'must be greater than 18'
