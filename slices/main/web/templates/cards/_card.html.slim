@@ -1,0 +1,22 @@
+.card.mb-4.shadow
+  .card-header class="text-#{mod}"
+    .d-flex.justify-content-end.align-items-center
+      h6.me-auto = card.type
+      a.link-primary href="/karte/#{card.id}/bearbeiten"
+        i.fas.fa-pencil-alt.me-md-1
+      form method="post" action="/karte/#{card.id}"
+        input type="hidden" name="_method" value="delete"
+        input type="hidden" name="_csrf_token" value=csrf_token
+        button.p-0.btn.btn-link class="link-danger" type="submit"
+          i.fas.fa-trash-alt
+  .card-body
+    h5.card-title class="text-#{mod}"
+      = card.topic
+    hr class="text-#{mod}"
+    p.card-text= card.text
+
+    ul.list-group.list-group-flush
+      li.list-group-item
+        b Kontakt: 
+        = card.author
+

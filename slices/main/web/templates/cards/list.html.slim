@@ -1,30 +1,15 @@
 .row.mb-3
-  .col
-    a.btn.btn-primary href="/neue_karte" Neuer Eintrag
+  .col.d-flex.justify-content-center
+    a.btn.btn-primary href="/neue_karte"
+      i.fas.fa-plus.me-md-1
+      | Neuer Eintrag
 .row
-  .col-sm-6
+  .col-md-6
     ul
       - board.requests.each do |card|
-        .card
-          .card-body
-            h5.card-title.text-danger
-              = card.type
-              |: 
-              = card.topic
-            hr.text-danger
-            p.card-text= card.text
-            a href="#" class="btn btn-primary" Go somewhere
-            a href="/karte/#{card.id}/bearbeiten" class="btn btn-primary" Bearbeiten
-            a href="/karte/#{card.id}" method="DELETE" class="btn btn-primary" Löschen
+        == render :card, card: card, mod: 'danger'
+
   .col-sm-6
     ul
       - board.offers.each do |card|
-        .card
-          .card-body
-            h5.card-title.text-success
-              = card.type
-              |: 
-              = card.topic
-            hr.text-success
-            p.card-text= card.text
-            a href="#" class="btn btn-primary" Go somewhere
+        == render :card, card: card, mod: 'success'
