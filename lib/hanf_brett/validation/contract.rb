@@ -10,6 +10,7 @@ module HanfBrett
   module Validation
     class Contract < Dry::Validation::Contract
       config.messages.backend = :i18n
+      config.messages.load_paths << 'config/locales/de.yml'
       config.messages.top_namespace = "validation"
     end
   end
