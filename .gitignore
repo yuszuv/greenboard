@@ -29,3 +29,5 @@ db/*.sqlite
 /.assets/tmp/*
 
 /.local
+/.bundle
+/.rubocop.yml
