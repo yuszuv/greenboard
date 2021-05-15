@@ -23,6 +23,8 @@ gem "rom", "~> 5.2"
 gem "rom-factory", "~> 0.10"
 gem "rom-sql", "~> 3.2"
 gem "sequel", "~> 5.32"
+gem "shrine", "~> 3.0"
+gem "fastimage" # default analyzer 
 
 # Application
 gem "dry-matcher", "~> 0.8"
@@ -33,6 +35,7 @@ gem "dry-validation", "~> 1.4"
 gem "erbse", "~> 0.1"
 gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
+gem "image_processing", "~> 1.8"
 
 # Development/test
 group :development, :test do

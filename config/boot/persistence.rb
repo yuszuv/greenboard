@@ -14,6 +14,19 @@ Hanami.application.register_bootable :persistence, namespace: true do |container
 
     register "config", rom_config
     register "db", rom_config.gateways[:default].connection
+
+    require "shrine"
+    require "shrine/storage/file_system"
+
+    Shrine.storages = {
+      cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
+      store: Shrine::Storage::FileSystem.new("public", prefix: "uploads"),       # permanent
+    }
+
+    Shrine.plugin :sequel # or :activerecord
+    Shrine.plugin :cached_attachment_data # for retaining the cached file across form redisplays
+    Shrine.plugin :restore_cached_data # re-extract metadata when attaching a cached file
+    Shrine.plugin :rack_file # for non-Rails apps
   end
 
   start do
