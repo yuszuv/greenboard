@@ -2,9 +2,9 @@
   .card-header class="text-#{mod}"
     .d-flex.justify-content-end.align-items-center
       h6.me-auto = card.type
-      a.link-primary href="/karte/#{card.id}/bearbeiten"
+      a.link-primary.px-1 href="/karte/#{card.id}/bearbeiten"
         i.fas.fa-pencil-alt.me-md-1
-      form method="post" action="/karte/#{card.id}"
+      form.px-1 method="post" action="/karte/#{card.id}"
         input type="hidden" name="_method" value="delete"
         input type="hidden" name="_csrf_token" value=csrf_token
         button.p-0.btn.btn-link class="link-danger" type="submit"
@@ -19,4 +19,10 @@
       li.list-group-item
         b Kontakt: 
         = card.author
+
+    .card-gallery-list.d-flex.justify-content-center
+      - card.photos.each do |photo|
+        figure
+          a href=photo.image.url data-size=("%sx%s" % [photo.image.width, photo.image.height])
+            img.img-thumbnail.m-2 src=photo.image(:thumbnail).url data-src=photo.image.url itemprop="thumbnail"
 

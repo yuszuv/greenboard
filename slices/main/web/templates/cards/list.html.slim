@@ -1,5 +1,6 @@
 .row.mb-3
-  .col.d-flex.justify-content-center
+  .col.d-flex.flex-column.align-items-center
+    == render :flash
     a.btn.btn-primary href="/neue_karte"
       i.fas.fa-plus.me-md-1
       | Neuer Eintrag
@@ -9,7 +10,7 @@
       - board.requests.each do |card|
         == render :card, card: card, mod: 'danger'
 
-  .col-sm-6
+  .col-md-6
     ul
       - board.offers.each do |card|
         == render :card, card: card, mod: 'success'
