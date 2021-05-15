@@ -10,6 +10,7 @@ module Main
       def board
         board = OpenStruct.new(requests: [], offers: [])
         cards
+          .combine(:photos)
           .order(Sequel.desc(:created_at))
           .to_a
           .each_with_object(board) do |card, b|
@@ -21,6 +22,10 @@ module Main
           end
 
         board
+      end
+
+      def create_with_photos(data)
+        cards.combine(:photos).command(:create).(data)
       end
     end
   end

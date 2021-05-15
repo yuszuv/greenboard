@@ -7,6 +7,9 @@ module Main
       attribute :text, HanfBrett::Types::String
       attribute :author, HanfBrett::Types::String
 
+      include HanfBrett::ImageUploader::Attachment(:image) # adds an `image` virtual attribute 
+      attr_reader :image_data
+
       Empty = new(id: nil, type: '', topic: '', text: '', author: '')
     end
   end

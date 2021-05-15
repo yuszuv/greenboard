@@ -1,45 +1,51 @@
-.container.mb-5
-  .row
-    .col-sm
-      .card.shadow
-        .card-body
-          h5.card-title Unser schönes Brett
-          p
-            - if errors.any?
-              .alert.alert-danger
-                | Es sind Fehler aufgetreten:
-                ul
-                  - errors.each do |msg|
-                    li = msg
-          p Vero cum omnis. Atque nemo hic. Ut aliquid nihil. Ullam vitae libero. Eaque alias optio. Nam odit omnis. Magnam ea eum. Alias ut quo. Consectetur aliquid sint. Ullam nostrum quo. Sit velit eligendi. Ad autem et. Maxime ea eligendi. Sit est suscipit. Sapiente porro assumenda. Placeat libero et. Ut nam temporibus. Sit possimus excepturi. Voluptatum nisi vel. Sed aut recusandaes.
-          p Nach einem Monat löschen sich die Nachrichten automatisch.
-    .col-sm
-      .card.shadow
-        .card-body
-          form action=action method="POST"
-            input type="hidden" name="_csrf_token" value=csrf_token
-            input type="hidden" name="_method" value=verb
-            .mb-3
-              label.form-label for="type" Suche/Biete?
-              select#type.form-select name="type" autocomplete="type" value=form.type
-                option value="SUCHE" Suche
-                option value="BIETE" Biete
-            .mb-3
-              label.form-label for="topic" Überschrift
-              input#topic.form-control type="text" name="topic" value=form.topic
-            .mb-3
-              label for="text" Nachricht
-              textarea#text.form-control name="text" placeholder="..." rows="3" = form.text
-            .mb-3
-              label.form-label for="author" Absender
-              input#author.form-control type="text" name="author" value=form.author
-              .form-text We'll never share your email with anyone else.
-            .mb-3
-              label.form-label for="password" Passwort
-              input#password.form-control type="password" name="password"
-            .mb-3
-              input type="hidden" name="tos" value="0"
-              .form-check
-                input#tos.form-check-input name="tos" type="checkbox" value="1"
-                label.from-check-label for="tos" Nutzungsbedingungen
-            button.btn.btn-primary type="submit"  Submit
+.row
+  .col-md
+    == render :flash
+.row
+  .col-md
+    .card.shadow
+      .card-body
+        h5.card-title Unser schönes Brett
+        p
+          - if errors.any?
+            .alert.alert-danger
+              | Es sind Fehler aufgetreten:
+              ul
+                - errors.each do |msg|
+                  li = msg
+        p Vero cum omnis. Atque nemo hic. Ut aliquid nihil. Ullam vitae libero. Eaque alias optio. Nam odit omnis. Magnam ea eum. Alias ut quo. Consectetur aliquid sint. Ullam nostrum quo. Sit velit eligendi. Ad autem et. Maxime ea eligendi. Sit est suscipit. Sapiente porro assumenda. Placeat libero et. Ut nam temporibus. Sit possimus excepturi. Voluptatum nisi vel. Sed aut recusandaes.
+        p Nach einem Monat löschen sich die Nachrichten automatisch.
+  .col-md
+    .card.shadow
+      .card-body
+        form action=action method="POST" enctype="multipart/form-data"
+          input type="hidden" name="_csrf_token" value=csrf_token
+          input type="hidden" name="_method" value=verb
+          .mb-3
+            label.form-label for="type" Suche/Biete?
+            select#type.form-select name="type" autocomplete="type" value=form.type
+              option value="SUCHE" Suche
+              option value="BIETE" Biete
+          .mb-3
+            label.form-label for="topic" Überschrift
+            input#topic.form-control type="text" name="topic" value=form.topic
+          .mb-3
+            label for="text" Nachricht
+            textarea#text.form-control name="text" placeholder="..." rows="3" = form.text
+          .mb-3
+            label.form-label for="author" Absender
+            input#author.form-control type="text" name="author" value=form.author
+            .form-text We'll never share your email with anyone else.
+          .mb-3
+            label.form-label for="password" Passwort
+            input#password.form-control type="password" name="password"
+          .mb-3
+            label.form-label for="image" Foto
+            input type="hidden" name="image" value=form.cached_image_data
+            input#image.form-control type="file" name="image"
+          .mb-3
+            input type="hidden" name="tos" value="0"
+            .form-check
+              input#tos.form-check-input name="tos" type="checkbox" value="1"
+              label.from-check-label for="tos" Nutzungsbedingungen
+          button.btn.btn-primary type="submit"  Submit

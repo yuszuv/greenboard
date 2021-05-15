@@ -10,7 +10,7 @@ module Main
 
       def call(input)
         data = yield validate(input)
-        res = yield create_record(data)
+        res = yield persist(data)
 
         Success(res)
       end
@@ -24,25 +24,34 @@ module Main
             Entities::CardForm.new(id: nil, **input),
             x.errors(full: true).to_h.values.flatten
           ]
-        end.fmap do |result|
-          result.to_h
         end
+          .fmap(&:to_h)
       end
 
-      def create_record(data)
-        Try[ROM::SQL::Error] {
-          repo.create(encrypt_password(data))
-        }.to_result.or do |x|
+      def persist(data)
+        Try[ROM::SQL::Error] do
+          Try[Shrine::Error] do
+            file = data[:image][:tempfile]
+            photo = Entities::Photo.new
+            photo.image_attacher.attach(file)
+            photo.image_derivatives! # generate versions
+          end.to_result.or do |x|
+            Failure[:storage, x]
+          end.fmap do |photo|
+            data
+              .merge(
+                photos: [{ image_data: photo.image_data }],
+                password: encrypt_password(data[:password])
+              )
+              .then(&repo.method(:create_with_photos))
+          end
+        end.to_result.or do |x|
           Failure[:db, x]
         end
       end
 
-      def encrypt_password(data)
-        HanfBrett::Functions[
-          :map_value,
-          :password,
-          -> s { HanfBrett::Functions[:encrypt_password].(s) }
-        ].(data)
+      def encrypt_password(str)
+        HanfBrett::Functions[:encrypt_password].(str)
       end
     end
   end
