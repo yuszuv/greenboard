@@ -101,12 +101,12 @@ module.exports = function config(mode) {
           options: {
             name:
               mode === "development"
-                ? "[path][name].[ext]"
+                ? "[name].[ext]"
                 : "[path][name].[contenthash].[ext]",
           },
         },
         {
-          test: /\.css$/,
+          test: /\.scss|css$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -123,6 +123,7 @@ module.exports = function config(mode) {
                 },
               },
             },
+            { loader: 'sass-loader' },
           ],
         },
       ],

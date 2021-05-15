@@ -4,8 +4,6 @@ import "core-js/stable";
 // Import base JS/CSS definitions
 import "./index.js";
 import "./index.scss";
-import "./foo.scss";
-import "./bar.scss";
 
 // This will inspect all subdirectories from the context (this file) and
 // require files matching the regex.
