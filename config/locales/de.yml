@@ -77,7 +77,7 @@ de:
 
       max_bytesize?: "bytesize cannot be greater than %{num}"
 
-      min_size?: "size cannot be less than %{num}"
+      min_size?: "muss mindestens %{num} Zeichen enthalten"
 
       min_bytesize?: "bytesize cannot be less than %{num}"
 

@@ -5,6 +5,7 @@ require "dry/validation"
 require "dry/schema/messages/i18n"
 
 Dry::Validation.load_extensions(:monads)
+Dry::Validation.load_extensions(:predicates_as_macros)
 
 module HanfBrett
   module Validation
@@ -12,6 +13,8 @@ module HanfBrett
       config.messages.backend = :i18n
       config.messages.load_paths << 'config/locales/de.yml'
       config.messages.top_namespace = "validation"
+
+      import_predicates_as_macros
     end
   end
 end
