@@ -37,6 +37,12 @@ gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
 gem "image_processing", "~> 1.8"
 
+# Development
+group :development do
+  gem "capistrano", "~> 3.16", require: false
+  gem 'capistrano-bundler', '~> 2.0'
+end
+
 # Development/test
 group :development, :test do
   gem "pry-byebug"
