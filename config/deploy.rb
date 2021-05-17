@@ -22,14 +22,22 @@ set :rvm_ruby_version, '2.7.3'      # Defaults to: 'default'
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
+append :linked_files, ".env.production"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/uploads"
+append :linked_dirs,
+  "log",
+  "tmp/pids",
+  "tmp/cache",
+  "tmp/sockets",
+  "public/uploads",
+  "public/assets"
+
 append :linked_dirs, '.bundle'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { hanami_env: 'production' }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
