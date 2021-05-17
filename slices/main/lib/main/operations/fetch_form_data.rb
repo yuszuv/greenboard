@@ -22,7 +22,9 @@ module Main
         Try[ROM::SQL::Error] do
           repo.find(id)
         end.to_result.fmap do |card|
-          Entities::CardForm.new(card.to_h)
+          form = Entities::CardForm.new(card.to_h)
+          form.image_data = card.photos.first.image_data
+          form
         end
       end
     end

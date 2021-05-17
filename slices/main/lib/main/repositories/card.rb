@@ -4,7 +4,10 @@ module Main
       commands :create, update: :by_pk, delete: :by_pk
 
       def find(id)
-        cards.by_pk(id).one
+        cards
+          .combine(:photos)
+          .by_pk(id)
+          .one
       end
 
       def board

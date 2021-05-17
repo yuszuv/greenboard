@@ -18,29 +18,37 @@ module Main
       private
 
       def validate(input)
-        contract.(input).to_monad.or do |x|
-          Failure[
-            :validation,
-            Entities::CardForm.new(id: nil, **input),
-            x.errors(full: true).to_h.values.flatten
-          ]
-        end
-          .fmap(&:to_h)
+        contract.(input)
+          .to_monad
+          .or do |result|
+            form = Entities::CardForm.new(id: nil, **result.to_h)
+            attacher = result.context[:attacher]
+
+            form.image = attacher.file if attacher
+
+            Failure[
+              :validation,
+              form,
+              result.errors(full: true).to_h.values.flatten
+            ]
+          end
+          .fmap do |result|
+            result.to_h.merge(attacher: result.context[:attacher])
+          end
       end
 
-      def persist(data)
+      def persist(attacher:, **data)
         Try[ROM::SQL::Error] do
           Try[Shrine::Error] do
-            file = data[:image][:tempfile]
-            photo = Entities::Photo.new
-            photo.image_attacher.attach(file)
-            photo.image_derivatives! # generate versions
+            attacher.create_derivatives
+            attacher.finalize
+            attacher
           end.to_result.or do |x|
             Failure[:storage, x]
-          end.fmap do |photo|
+          end.fmap do |attacher|
             data
               .merge(
-                photos: [{ image_data: photo.image_data }],
+                photos: [{ image_data: attacher.data.to_json }],
                 password: encrypt_password(data[:password])
               )
               .then(&repo.method(:create_with_photos))

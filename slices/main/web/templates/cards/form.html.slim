@@ -1,6 +1,7 @@
-.row
-  .col-md
-    == render :flash
+- unless flash.empty?
+  .row
+    .col-md
+      == render :flash
 .row
   .col-md
     .card.shadow
@@ -41,6 +42,8 @@
             input#password.form-control type="password" name="password"
           .mb-3
             label.form-label for="image" Foto
+            - if form.image
+              img.img-thumbnail.d-block.mb-1 src=form.image.url width="200"
             input type="hidden" name="image" value=form.cached_image_data
             input#image.form-control type="file" name="image"
           .mb-3
