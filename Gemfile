@@ -17,7 +17,6 @@ gem "rerun"
 gem "rack-cors"
 
 # Database
-gem "sqlite3"
 gem "pg"
 gem "rom", "~> 5.2"
 gem "rom-factory", "~> 0.10"
