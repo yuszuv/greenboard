@@ -37,6 +37,7 @@ gem "slim", "~> 4.0"
 gem "image_processing", "~> 1.8"
 
 gem "pry"
+gem "dotenv", "~> 2.7"
 
 # Development
 group :development do
@@ -50,7 +51,6 @@ end
 group :development, :test do
   gem "pry-byebug"
   gem "break", "~> 0.21"
-  gem "dotenv", "~> 2.7"
   gem "guard-rack", "~> 2.2"
   gem "standard"
   gem "faker"
