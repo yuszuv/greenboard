@@ -29,13 +29,14 @@ module HanfBrett
       "X-Frame-Options" => "DENY",
       "X-Content-Type-Options" => "nosniff",
       "X-XSS-Protection" => "1; mode=block",
+      "Content-Security-Allow-Origin" => "http://localhost:*",
       "Content-Security-Policy" => \
-"default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data:; "
+      "default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data: http://placekitten.com; " \
+        "font-src 'self' 'unsafe-eval' 'unsafe-inline' http:; "
         # "base-uri 'self'; " \
         # "child-src 'self'; " \
         # "connect-src 'self'; " \
         # "default-src 'none'; " \
-        # "font-src 'self' http:; " \
         # "form-action 'self'; " \
         # "frame-ancestors 'self'; " \
         # "frame-src 'self'; " \
