@@ -36,11 +36,14 @@ gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
 gem "image_processing", "~> 1.8"
 
+gem "pry"
+
 # Development
 group :development do
   gem "capistrano", "~> 3.16", require: false
   gem 'capistrano-bundler', '~> 2.0'
   gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
 end
 
 # Development/test
@@ -49,7 +52,6 @@ group :development, :test do
   gem "break", "~> 0.21"
   gem "dotenv", "~> 2.7"
   gem "guard-rack", "~> 2.2"
-  gem "pry"
   gem "standard"
   gem "faker"
 end
