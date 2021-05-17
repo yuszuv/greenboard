@@ -41,6 +41,7 @@ gem "image_processing", "~> 1.8"
 group :development do
   gem "capistrano", "~> 3.16", require: false
   gem 'capistrano-bundler', '~> 2.0'
+  gem 'capistrano-rvm'
 end
 
 # Development/test
