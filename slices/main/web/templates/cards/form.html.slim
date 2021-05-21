@@ -50,5 +50,10 @@
             input type="hidden" name="tos" value="0"
             .form-check
               input#tos.form-check-input name="tos" type="checkbox" value="1"
-              label.from-check-label for="tos" Nutzungsbedingungen
-          button.btn.btn-primary type="submit"  Submit
+              label.from-check-label for="tos" 
+                | Ich habe die 
+                a href="#" data-bs-toggle="modal" data-bs-target="#modal" Nutzungsbedingungen
+                |  gelesen und akzeptiert
+          button.btn.btn-primary type="submit" Eintragen
+
+== render :tos

@@ -11,6 +11,7 @@ module Main
           required(:author).filled(:string)
           required(:password).filled(:string)
           optional(:image).maybe(:hash)
+          required(:tos).filled(:bool, :true?)
         end
 
         rule(:password).validate(min_size?: 6)

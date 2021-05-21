@@ -49,7 +49,7 @@ de:
 
       bool?: "must be boolean"
 
-      true?: "must be true"
+      true?: "müssen bestätigt werden"
 
       false?: "must be false"
 
@@ -116,3 +116,4 @@ de:
       password: 'Passwort'
       type: 'Suche/Biete'
       image: 'Bild'
+      tos: 'Nutzungsbestimmungen'
