@@ -4,8 +4,6 @@ module Main
   module Contracts
     module Cards
       class Update < HanfBrett::Validation::Contract
-        option :attacher, default: proc { HanfBrett::ImageUploader::Attacher.new }
-
         params do
           optional(:type).filled(:string)
           optional(:topic).filled(:string)
@@ -17,7 +15,13 @@ module Main
         end
 
         rule :image do |context:|
+          attacher = HanfBrett::ImageUploader::Attacher.new
           context[:attacher] ||= attacher
+
+          if value
+            attacher.assign(value)
+            key.failure(attacher.errors.join("; ")) unless attacher.validate
+          end
         end
 
         rule :type do

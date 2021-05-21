@@ -4,8 +4,6 @@ module Main
   module Contracts
     module Cards
       class Create < HanfBrett::Validation::Contract
-        option :attacher, default: proc { HanfBrett::ImageUploader::Attacher.new }
-
         params do
           required(:type).filled(:string)
           required(:topic).filled(:string)

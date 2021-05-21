@@ -31,6 +31,29 @@ module Main
         cards.combine(:photos).command(:create).(data)
       end
 
+      def update_with_photos(id, data)
+        cards.transaction do
+
+          card = cards.by_pk(id).changeset(:update, **data).commit
+
+          data[:photos].map do |i|
+            if i[:id]
+              unless i[:_remove] == true
+                photos
+                  .by_pk(i[:id])
+                  .changeset(:update, **i)
+                  .associate(card)
+                  .commit
+              else
+                photo.command(:delete).(i[:id])
+              end
+            else
+              photos.changeset(:create, **i).associate(card).commit
+            end
+          end
+        end
+      end
+
       def delete_with_photos(id)
         cards.transaction do
           cards.photos.where(card_id: id).delete

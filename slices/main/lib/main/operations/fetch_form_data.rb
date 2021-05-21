@@ -23,7 +23,7 @@ module Main
           repo.find(id)
         end.to_result.fmap do |card|
           form = Entities::CardForm.new(card.to_h)
-          form.image_data = card.photos.first.image_data
+          form.image_data = card.photos.first.image_data if card.photos.any?
           form
         end
       end

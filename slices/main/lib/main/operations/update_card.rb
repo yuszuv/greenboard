@@ -39,17 +39,33 @@ module Main
       end
 
       def persist(id, attacher:, **data)
-        require 'byebug'
-        byebug
-        data
-          .merge(password: encrypt_password(data[:password]))
-          .then do |d|
-            Try[ROM::SQL::Error] do
-              repo.update(id, d)
-            end.to_result.or do |x|
-              Failure[:db, x]
-            end
+        Try[Shrine::Error] do
+          if attacher.file
+            attacher.create_derivatives
+            attacher.finalize
           end
+          attacher
+        end.to_result.or do |x|
+          Failure[:storage, x]
+        end.bind do |attacher|
+          Try[ROM::SQL::Error] do
+            photos_data = [attacher]
+              .map(&:data)
+              .compact
+              .map do |d|
+                { image_data: d.to_json }
+              end
+
+            data
+              .merge(
+                photos: photos_data,
+                password: encrypt_password(data[:password])
+              )
+              .then{ |d| repo.update_with_photos(id, d) }
+          end.to_result.or do |x|
+            Failure[:db, x]
+          end
+        end
       end
 
       def encrypt_password(str)
