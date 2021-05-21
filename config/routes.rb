@@ -8,5 +8,7 @@ Hanami.application.routes do
     post "karten", to: "create_card"
     get "karte/:id/bearbeiten", to: "edit_card"
     patch "karte/:id", to: "update_card"
+    get "karte/:id/loeschbestaetigung", to: "confirm_delete_card"
+    delete "karte/:id", to: "delete_card"
   end
 end

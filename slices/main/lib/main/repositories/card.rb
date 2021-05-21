@@ -30,6 +30,13 @@ module Main
       def create_with_photos(data)
         cards.combine(:photos).command(:create).(data)
       end
+
+      def delete_with_photos(id)
+        cards.transaction do
+          cards.photos.where(card_id: id).delete
+          cards.by_pk(id).delete
+        end
+      end
     end
   end
 end

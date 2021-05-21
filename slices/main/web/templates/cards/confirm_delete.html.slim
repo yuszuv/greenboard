@@ -1,0 +1,22 @@
+.row.justify-content-md-center
+  .col-md-4
+    - unless flash.empty?
+      == render :flash
+    .card.shadow
+      .card-body
+        h5.card-title Eintrag löschen
+        - if errors.any?
+          .alert.alert-danger
+            | Es sind Fehler aufgetreten:
+            ul
+              - errors.each do |msg|
+                li = msg
+        | Du musst das Löschen des Eintrags mit dem Passwort bestätigen, mit dem er erstellt wurde.
+        form action="/karte/#{id}" method="POST"
+          .mb-3
+            input type="hidden" name="_csrf_token" value=csrf_token
+            input type="hidden" name="_method" value="delete"
+            label.form-label for="password" Password
+            input#password.form-control type="password" name="password"
+          .mb-3
+            button.btn.btn-danger type="submit" Löschen

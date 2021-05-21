@@ -4,11 +4,8 @@
       h6.me-auto = card.type
       a.link-primary.px-1 href="/karte/#{card.id}/bearbeiten"
         i.fas.fa-pencil-alt.me-md-1
-      form.px-1 method="post" action="/karte/#{card.id}"
-        input type="hidden" name="_method" value="delete"
-        input type="hidden" name="_csrf_token" value=csrf_token
-        button.p-0.btn.btn-link class="link-danger" type="submit"
-          i.fas.fa-trash-alt
+      a.link-danger.px-1 href="/karte/#{card.id}/loeschbestaetigung"
+        i.fas.fa-trash-alt.me-md-1
   .card-body
     h5.card-title class="text-#{mod}"
       = card.topic
