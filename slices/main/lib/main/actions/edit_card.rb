@@ -6,7 +6,6 @@ module Main
       include Deps[
         view: 'views.cards.form',
         get_form: 'operations.fetch_form_data'
-
       ]
 
       def handle(req, res)

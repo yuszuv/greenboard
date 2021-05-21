@@ -3,10 +3,7 @@
 module Main
   module Operations
     class DeleteCard < HanfBrett::Operation
-      include Deps[
-        contract: 'contracts.cards.update',
-        repo: 'repositories.card'
-      ]
+      include Deps[repo: 'repositories.card']
 
       def call(id:, password:, **params)
         yield authorize(id, password, params)
@@ -21,7 +18,9 @@ module Main
         Try[ROM::SQL::Error] do
           repo.find(id)
         end.to_result.bind do |card|
-          card.password == encrypt_password(password) ? Success() : Failure[:authorization, id, ['Das Passwort stimmt nicht']]
+          card.password == encrypt_password(password) ?
+            Success() :
+            Failure[:authorization, id, ['Das Passwort stimmt nicht']]
         end
       end
 
