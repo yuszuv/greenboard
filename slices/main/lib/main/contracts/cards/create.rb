@@ -15,15 +15,15 @@ module Main
           optional(:image).maybe(:hash)
         end
 
+        rule(:password).validate(min_size?: 6)
+
         rule :image do |context:|
-          context[:attacher] ||= attacher
+          attacher = HanfBrett::ImageUploader::Attacher.new
+          context[:attacher] = attacher
 
           if value
-            attacher = HanfBrett::ImageUploader::Attacher.new(file: value)
             # attacher.form_assign(value)
             attacher.assign(value)
-            require 'byebug'
-            byebug
             key.failure(attacher.errors.join("; ")) unless attacher.validate
           end
         end

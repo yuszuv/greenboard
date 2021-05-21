@@ -21,10 +21,10 @@ module Main
         in Failure(:validation, form, errors)
           res.flash.now[:alert] = "Uuuuups!!!! Fehler"
           res.render view, form: form, errors: errors
-        in Failure(:db, error)
-          logger.error(error.message)
-        in Failure(x)
-          res.body = x.errors
+        in Failure(:db | :storage, error)
+          logger.error(error.inspect)
+          res.status = 500
+          res.body = "server error"
         end
       end
     end

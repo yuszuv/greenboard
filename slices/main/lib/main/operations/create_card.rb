@@ -38,23 +38,32 @@ module Main
       end
 
       def persist(attacher:, **data)
-        Try[ROM::SQL::Error] do
-          Try[Shrine::Error] do
+        Try[Shrine::Error] do
+          if attacher.file
             attacher.create_derivatives
             attacher.finalize
-            attacher
-          end.to_result.or do |x|
-            Failure[:storage, x]
-          end.fmap do |attacher|
+          end
+          attacher
+        end.to_result.or do |x|
+          Failure[:storage, x]
+        end.bind do |attacher|
+          Try[ROM::SQL::Error] do
+            photos_data = [attacher]
+              .map(&:data)
+              .compact
+              .map do |d|
+                { image_data: d.to_json }
+              end
+
             data
               .merge(
-                photos: [{ image_data: attacher.data.to_json }],
+                photos: photos_data,
                 password: encrypt_password(data[:password])
               )
               .then(&repo.method(:create_with_photos))
+          end.to_result.or do |x|
+            Failure[:db, x]
           end
-        end.to_result.or do |x|
-          Failure[:db, x]
         end
       end
 
