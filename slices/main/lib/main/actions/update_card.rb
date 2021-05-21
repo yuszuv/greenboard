@@ -21,6 +21,7 @@ module Main
         in Failure(:validation, form, errors)
           res.render view, form: form, errors: errors
         in Failure(:authorization, form, errors)
+          # FIXME: form is no form
           res.render view, form: form, errors: errors
         in Failure(:db, error)
           logger.error(error.message)

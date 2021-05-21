@@ -33,7 +33,6 @@ module Main
 
       def update_with_photos(id, data)
         cards.transaction do
-
           card = cards.by_pk(id).changeset(:update, **data).commit
 
           data[:photos].map do |i|
@@ -51,6 +50,8 @@ module Main
               photos.changeset(:create, **i).associate(card).commit
             end
           end
+
+          card
         end
       end
 

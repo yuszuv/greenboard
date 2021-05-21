@@ -11,7 +11,7 @@ module Main
           optional(:author).filled(:string)
           optional(:password).filled(:string)
 
-          optional(:image).filled
+          optional(:image).maybe(:hash)
         end
 
         rule :image do |context:|
