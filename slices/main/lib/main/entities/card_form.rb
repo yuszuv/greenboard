@@ -8,13 +8,18 @@ module Main
       attribute :author, HanfBrett::Types::String
       attribute :image_data, HanfBrett::Types::String.default('{}'.freeze)
 
-      include HanfBrett::ImageUploader::Attachment(:image) # adds an `image` virtual attribute 
+      attribute :photos, HanfBrett::Types::Array.of(
+        HanfBrett::Types::Hash.schema(
+          id: HanfBrett::Types::Integer
+        )
+      )
+      # include HanfBrett::ImageUploader::Attachment(:image) # adds an `image` virtual attribute 
 
-      def image_data=(image_data)
-        attributes[:image_data] = image_data
-      end
+      # def image_data=(image_data)
+      #   attributes[:image_data] = image_data
+      # end
 
-      Empty = new(id: nil, type: '', topic: '', text: '', author: '')
+      Empty = new(id: nil, type: '', topic: '', text: '', author: '', photos: [])
     end
   end
 end

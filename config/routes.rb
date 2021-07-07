@@ -10,5 +10,7 @@ Hanami.application.routes do
     patch "karte/:id", to: "update_card"
     get "karte/:id/loeschbestaetigung", to: "confirm_delete_card"
     delete "karte/:id", to: "delete_card"
+
+    post "anhaengen", to: "upload_image"
   end
 end

@@ -5,6 +5,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PrettierPlugin = require("prettier-webpack-plugin");
 const eslintConfig = require("./eslint.config");
+const { VueLoaderPlugin } = require('vue-loader')
 
 // TODO
 // - Add typescript support
@@ -106,6 +107,10 @@ module.exports = function config(mode) {
           },
         },
         {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        },
+        {
           test: /\.scss|css$/,
           use: [
             {
@@ -144,6 +149,7 @@ module.exports = function config(mode) {
     },
     plugins: [
       ...prependPlugins,
+      new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         chunkFilename: "[id].[chunkhash].css",
         ignoreOrder: false,

@@ -22,8 +22,10 @@ module Main
         Try[ROM::SQL::Error] do
           repo.find(id)
         end.to_result.fmap do |card|
-          form = Entities::CardForm.new(card.to_h)
-          form.image_data = card.photos.first.image_data if card.photos.any?
+          photos_data = card.photos.map do |photo|
+            { id: photo.id, url: photo.image(:thumbnail).url }
+          end
+          form = Entities::CardForm.new(card.to_h.merge(photos: photos_data))
           form
         end
       end
