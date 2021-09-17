@@ -6,7 +6,7 @@
   .col-md
     .card.shadow
       .card-body
-        h5.card-title Unser schönes Brett
+        h5.card-title Hinweise
         p
           - if errors.any?
             .alert.alert-danger
@@ -14,8 +14,11 @@
               ul
                 - errors.each do |msg|
                   li = msg
-        p Vero cum omnis. Atque nemo hic. Ut aliquid nihil. Ullam vitae libero. Eaque alias optio. Nam odit omnis. Magnam ea eum. Alias ut quo. Consectetur aliquid sint. Ullam nostrum quo. Sit velit eligendi. Ad autem et. Maxime ea eligendi. Sit est suscipit. Sapiente porro assumenda. Placeat libero et. Ut nam temporibus. Sit possimus excepturi. Voluptatum nisi vel. Sed aut recusandaes.
-        p Nach einem Monat löschen sich die Nachrichten automatisch.
+        p Diese Platform soll dazu dienen, an Hanf interessierte Menschen zusammenzubringen und Kontakte zu vermitteln. Funktionieren soll das ganze so, wie das klassische Suche/Biete-Brett im Supermarkt. Lass ein Gesuch da, wenn du irgendwas wissen, kaufen oder erfahren willst. Oder lass ein Angebot da, wenn du etwas anzubieten hast.
+        p
+          b Wichtig: 
+          | Das Passwort, das du beim Erstellen eingibst, dient dazu, den Eintrag später zu bearbeiten oder zu löschen. Sollte doch einmal ein Passwort verloren gehen, kannst du auch einfach 
+          a href="mailto:j.paki@lpv-prignitz-ruppin.de" Bescheid geben
   .col-md
     .card.shadow
       .card-body
@@ -28,7 +31,7 @@
           input type="hidden" name="_csrf_token" value=csrf_token
           input type="hidden" name="_method" value=verb
           .mb-3
-            label.form-label for="type" Suche/Biete?
+            label.form-label for="type" Angebot oder Gesuch?
             select#type.form-select name="type" autocomplete="type" value=form.type
               option value="SUCHE" Suche
               option value="BIETE" Biete
@@ -39,14 +42,17 @@
             label for="text" Nachricht
             textarea#text.form-control name="text" placeholder="..." rows="3" = form.text
           .mb-3
-            label.form-label for="author" Absender
-            input#author.form-control type="text" name="author" value=form.author
-            .form-text We'll never share your email with anyone else.
+            label.form-label for="author" Kontakt
+            input#author.form-control type="text" name="author" value=form.author placeholder="Name, Telefonnummer, Email-Adresse, ..."
+            .form-text Das wird öffentlich als Kontaktmöglichkeit ausgegeben
           .mb-3
             label.form-label for="password" Passwort
             input#password.form-control type="password" name="password"
-          .mb-3
-            label.form-label for="image" Foto
+            .form-text Damit kann der Beitrag später bearbeitet oder gelöscht werden. Merken (lassen)!
+
+            input type="hidden" name="photos[]" value=""
+          / .mb-3
+            / label.form-label for="image" Foto
             / - if form.image
               img.img-thumbnail.d-block.mb-1 src=form.image.url width="200"
             / input type="hidden" name="image" value=form.cached_image_data

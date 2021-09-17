@@ -7,3 +7,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import "photoswipe/dist/photoswipe";
 @import "photoswipe/dist/default-skin/default-skin";
 
+.navbar-brand {
+  font-family: 'Londrina Solid';
+}

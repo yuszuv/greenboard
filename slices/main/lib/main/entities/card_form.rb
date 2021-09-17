@@ -8,11 +8,11 @@ module Main
       attribute :author, HanfBrett::Types::String
       attribute :image_data, HanfBrett::Types::String.default('{}'.freeze)
 
-      attribute :photos, HanfBrett::Types::Array.of(
-        HanfBrett::Types::Hash.schema(
-          id: HanfBrett::Types::Integer
-        )
-      )
+      # attribute :photos, HanfBrett::Types::Array.of(
+      #   HanfBrett::Types::Hash.schema(
+      #     id: HanfBrett::Types::Integer
+      #   )
+      # )
       # include HanfBrett::ImageUploader::Attachment(:image) # adds an `image` virtual attribute 
 
       # def image_data=(image_data)

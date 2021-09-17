@@ -24,7 +24,7 @@ module Main
             form = Entities::CardForm.new(id: nil, **result.to_h)
             attacher = result.context[:attacher]
 
-            form.image = attacher.file if attacher
+            # form.image = attacher.file if attacher
 
             Failure[
               :validation,

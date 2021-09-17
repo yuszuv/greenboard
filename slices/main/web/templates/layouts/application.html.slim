@@ -13,16 +13,19 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
     meta name="title" content="Grünes Brett"
     / link rel="stylesheet" type="text/css" href=assets["tailwind.css"]
     link rel="stylesheet" type="text/css" href=assets["main__public.css"]
+    link rel="preconnect" href="https://fonts.googleapis.com"
+    link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=nil
+    link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet"
 
   body.bg-light
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      .container-fluid
-        a.navbar-brand.text-primary.fw-bold href="/"
+      .container-fluid.justify-content-center
+        a.navbar-brand.text-primary.fw-bold.d-flex.align-items-center href="/"
           img.me-2 src=assets["logo_transparent_small.png"]
-          | Grünes Brett
-        button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
+          span.fs-1 Grünes Brett
+        / button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
           span.navbar-toggler-icon
-        #navbarSupportedContent.collapse.navbar-collapse
+        / #navbarSupportedContent.collapse.navbar-collapse
           ul.navbar-nav.me-auto.mb-2.mb-lg-0
             li.nav-item
               a.nav-link.active aria-current="page" href="#"  Home
