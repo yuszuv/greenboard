@@ -18,8 +18,8 @@
         = card.author
 
     .card-gallery-list.d-flex.justify-content-center
-      - card.photos.each do |photo|
+      - card.images.each do |image|
         figure
-          a href=photo.image.url data-size=("%sx%s" % [photo.image.width, photo.image.height])
-            img.img-thumbnail.m-2 src=photo.image(:thumbnail).url data-src=photo.image.url itemprop="thumbnail"
+          a href=image.image.url data-size=("%sx%s" % [image.image.width, image.image.height])
+            img.img-thumbnail.m-2 src=image.image(:thumbnail).url data-src=image.image.url itemprop="thumbnail"
 

@@ -10,23 +10,14 @@ module Main
           required(:text).filled(:string)
           required(:author).filled(:string)
           required(:password).filled(:string)
-          optional(:image).maybe(:hash)
+          required(:images).array(:str?)
           required(:tos).filled(:bool, :true?)
         end
 
-        rule(:password).validate(min_size?: 6)
-
-        rule :image do |context:|
-          attacher = HanfBrett::ImageUploader::Attacher.new
-          context[:attacher] = attacher
-
-          if value
-            # attacher.form_assign(value)
-            attacher.assign(value)
-            key.failure(attacher.errors.join("; ")) unless attacher.validate
-          end
+        rule(:images).each do |index:|
+          key([:images, index]).failure('images data is not valid') unless (!!JSON.parse(value) rescue false)
         end
-
+        rule(:password).validate(min_size?: 6)
         rule :type do
           list = %w(SUCHE BIETE)
           key.failure(:inclusion?, list: list) unless list.include?(value)

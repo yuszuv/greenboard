@@ -5,7 +5,7 @@ module Main
 
       def find(id)
         cards
-          .combine(:photos)
+          .combine(:images)
           .by_pk(id)
           .one
       end
@@ -13,7 +13,7 @@ module Main
       def board
         board = OpenStruct.new(requests: [], offers: [])
         cards
-          .combine(:photos)
+          .combine(:images)
           .order(Sequel.desc(:created_at))
           .to_a
           .each_with_object(board) do |card, b|
@@ -27,27 +27,27 @@ module Main
         board
       end
 
-      def create_with_photos(data)
-        cards.combine(:photos).command(:create).(data)
+      def create_with_images(data)
+        cards.combine(:images).command(:create).(data)
       end
 
-      def update_with_photos(id, data)
+      def update_with_images(id, data)
         cards.transaction do
           card = cards.by_pk(id).changeset(:update, **data).commit
 
-          data[:photos].map do |i|
+          data[:images].map do |i|
             if i[:id]
               unless i[:_remove] == true
-                photos
+                images
                   .by_pk(i[:id])
                   .changeset(:update, **i)
                   .associate(card)
                   .commit
               else
-                photo.command(:delete).(i[:id])
+                images.command(:delete).(i[:id])
               end
             else
-              photos.changeset(:create, **i).associate(card).commit
+              images.changeset(:create, **i).associate(card).commit
             end
           end
 
@@ -55,9 +55,9 @@ module Main
         end
       end
 
-      def delete_with_photos(id)
+      def delete_with_images(id)
         cards.transaction do
-          cards.photos.where(card_id: id).delete
+          cards.images.where(card_id: id).delete
           cards.by_pk(id).delete
         end
       end

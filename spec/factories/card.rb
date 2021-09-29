@@ -1,6 +1,6 @@
 require "digest"
 
-require_relative './photo'
+require_relative './image'
 
 Factory.define(:card) do |f|
   f.type { %w(SUCHE BIETE).sample }
@@ -9,7 +9,7 @@ Factory.define(:card) do |f|
   f.author { Faker::Cannabis.unique.brand }
   f.password { Digest::SHA256.hexdigest('secret') }
   # f.photo_count { 1 }
-  f.trait(:with_photos) do
-    f.association(:photos, count: 2)
+  f.trait(:with_images) do
+    f.association(:images, count: 2)
   end
 end

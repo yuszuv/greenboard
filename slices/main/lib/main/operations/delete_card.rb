@@ -26,7 +26,7 @@ module Main
 
       def persist(id)
         Try[ROM::SQL::Error] do
-          repo.delete_with_photos(id)
+          repo.delete_with_images(id)
         end.to_result.or do |x|
           Failure[:db, x]
         end

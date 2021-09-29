@@ -29,7 +29,7 @@ module Main
         if attacher.validate
           attacher.create_derivatives
           attacher.finalize
-          Success(attacher.derivatives[:thumbnail])
+          Success(attacher)
         else
           Failure[:validation, attacher.errors]
         end

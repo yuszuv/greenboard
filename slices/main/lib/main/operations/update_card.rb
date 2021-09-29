@@ -69,7 +69,7 @@ module Main
         attacher
       end
 
-      def map_photos_data(attachers)
+      def map_images_data(attachers)
         attachers
           .map(&:data)
           .compact
@@ -81,10 +81,10 @@ module Main
       def update_db(id, data, attachers)
         data
           .merge(
-            photos: map_photos_data(attachers),
+            images: map_images_data(attachers),
             password: encrypt_password(data[:password])
           )
-          .then{ |d| repo.update_with_photos(id, d) }
+          .then{ |d| repo.update_with_images(id, d) }
       end
 
       def merge_attacher

@@ -22,10 +22,10 @@ module Main
         Try[ROM::SQL::Error] do
           repo.find(id)
         end.to_result.fmap do |card|
-          photos_data = card.photos.map do |photo|
-            { id: photo.id, url: photo.image(:thumbnail).url }
+          images_data = card.images.map do |image|
+            { id: image.id, url: image.image(:thumbnail).url }
           end
-          form = Entities::CardForm.new(card.to_h.merge(photos: photos_data))
+          form = Entities::CardForm.new(card.to_h.merge(images: images_data))
           form
         end
       end

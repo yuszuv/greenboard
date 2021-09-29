@@ -3,7 +3,7 @@ module Persistence
     class Cards < ROM::Relation[:sql]
       schema(:cards, infer: true) do
         associations do
-          has_many :photos
+          has_many :images
         end
       end
     end

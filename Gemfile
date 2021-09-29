@@ -29,6 +29,7 @@ gem "fastimage" # default analyzer
 gem "dry-matcher", "~> 0.8"
 gem "dry-monads", "~> 1.2"
 gem "dry-struct", "~> 1.0"
+gem "dry-transformer"
 gem "dry-types", "~> 1.0"
 gem "dry-validation", "~> 1.4"
 gem "erbse", "~> 0.1"

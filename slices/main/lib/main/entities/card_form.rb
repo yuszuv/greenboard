@@ -6,7 +6,7 @@ module Main
       attribute :topic, HanfBrett::Types::String
       attribute :text, HanfBrett::Types::String
       attribute :author, HanfBrett::Types::String
-      attribute :image_data, HanfBrett::Types::String.default('{}'.freeze)
+      attribute :images, HanfBrett::Types::Array.of(HanfBrett::Types::String).default([])
 
       # attribute :photos, HanfBrett::Types::Array.of(
       #   HanfBrett::Types::Hash.schema(
@@ -19,7 +19,7 @@ module Main
       #   attributes[:image_data] = image_data
       # end
 
-      Empty = new(id: nil, type: '', topic: '', text: '', author: '', photos: [])
+      Empty = new(id: nil, type: '', topic: '', text: '', author: '', images: [])
     end
   end
 end

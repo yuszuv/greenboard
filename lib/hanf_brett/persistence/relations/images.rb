@@ -1,7 +1,7 @@
 module Persistence
   module Relations
-    class Photos < ROM::Relation[:sql]
-      schema(:photos, infer: true) do
+    class Images < ROM::Relation[:sql]
+      schema(:images, infer: true) do
         associations do
           belongs_to :card
         end

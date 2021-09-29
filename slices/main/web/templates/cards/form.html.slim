@@ -23,11 +23,6 @@
     .card.shadow
       .card-body
         form action=action method="POST" enctype="multipart/form-data"
-          / script type='application/javascript'
-          /   | window.photos =
-          /   == form.photos.to_json
-          / #app
-
           input type="hidden" name="_csrf_token" value=csrf_token
           input type="hidden" name="_method" value=verb
           .mb-3
@@ -42,6 +37,13 @@
             label for="text" Nachricht
             textarea#text.form-control name="text" placeholder="..." rows="3" = form.text
           .mb-3
+            script type='application/javascript'
+              | window.images =
+              == form.images
+
+            #app
+
+          .mb-3
             label.form-label for="author" Kontakt
             input#author.form-control type="text" name="author" value=form.author placeholder="Name, Telefonnummer, Email-Adresse, ..."
             .form-text Das wird öffentlich als Kontaktmöglichkeit ausgegeben
@@ -49,14 +51,6 @@
             label.form-label for="password" Passwort
             input#password.form-control type="password" name="password"
             .form-text Damit kann der Beitrag später bearbeitet oder gelöscht werden. Merken (lassen)!
-
-            input type="hidden" name="photos[]" value=""
-          / .mb-3
-            / label.form-label for="image" Foto
-            / - if form.image
-              img.img-thumbnail.d-block.mb-1 src=form.image.url width="200"
-            / input type="hidden" name="image" value=form.cached_image_data
-            / input#image.form-control type="file" name="image"
           .mb-3
             input type="hidden" name="tos" value="0"
             .form-check

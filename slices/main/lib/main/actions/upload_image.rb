@@ -16,7 +16,7 @@ module Main
         input = req.params.to_h
         case upload_image.(input)
         in Success(image)
-          res.body = { url: image.url, height: image.height, width: image.width }.to_json
+          res.body = image.column_data
         in Failure(:validation, errors)
           res.status = 406
           res.body = errors

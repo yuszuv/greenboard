@@ -370,6 +370,7 @@ DEPENDENCIES
   dry-matcher (~> 0.8)
   dry-monads (~> 1.2)
   dry-struct (~> 1.0)
+  dry-transformer
   dry-types (~> 1.0)
   dry-validation (~> 1.4)
   erbse (~> 0.1)
