@@ -35,19 +35,25 @@ module Main
         cards.transaction do
           card = cards.by_pk(id).changeset(:update, **data).commit
 
-          data[:images].map do |i|
+          existing_ids = cards.combine(:images).by_pk(id).one.images.map(&:id)
+          image_ids = data[:images].map{ _1[:id] }
+
+          (existing_ids - image_ids).each do |id|
+            images.by_pk(id).changeset(:delete).commit
+          end
+
+          data[:images].each do |i|
             if i[:id]
-              unless i[:_remove] == true
-                images
-                  .by_pk(i[:id])
-                  .changeset(:update, **i)
-                  .associate(card)
-                  .commit
-              else
-                images.command(:delete).(i[:id])
-              end
+              images
+                .by_pk(i[:id])
+                .changeset(:update, **i)
+                .associate(card)
+                .commit
             else
-              images.changeset(:create, **i).associate(card).commit
+              images
+                .changeset(:create, **i)
+                .associate(card)
+                .commit
             end
           end
 

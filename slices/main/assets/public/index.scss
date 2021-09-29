@@ -10,3 +10,29 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 .navbar-brand {
   font-family: 'Londrina Solid';
 }
+
+.dropzone {
+  min-height: 40px;
+
+  .dz-message {
+    margin: 0;
+  }
+}
+
+.image-list {
+  // margin: 0.5rem;
+  position: relative;
+}
+
+a.btn-remove-image {
+  position: absolute;
+  transform: translate(50%, -50%); 
+  right: 0;
+  top: 0;
+  color: $red;
+  font-size: 2rem;
+
+  i {
+    background-color: $white
+  }
+}

@@ -23,7 +23,7 @@ module Main
           repo.find(id)
         end.to_result.fmap do |card|
           images_data = card.images.map do |image|
-            { id: image.id, url: image.image(:thumbnail).url }
+            image.to_h.slice(:id, :image_data)
           end
           form = Entities::CardForm.new(card.to_h.merge(images: images_data))
           form

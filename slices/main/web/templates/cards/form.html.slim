@@ -25,11 +25,12 @@
         form action=action method="POST" enctype="multipart/form-data"
           input type="hidden" name="_csrf_token" value=csrf_token
           input type="hidden" name="_method" value=verb
+          input type="hidden" name="id" value=form.id
           .mb-3
             label.form-label for="type" Angebot oder Gesuch?
-            select#type.form-select name="type" autocomplete="type" value=form.type
-              option value="SUCHE" Suche
-              option value="BIETE" Biete
+            select#type.form-select name="type" autocomplete="type"
+              - %w(SUCHE BIETE).each do |type|
+                option value=type selected=(type == form.type) == type.capitalize
           .mb-3
             label.form-label for="topic" Überschrift
             input#topic.form-control type="text" name="topic" value=form.topic
@@ -39,7 +40,7 @@
           .mb-3
             script type='application/javascript'
               | window.images =
-              == form.images
+              == form.images.to_json
 
             #app
 

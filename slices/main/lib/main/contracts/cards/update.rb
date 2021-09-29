@@ -10,22 +10,21 @@ module Main
           optional(:text).filled(:string)
           optional(:author).filled(:string)
           optional(:password).filled(:string)
-
-          optional(:image).maybe(:hash)
-        end
-
-        rule :image do |context:|
-          attacher = HanfBrett::ImageUploader::Attacher.new
-          context[:attacher] ||= attacher
-
-          if value
-            attacher.assign(value)
-            key.failure(attacher.errors.join("; ")) unless attacher.validate
+          optional(:images).array(:hash) do
+            optional(:id).filled(:integer)
+            required(:image_data).filled(:string)
           end
+
+          required(:tos).filled(:bool, :true?)
         end
 
+        rule(:images).each do |index:|
+          key([:images, index]).failure('images data is not valid') unless (!!JSON.parse(value[:image_data]) rescue false)
+        end
+        rule(:password).validate(min_size?: 6)
         rule :type do
-          key.failure("must be one of 'BIETE', 'SUCHE'. was: #{value}") unless %w(SUCHE BIETE).include?(value)
+          list = %w(SUCHE BIETE)
+          key.failure(:inclusion?, list: list) unless list.include?(value)
         end
       end
     end

@@ -6,7 +6,8 @@ module Main
       attribute :topic, HanfBrett::Types::String
       attribute :text, HanfBrett::Types::String
       attribute :author, HanfBrett::Types::String
-      attribute :images, HanfBrett::Types::Array.of(HanfBrett::Types::String).default([])
+      # attribute :images, HanfBrett::Types::Array.of(HanfBrett::Types::String).default([])
+      attribute :images, HanfBrett::Types::Array.of(HanfBrett::Types::Hash).default([])
 
       # attribute :photos, HanfBrett::Types::Array.of(
       #   HanfBrett::Types::Hash.schema(

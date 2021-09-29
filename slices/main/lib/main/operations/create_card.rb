@@ -10,7 +10,7 @@ module Main
 
       def call(input)
         data = yield validate(input)
-        res = yield persist(transform(data))
+        res = yield persist(transform(data.to_h))
 
         Success(res)
       end
@@ -21,7 +21,7 @@ module Main
         contract.(input)
           .to_monad
           .or do |result|
-            form = Entities::CardForm.new(id: nil, **result.to_h)
+            form = Entities::CardForm.new(id: nil, **parse_image_data(result.to_h))
 
             Failure[
               :validation,
@@ -29,22 +29,31 @@ module Main
               result.errors(full: true).to_h.values.flatten
             ]
           end
-          .fmap do |result|
-            result.to_h.merge(attacher: result.context[:attacher])
-          end
+          # .fmap do |result|
+          #   result.to_h.merge(attacher: result.context[:attacher])
+          # end
       end
 
       def t(*args)
         HanfBrett::Functions[*args]
       end
 
+      def parse_image_data(input)
+        t(:map_value,
+         :images,
+         t(:map_array,
+          t(:map_value,
+           :image_data,
+           t(-> v { JSON.parse(v) }))))
+          .(input)
+      end
+
       def transform(data)
         t(:map_value,
           :images,
           t(:map_array,
-            t(-> s { JSON.parse(s) })
-              .>>(t(:deep_symbolize_keys))
-              .>>(t(-> v { { image_data: v } }))))
+            t(:map_value, :image_data, t(-> s { JSON.parse(s) }))
+              .>>(t(:deep_symbolize_keys))))
           .(data)
       end
 
