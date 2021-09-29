@@ -10,6 +10,9 @@ require 'i18n'
 I18n.load_path << Dir[File.expand_path("config/locales") + "/*.yml"]
 I18n.default_locale = :de
 
+require 'slim'
+Slim::Embedded.options[:markdown] = { hard_wrap: true }
+
 require "hanami"
 
 module HanfBrett

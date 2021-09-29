@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "redcarpet"
+
 require "hanami/view/context"
 
 module HanfBrett
@@ -37,6 +39,12 @@ module HanfBrett
 
       def csrf_token
         request.session[Hanami::Action::CsrfProtection::CSRF_TOKEN]
+      end
+
+      def markdown(input)
+        renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
+        markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+        markdown.render(input)
       end
     end
   end

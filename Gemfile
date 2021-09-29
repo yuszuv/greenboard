@@ -36,6 +36,7 @@ gem "erbse", "~> 0.1"
 gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
 gem "image_processing", "~> 1.8"
+gem "redcarpet"
 
 gem "pry"
 gem "dotenv", "~> 2.7"

@@ -10,7 +10,7 @@
     h5.card-title class="text-#{mod}"
       = card.topic
     hr class="text-#{mod}"
-    p.card-text= card.text
+    p.card-text == markdown(card.text)
 
     ul.list-group.list-group-flush
       li.list-group-item
