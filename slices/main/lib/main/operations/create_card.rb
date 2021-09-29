@@ -29,11 +29,9 @@ module Main
               result.errors(full: true).to_h.values.flatten
             ]
           end
-          # .fmap do |result|
-          #   result.to_h.merge(attacher: result.context[:attacher])
-          # end
       end
 
+      # TODO: extract
       def t(*args)
         HanfBrett::Functions[*args]
       end

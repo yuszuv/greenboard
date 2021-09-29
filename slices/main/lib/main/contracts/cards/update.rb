@@ -11,7 +11,7 @@ module Main
           optional(:author).filled(:string)
           optional(:password).filled(:string)
           optional(:images).array(:hash) do
-            optional(:id).filled(:integer)
+            optional(:id).maybe(:integer)
             required(:image_data).filled(:string)
           end
 

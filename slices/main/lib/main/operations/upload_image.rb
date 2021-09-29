@@ -5,7 +5,6 @@ module Main
     class UploadImage < HanfBrett::Operation
       include Deps[
         contract: 'contracts.images.upload',
-        # repo: 'repositories.card'
       ]
 
       def call(input)

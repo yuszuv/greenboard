@@ -41,6 +41,7 @@ module Main
           end
       end
 
+      # TODO: extract
       def t(*args)
         HanfBrett::Functions[*args]
       end
@@ -74,45 +75,11 @@ module Main
         end.to_result.or do |x|
           Failure[:db, x]
         end
-        # Try[Shrine::Error] { create_versions_and_finalize(attacher) }
-        #   .to_result
-        #   .or { |x| Failure[:storage, x] }
-        #   .bind do |attacher|
-        #     Try[ROM::SQL::Error] { update_db(id, data, [attacher].select(&:file)) }
-        #     .to_result
-        #     .or { |x| Failure[:db, x] }
-        #   end
       end
 
       def encrypt_password(str)
         HanfBrett::Functions[:encrypt_password].(str)
       end
-
-      # def create_versions_and_finalize(attacher)
-      #   if attacher.file
-      #     attacher.create_derivatives
-      #     attacher.finalize
-      #   end
-      #   attacher
-      # end
-
-      # def map_images_data(attachers)
-      #   attachers
-      #     .map(&:data)
-      #     .compact
-      #     .map do |d|
-      #       { image_data: d.to_json }
-      #     end
-      # end
-
-      # def update_db(id, data, attachers)
-      #   data
-      #     .merge(
-      #       images: map_images_data(attachers),
-      #       password: encrypt_password(data[:password])
-      #     )
-      #     .then{ |d| repo.update_with_images(id, d) }
-      # end
     end
   end
 end
