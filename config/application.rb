@@ -34,7 +34,7 @@ module HanfBrett
       "X-XSS-Protection" => "1; mode=block",
       "Content-Security-Allow-Origin" => "http://localhost:*",
       "Content-Security-Policy" => \
-      "default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data: http://placekitten.com; " \
+      "default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data: http://placekitten.com https://fonts.googleapis.com; " \
         "font-src 'self' 'unsafe-eval' 'unsafe-inline' http:; "
         # "base-uri 'self'; " \
         # "child-src 'self'; " \

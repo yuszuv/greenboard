@@ -27,6 +27,7 @@ append :linked_files, ".env.production"
 # Default value for linked_dirs is []
 append :linked_dirs,
   "log",
+  "node_modules",
   "tmp/pids",
   "tmp/cache",
   "tmp/sockets",

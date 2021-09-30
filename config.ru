@@ -2,8 +2,9 @@
 
 require "rack/static"
 use Rack::Static,
-  urls: ["/assets", "/uploads"],
   root: "public",
+  urls: ["/uploads", "/assets", "/favicon.ico"],
+  cascade: true,
   header_rules: [
     ["/assets", {"Cache-Control" => "public, max-age=31536000"}]
   ]

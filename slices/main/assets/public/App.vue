@@ -38,7 +38,6 @@ export default {
         thumbnailHeight: 150,
         dictDefaultMessage: "Bilder anhängen (drag'n'drop oder Klick)",
         maxFilesize: 5.0,
-        //addRemoveLinks: true
       },
       progress: false,
       myProgress: 0,
@@ -53,7 +52,6 @@ export default {
     },
 
     vsuccess(file, response) {
-      console.log(response)
       this.images = [ ...this.images, { "image_data": response } ]
       this.$refs.dropzone.removeFile(file)
     },
