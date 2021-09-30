@@ -20,9 +20,11 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
   body.bg-light
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .container-fluid.justify-content-center
-        a.navbar-brand.text-primary.fw-bold.d-flex.align-items-center href="/"
+        a.navbar-brand.text-primary.fw-bold.d-flex.flex-wrap.justify-content-center.align-items-center href="/"
           img.me-2 src=assets["slices/main/assets/public/logo_transparent_small.png"]
-          span.fs-1 Grünes Brett
+          .d-flex.flex-column.justify-content-center
+            span.fs-1.lh-1 Grünes Brett
+            .my-1 Suche/Biete für Alles rund um Hanf
     .container
       == yield
       .row
@@ -41,6 +43,7 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
         .col-md.text-center.d-flex.justify-content-center.mt-1
           a.px-1 href="#" data-bs-toggle="modal" data-bs-target="#impressModal" Impressum
           a.px-1 href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" Datenschutzerklärung
+          a.px-1 href="mailto:j.paki@lpv-prignitz-ruppin.de" Kontakt
 
 
     #impressModal.modal.fade aria-hidden="true" aria-labelledby="impressModalLabel" tabindex="-1"

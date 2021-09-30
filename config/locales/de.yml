@@ -114,6 +114,7 @@ de:
       text: 'Nachricht'
       author: 'Absender'
       password: 'Passwort'
+      password_confirmation: 'Passwortbestätigung'
       type: 'Suche/Biete'
       image: 'Bild'
       tos: 'Nutzungsbestimmungen'
