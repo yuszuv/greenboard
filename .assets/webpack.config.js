@@ -102,7 +102,7 @@ module.exports = function config(mode) {
           options: {
             name:
               mode === "development"
-                ? "[name].[ext]"
+                ? "[path][name].[ext]"
                 : "[path][name].[contenthash].[ext]",
           },
         },
