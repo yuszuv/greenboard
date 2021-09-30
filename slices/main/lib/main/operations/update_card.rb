@@ -5,18 +5,24 @@ module Main
     class UpdateCard < HanfBrett::Operation
       include Deps[
         contract: 'contracts.cards.update',
-        repo: 'repositories.card'
+        repo: 'repositories.card',
+        mailer: 'application.mailer'
       ]
 
       def call(id:, **params)
         data = yield validate(id, params)
         yield authorize(id, data)
         card = yield persist(id, transform(data.to_h))
+        notify_admin(card)
 
         Success(card)
       end
 
       private
+
+      def notify_admin(res)
+        mailer.(res.text)
+      end
 
       def validate(id, input)
         contract.(input)

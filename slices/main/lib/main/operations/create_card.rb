@@ -5,17 +5,23 @@ module Main
     class CreateCard < HanfBrett::Operation
       include Deps[
         contract: 'contracts.cards.create',
-        repo: 'repositories.card'
+        repo: 'repositories.card',
+        mailer: 'application.mailer'
       ]
 
       def call(input)
         data = yield validate(input)
         res = yield persist(transform(data.to_h))
+        notify_admin(res)
 
         Success(res)
       end
 
       private
+
+      def notify_admin(res)
+        mailer.(res.text)
+      end
 
       def validate(input)
         contract.(input)
