@@ -8,7 +8,7 @@ module Main
           optional(:type).filled(:string)
           optional(:topic).filled(:string)
           optional(:text).filled(:string)
-          optional(:author).filled(:string)
+          # optional(:author).filled(:string)
           optional(:password).filled(:string)
           optional(:images).array(:hash) do
             optional(:id).maybe(:integer)

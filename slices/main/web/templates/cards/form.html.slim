@@ -47,14 +47,20 @@
 
             #app
 
-          .mb-3
-            label.form-label for="author" Kontakt
-            input#author.form-control type="text" name="author" value=form.author placeholder="Name, Telefonnummer, Email-Adresse, ..."
-            .form-text Das wird öffentlich als Kontaktmöglichkeit ausgegeben
+          / .mb-3
+          /   label.form-label for="author" Kontakt
+          /   input#author.form-control type="text" name="author" value=form.author placeholder="Name, Telefonnummer, Email-Adresse, ..."
+          /   .form-text Das wird öffentlich als Kontaktmöglichkeit ausgegeben
           .mb-3
             label.form-label for="password" Passwort
             input#password.form-control type="password" name="password"
-            .form-text Damit kann der Beitrag später bearbeitet oder gelöscht werden. Merken (lassen)!
+            - if form.id
+              .form-text Das beim Erstellen des Beitrags gewählte Passwort
+          - unless form.id
+            .mb-3
+              label.form-label for="password-confirmation" Passwort bestätigen
+              input#password-confirmation.form-control type="password" name="password_confirmation"
+              .form-text Damit kann der Beitrag später bearbeitet oder gelöscht werden. Merken (lassen)!
           .mb-3
             input type="hidden" name="tos" value="0"
             .form-check

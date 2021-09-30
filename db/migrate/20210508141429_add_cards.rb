@@ -17,7 +17,7 @@ ROM::SQL.migration do
       column :topic, String, null: false
       column :text, String, null: false
       column :type, String, null: false
-      column :author, String, null: false
+      column :author, String
       column :password, String, null: false
       column :created_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
       column :updated_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP

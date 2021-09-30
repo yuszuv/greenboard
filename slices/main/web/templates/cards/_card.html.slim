@@ -12,10 +12,10 @@
     hr class="text-#{mod}"
     p.card-text == markdown(card.text)
 
-    ul.list-group.list-group-flush
-      li.list-group-item
-        b Kontakt: 
-        = card.author
+    / ul.list-group.list-group-flush
+    /   li.list-group-item
+    /     b Kontakt: 
+    /     = card.author
 
     .card-gallery-list.d-flex.justify-content-center
       - card.images.each do |image|

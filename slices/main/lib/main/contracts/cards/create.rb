@@ -8,8 +8,9 @@ module Main
           required(:type).filled(:string)
           required(:topic).filled(:string)
           required(:text).filled(:string)
-          required(:author).filled(:string)
+          # required(:author).filled(:string)
           required(:password).filled(:string)
+          required(:password_confirmation).filled(:string)
           optional(:images).array(:hash) do
             optional(:id).maybe(:integer)
             required(:image_data).filled(:string)
@@ -22,6 +23,9 @@ module Main
           key([:images, index]).failure('images data is not valid') unless (!!JSON.parse(value[:image_data]) rescue false)
         end
         rule(:password).validate(min_size?: 6)
+        rule(:password, :password_confirmation) do
+          key.failure('stimmt nicht mit Passwortbestätigung überein') unless values[:password] == values[:password_confirmation]
+        end
         rule :type do
           list = %w(SUCHE BIETE)
           key.failure(:inclusion?, list: list) unless list.include?(value)
