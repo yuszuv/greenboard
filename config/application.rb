@@ -34,20 +34,8 @@ module HanfBrett
       "X-XSS-Protection" => "1; mode=block",
       "Content-Security-Allow-Origin" => "http://localhost:*",
       "Content-Security-Policy" => \
-      "default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data: http://placekitten.com https://fonts.googleapis.com; " \
-        "font-src 'self' 'unsafe-eval' 'unsafe-inline' http:; "
-        # "base-uri 'self'; " \
-        # "child-src 'self'; " \
-        # "connect-src 'self'; " \
-        # "default-src 'none'; " \
-        # "form-action 'self'; " \
-        # "frame-ancestors 'self'; " \
-        # "frame-src 'self'; " \
-        # "img-src 'self' https: data:; " \
-        # "media-src 'self'; " \
-        # "object-src 'none'; " \
-        # "script-src 'self' 'unsafe-eval' http://localhost:*; " \
-        # "style-src 'self' 'unsafe-inline' http:"
+      "default-src 'self' 'unsafe-eval' 'unsafe-inline' http://localhost:* data: http://placekitten.com https://fonts.googleapis.com https://www.google.com https://www.gstatic.com;" \
+      "font-src 'self' 'unsafe-eval' 'unsafe-inline' http:; "
     }
   end
 end
