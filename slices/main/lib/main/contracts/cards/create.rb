@@ -8,6 +8,7 @@ module Main
           required(:type).filled(:string)
           required(:topic).filled(:string)
           required(:text).filled(:string)
+          required(:contact).filled(:string)
           # required(:author).filled(:string)
           required(:password).filled(:string)
           required(:password_confirmation).filled(:string)

@@ -8,6 +8,7 @@ module Main
           optional(:type).filled(:string)
           optional(:topic).filled(:string)
           optional(:text).filled(:string)
+          optional(:contact).filled(:string)
           # optional(:author).filled(:string)
           optional(:password).filled(:string)
           optional(:images).array(:hash) do

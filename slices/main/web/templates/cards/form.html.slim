@@ -38,6 +38,10 @@
               | Textformatierungen mit 
               a href="https://www.markdownguide.org/" target="_blank" Markdown
           .mb-3
+            label for="contact" Kontaktdaten
+            textarea#contact.form-control name="contact" placeholder="Name, Telefonnummer, Email-Adresse oder ähnliches" rows="3" = form.contact
+            .form-text Diese Daten sind später nach Lösen eines sog. <em>Captchas</em> öffentlich einsehbar
+          .mb-3
             script type='application/javascript'
               | window.images =
               == form.images.to_json
