@@ -28,7 +28,12 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
     .container
       == yield
       .row
-        .col-md.text-center
+        .col-md.text-center.my-1.d-flex.justify-content-center
+          a.px-1 href="#" data-bs-toggle="modal" data-bs-target="#impressModal" Impressum
+          a.px-1 href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" Datenschutzerklärung
+          a.px-1 href="mailto:j.paki@lpv-prignitz-ruppin.de" Kontakt
+      .row
+        .col-md.text-center.my-1
           | developer experience brought to the developer by 
           a.px-1 href="https://hanamirb.org" target="_blank"
             img src=assets['slices/main/assets/public/hanami.png'] width="20"
@@ -38,12 +43,11 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
             img src=assets['slices/main/assets/public/rom.svg'] width="20"
           a.px-1 href="https://vuejs.org" target="_blank"
             img src=assets['slices/main/assets/public/vuejs.svg'] width="20"
-
       .row.mb-5
-        .col-md.text-center.d-flex.justify-content-center.mt-1
-          a.px-1 href="#" data-bs-toggle="modal" data-bs-target="#impressModal" Impressum
-          a.px-1 href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" Datenschutzerklärung
-          a.px-1 href="mailto:j.paki@lpv-prignitz-ruppin.de" Kontakt
+        .col-md.text-center.my-1
+          span.px-1 == app_version
+          a.px-1 href="https://github.com/yuszuv/greenboard" target="_blank" source
+
 
 
     #impressModal.modal.fade aria-hidden="true" aria-labelledby="impressModalLabel" tabindex="-1"

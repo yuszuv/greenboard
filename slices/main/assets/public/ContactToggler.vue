@@ -1,13 +1,16 @@
 <template>
   <div>
     <p class="card-text" v-if="!clicked">
-      <a href="#" v-on:click="toggleClicked">
+      <a href="#" v-on:click="toggleClicked" class="btn btn-outline-primary">
+        <i class="fas fa-address-card"></i>
         Kontaktdaten anzeigen
       </a>
     </p>
     <template v-else>
       <div>
         <p v-if="robot" class="card-text">
+          <strong>Kontakt:</strong>
+          <br>
           {{ contact }}
         </p>
         <vue-recaptcha v-else
@@ -51,7 +54,7 @@ export default {
         .then(response => response.json())
         .then(data => this.contact = data)
 
-
+      this.$refs.recaptcha.reset()
     },
     toggleClicked(event) {
       event.preventDefault()

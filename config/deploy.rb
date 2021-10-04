@@ -56,8 +56,8 @@ set :default_env, { hanami_env: 'production' }
 namespace :deploy do
   desc "Build assets with yarn"
   task :assets do
-    on roles(:web) do |_host|
-      exec "yarn run build"
+    on roles(:app) do |_host|
+      exec "yarn && yarn run build"
     end
   end
 end

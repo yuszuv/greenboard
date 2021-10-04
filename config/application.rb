@@ -17,6 +17,8 @@ require "hanami"
 
 module HanfBrett
   class Application < Hanami::Application
+    Version = `git describe --tags --abbrev=0 --always`.chomp
+
     config.sessions = :cookie, {
       key: "hanf_brett.session",
       secret: settings.session_secret,
