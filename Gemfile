@@ -26,12 +26,12 @@ gem "shrine", "~> 3.0"
 gem "fastimage" # default analyzer 
 
 # Application
-gem "dry-matcher", "~> 0.8"
-gem "dry-monads", "~> 1.2"
-gem "dry-struct", "~> 1.0"
+gem "dry-matcher"
+gem "dry-monads"
+gem "dry-struct"
 gem "dry-transformer"
-gem "dry-types", "~> 1.0"
-gem "dry-validation", "~> 1.4"
+gem "dry-types"
+gem "dry-validation"
 gem "erbse", "~> 0.1"
 gem "i18n", "~> 1.8"
 gem "slim", "~> 4.0"
@@ -45,6 +45,7 @@ gem "dotenv", "~> 2.7"
 group :development do
   gem "capistrano", "~> 3.16", require: false
   gem 'capistrano-bundler', '~> 2.0'
+  gem 'capistrano-nvm'
   gem 'capistrano-rvm'
   gem 'capistrano3-puma'
 end
