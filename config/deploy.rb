@@ -8,6 +8,10 @@ set :rvm_ruby_version, '2.7.3'      # Defaults to: 'default'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
+set :nvm_type, :user # or :system, depends on your nvm setup
+set :nvm_node, 'v12.18.3'
+set :nvm_map_bins, %w{node npm yarn}
+
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
 
@@ -48,3 +52,12 @@ set :default_env, { hanami_env: 'production' }
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+namespace :deploy do
+  desc "Build assets with yarn"
+  task :assets do
+    on roles(:web) do |_host|
+      exec "yarn run build"
+    end
+  end
+end
