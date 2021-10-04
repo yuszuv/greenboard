@@ -11,6 +11,7 @@
       = card.topic
     hr class="text-#{mod}"
     p.card-text == markdown(card.text)
+    p.card-text.contact-toggler data-id=card.id
 
     / ul.list-group.list-group-flush
     /   li.list-group-item
