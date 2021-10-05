@@ -57,7 +57,12 @@ namespace :deploy do
   desc "Build assets with yarn"
   task :assets do
     on roles(:app) do |_host|
-      exec "yarn && yarn run build"
+      within current_path do
+        execute :yarn, 'install'
+        execute :yarn, 'run build'
+      end
     end
   end
 end
+
+after 'deploy:updated', 'deploy:assets'
