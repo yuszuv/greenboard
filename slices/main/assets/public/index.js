@@ -18,12 +18,17 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   const togglers = document.getElementsByClassName("contact-toggler");
+  let res = [];
   for (var i = 0; i < togglers.length; i++) {
-    const context = { props: { cardId: parseInt(togglers[i].dataset.id) } };
+    let el = togglers[i];
+    const context = { props: { cardId: parseInt(el.dataset.id) } };
 
-    new Vue({
-      el: togglers[i],
-      render: h => h(ContactToggler, context)
+    res.push(() => {
+      return new Vue({
+        el: el,
+        render: h => h(ContactToggler, context)
+      });
     });
   }
+  res.forEach(t => t());
 });
