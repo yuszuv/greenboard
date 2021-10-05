@@ -41,10 +41,6 @@ module HanfBrett
         request.session[Hanami::Action::CsrfProtection::CSRF_TOKEN]
       end
 
-      def app_version
-        HanfBrett::Application::Version
-      end
-
       def markdown(input)
         renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
         markdown = Redcarpet::Markdown.new(renderer, extensions = {})
