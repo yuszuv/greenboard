@@ -13,11 +13,6 @@
     p.card-text == markdown(card.text)
     p.card-text.contact-toggler data-id=card.id
 
-    / ul.list-group.list-group-flush
-    /   li.list-group-item
-    /     b Kontakt: 
-    /     = card.author
-
     .card-gallery-list.d-flex.justify-content-center
       - card.images.each do |image|
         figure

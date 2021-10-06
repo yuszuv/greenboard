@@ -11,7 +11,7 @@
         <p v-if="robot" class="card-text">
           <strong>Kontakt:</strong>
           <br>
-          {{ contact }}
+          <span v-html="contact"></span>
         </p>
         <vue-recaptcha v-else
                       ref="recaptcha"
@@ -26,6 +26,7 @@
 
 <script>
 import VueRecaptcha from 'vue-recaptcha'
+import marked from 'marked'
 
 export default {
   data() {
@@ -42,7 +43,7 @@ export default {
     }
   },
   components: {
-    VueRecaptcha
+    VueRecaptcha,
   },
   methods: {
     onVerify(response) {
@@ -52,7 +53,7 @@ export default {
         'Content-Type': 'application/json'
       }})
         .then(response => response.json())
-        .then(data => this.contact = data)
+        .then(data => this.contact = marked(data, { breaks: true }))
 
       this.$refs.recaptcha.reset()
     },
