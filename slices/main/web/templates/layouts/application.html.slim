@@ -2,7 +2,7 @@ doctype html
 html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
   head
     meta charset="utf-8"
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
     meta name="csrf-token" content=csrf_token
 
     title
@@ -23,9 +23,10 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
         a.navbar-brand.text-primary.fw-bold.d-flex.flex-wrap.justify-content-center.align-items-center href="/"
           img.me-2 src=assets["slices/main/assets/public/logo_transparent_small.png"]
           .d-flex.flex-column.justify-content-center
-            span.fs-1.lh-1 Grünes Brett
+            h1.mb-0 Grünes Brett
             .my-1 Suche/Biete für Alles rund um Hanf
     .container
+      #form
       == yield
       .row
         .col-md.text-center.my-1.d-flex.justify-content-center

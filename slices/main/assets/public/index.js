@@ -7,6 +7,7 @@ import "./photoswipe";
 
 import Vue from "vue";
 import App from "./App.vue";
+import Form from "./Form.vue";
 import ContactToggler from "./ContactToggler.vue";
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -14,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
     new Vue({
       el: "#app",
       render: h => h(App)
+    });
+  }
+
+  if (document.getElementById("form")) {
+    new Vue({
+      el: "#form",
+      render: h => h(Form)
     });
   }
 
