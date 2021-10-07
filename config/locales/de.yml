@@ -65,9 +65,9 @@ de:
 
       time?: "must be a time"
 
-      key?: "is missing"
+      key?: "fehlt"
 
-      attr?: "is missing"
+      attr?: "fehlt"
 
       lt?: "must be less than %{num}"
 
