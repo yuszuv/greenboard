@@ -6,9 +6,14 @@ import "bootstrap";
 import "./photoswipe";
 
 import Vue from "vue";
+import { BootstrapVue } from "bootstrap-vue";
+
 import App from "./App.vue";
 import Form from "./Form.vue";
 import ContactToggler from "./ContactToggler.vue";
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue);
 
 document.addEventListener("DOMContentLoaded", function() {
   if (document.getElementById("app")) {
