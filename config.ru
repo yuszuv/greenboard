@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'rack/contrib'
 require "rack/static"
 use Rack::Static,
   root: "public",
@@ -16,6 +17,8 @@ use Rack::Cors do
     resource '*', headers: :any, methods: [:get, :post, :patch, :put]
   end
 end
+
+use Rack::JSONBodyParser
 
 require "rack/method_override"
 use Rack::MethodOverride

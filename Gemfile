@@ -15,6 +15,7 @@ gem "puma", "~> 4.0"
 gem "down", "~> 5.1"
 gem "rerun"
 gem "rack-cors"
+gem "rack-contrib"
 
 # Database
 gem "pg"
