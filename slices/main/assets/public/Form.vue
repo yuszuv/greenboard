@@ -86,40 +86,35 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        form: {
-          type: 'SUCHE',
-          topic: '',
-          text: '',
-          contact: '',
-          password: '',
-          passwordConfirmation: '',
-          tos: false,
-        },
-      }
-    },
-    methods: {
-      onSubmit(event) {
-        console.log(data());
-        event.preventDefault()
-        this.isValidated = true;
-        alert(JSON.stringify(this.form))
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      form: {
+        type: 'SUCHE',
+        topic: '',
+        text: '',
+        contact: '',
+        password: '',
+        passwordConfirmation: '',
+        tos: false,
       },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      }
     }
+  },
+  methods: {
+    onSubmit(event) {
+      event.preventDefault()
+      axios.post('/api/cards')
+        .then(response => {
+          // JSON responses are automatically parsed.
+          //this.posts = response.data
+          console.log(response.data)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    },
   }
+}
 </script>
