@@ -6,14 +6,17 @@ import "bootstrap";
 import "./photoswipe";
 
 import Vue from "vue";
-import { BootstrapVue } from "bootstrap-vue";
+import { ToastPlugin, BootstrapVue } from "bootstrap-vue";
+import PortalVue from "portal-vue";
 
 import App from "./App.vue";
 import Form from "./Form.vue";
 import ContactToggler from "./ContactToggler.vue";
 
+Vue.use(PortalVue);
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
+Vue.use(ToastPlugin);
 
 document.addEventListener("DOMContentLoaded", function() {
   if (document.getElementById("app")) {

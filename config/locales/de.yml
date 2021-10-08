@@ -111,8 +111,9 @@ de:
         empty?: "cannot be empty"
     rules:
       topic: 'Überschrift'
-      text: 'Nachricht'
+      text: 'Text'
       author: 'Absender'
+      contact: 'Kontaktdaten'
       password: 'Passwort'
       password_confirmation: 'Passwortbestätigung'
       type: 'Suche/Biete'
