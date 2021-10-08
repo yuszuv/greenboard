@@ -17,7 +17,7 @@ module Main
         case delete_card.(input)
         in Success(card)
           res.flash[:success] = "Eintrag wurde gelöscht 🎉"
-          res.redirect_to '/gruenes_brett'
+          res.redirect_to '/'
         in Failure(:authorization, id, errors)
           res.flash.now[:alert] = "Uuuuups!!!! Fehler"
           res.render view, id: id, errors: errors
