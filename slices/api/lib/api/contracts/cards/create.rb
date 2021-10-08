@@ -13,15 +13,12 @@ module Api
           required(:password_confirmation).filled(:string)
           optional(:images).array(:hash) do
             optional(:id).maybe(:integer)
-            required(:image_data).filled(:string)
+            required(:image_data).filled(:hash)
           end
 
           required(:tos).filled(:bool, :true?)
         end
 
-        rule(:images).each do |index:|
-          key([:images, index]).failure('images data is not valid') unless (!!JSON.parse(value[:image_data]) rescue false)
-        end
         rule(:password).validate(min_size?: 6)
         rule(:password, :password_confirmation) do
           key.failure('stimmt nicht mit Passwortbestätigung überein') unless values[:password] == values[:password_confirmation]

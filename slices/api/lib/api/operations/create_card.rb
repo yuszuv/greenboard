@@ -11,7 +11,7 @@ module Api
 
       def call(input)
         data = yield validate(input)
-        res = yield persist(transform(data.to_h))
+        res = yield persist(data.to_h)
         # TODO: add another mailer slice
         # notify_admin(res)
 

@@ -11,12 +11,11 @@ Hanami.application.routes do
     get "karte/:id/loeschbestaetigung", to: "confirm_delete_card"
     get "karte/:id/kontaktdaten", to: "show_contact_data"
     delete "karte/:id", to: "delete_card"
-
-    post "anhaengen", to: "upload_image"
   end
 
   slice :api, at: '/api' do
     post "cards", to: 'create_card'
     patch "cards/:id", to: "update_card"
+    post "images", to: "upload_image"
   end
 end
