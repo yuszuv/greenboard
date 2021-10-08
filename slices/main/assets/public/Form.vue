@@ -57,6 +57,27 @@
                href="https://de.wikipedia.org/wiki/Captcha" target="_blank"><em><i class="fas fa-external-link-alt fa-sm"></i> Captchas</em></a> öffentlich einsehbar</small>
       </b-form-group>
 
+      <b-form-group>
+        <vue-dropzone ref="dropzone" id="dropzone"
+                                     @vdropzone-success="addImage"
+                                     @vdropzone-total-upload-progress="vprogress"
+                                     :options="dropzoneOptions"
+                                     :duplicateCheck="true">
+        </vue-dropzone>
+        <div class="alert alert-info my-2">Maximale Dateigröße: 5MB</div>
+
+        <div class="d-flex">
+          <div v-for="image in form.images" class="image-list m-3">
+            <a class="btn-remove-image" v-on:click="removeImage(image)">
+              <i class="fas fa-times-circle rounded-circle"></i>
+            </a>
+            <input v-if=image.id type="hidden" name="images[][id]" :value=image.id>
+            <input type="hidden" name="images[][image_data]" :value=JSON.stringify(image.image_data)>
+            <img :src="'/uploads/' + image.image_data.derivatives.thumbnail.id" >
+          </div>
+        </div>
+      </b-form-group>
+
       <b-form-group
         label="Passwort"
         label-for="password">
@@ -107,6 +128,8 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import vueDropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 import TosModal from './TosModal.vue'
 
@@ -118,16 +141,29 @@ export default {
         topic: '',
         text: '',
         contact: '',
+        images: [],
         password: '',
         password_confirmation: '',
         tos: false,
       },
       errors: {},
       wasValidated: false,
+      dropzoneOptions: {
+        url: '/api/images',
+        createImageThumbnails: true,
+        addRemoveLinks: true,
+        thumbnailWidth: 150,
+        thumbnailHeight: 150,
+        dictDefaultMessage: "Bilder anhängen (drag'n'drop oder Klick)",
+        maxFilesize: 5.0,
+      },
+      progress: false,
+      myProgress: 0,
     }
   },
   components: {
     TosModal,
+    vueDropzone,
   },
   methods: {
     onSubmit(event) {
@@ -141,6 +177,7 @@ export default {
           console.log(e.response.data)
           this.errors = e.response.data
           this.wasValidated = true
+          window.scrollTo(0,0)
         })
     },
     errorClass(key) {
@@ -163,6 +200,19 @@ export default {
     },
     resetError(key) {
       Vue.delete(this.errors, key)
+    },
+    addImage(file, response) {
+      console.log(this.form.images)
+      this.form.images = [ ...this.form.images, { "image_data": response } ]
+      this.$refs.dropzone.removeFile(file)
+    },
+    vprogress(totalProgress, totalBytes, totalBytesSent) {
+      this.progress = true
+      this.myProgress = Math.floor(totalProgress)
+    },
+    removeImage(image) {
+      var index = this.form.images.indexOf(image);
+      this.form.images.splice(index, 1);
     },
   }
 }
