@@ -11,6 +11,7 @@ import PortalVue from "portal-vue";
 
 import App from "./App.vue";
 import Form from "./Form.vue";
+import AddButton from "./AddButton.vue";
 import ContactToggler from "./ContactToggler.vue";
 
 Vue.use(PortalVue);
@@ -33,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  if (document.getElementById("add-button")) {
+    new Vue({
+      el: "#add-button",
+      render: h => h(AddButton)
+    });
+  }
   const togglers = document.getElementsByClassName("contact-toggler");
   let res = [];
   for (var i = 0; i < togglers.length; i++) {

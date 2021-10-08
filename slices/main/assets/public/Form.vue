@@ -136,6 +136,7 @@ import TosModal from './TosModal.vue'
 export default {
   data() {
     return {
+      authorized: false,
       form: {
         type: 'SUCHE',
         topic: '',
@@ -171,7 +172,7 @@ export default {
       axios.post('/api/cards', this.form)
         .then(response => {
           this.wasValidated = true
-          console.log(response.data)
+          location.assign("/")
         })
         .catch(e => {
           console.log(e.response.data)
@@ -202,7 +203,6 @@ export default {
       Vue.delete(this.errors, key)
     },
     addImage(file, response) {
-      console.log(this.form.images)
       this.form.images = [ ...this.form.images, { "image_data": response } ]
       this.$refs.dropzone.removeFile(file)
     },
