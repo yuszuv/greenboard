@@ -17,7 +17,7 @@ module Main
         input = req.params.to_h
         case update_card.(input)
         in Success(card)
-          res.redirect_to '/gruenes_brett'
+          res.redirect_to '/'
         in Failure(:validation, form, errors)
           res.render view, form: form, errors: errors
         in Failure(:authorization, form, errors)

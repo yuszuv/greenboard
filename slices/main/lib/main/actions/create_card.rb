@@ -17,7 +17,7 @@ module Main
         case create_card.(input)
         in Success(card)
           res.flash[:success] = "Neuer Eintrag wurde erstellt 🎉"
-          res.redirect_to '/gruenes_brett'
+          res.redirect_to '/'
         in Failure(:validation, form, errors)
           res.flash.now[:alert] = "Uuuuups!!!! Fehler"
           res.render view, form: form, errors: errors
