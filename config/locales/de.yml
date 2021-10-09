@@ -117,5 +117,5 @@ de:
       password: 'Passwort'
       password_confirmation: 'Passwortbestätigung'
       type: 'Suche/Biete'
-      image: 'Bild'
+      images: 'Bild'
       tos: 'Nutzungsbestimmungen'
