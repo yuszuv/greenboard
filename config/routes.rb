@@ -15,7 +15,9 @@ Hanami.application.routes do
 
   slice :api, at: '/api' do
     post "cards", to: 'create_card'
+    get "cards/:id", to: "get_card"
     patch "cards/:id", to: "update_card"
+
     post "images", to: "upload_image"
   end
 end

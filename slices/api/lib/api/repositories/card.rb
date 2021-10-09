@@ -1,15 +1,12 @@
 module Api
   module Repositories
     class Card < Repository[:cards]
-      # commands :create, update: :by_pk, delete: :by_pk
-
-      def find(id)
+      def find_with_images(id)
         cards
           .combine(:images)
           .by_pk(id)
-          .one
+          .one!
       end
-
 
       def create_with_images(data)
         cards.combine(:images).command(:create).(data)

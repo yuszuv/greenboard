@@ -11,7 +11,7 @@ module Api
           required(:contact).filled(:string)
           required(:password).filled(:string)
           required(:password_confirmation).filled(:string)
-          optional(:images).array(:hash) do
+          required(:images).array(:hash) do
             optional(:id).maybe(:integer)
             required(:image_data).filled(:hash)
           end
