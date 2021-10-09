@@ -9,14 +9,10 @@
     </ul>
     </b-alert>
     <b-form @submit="onSubmit">
-      <b-form-checkbox
-        v-model="form.type"
-        name="type"
-        value="BIETE"
-        unchecked-value="SUCHE"
-        switch>
-        <b-badge class="badge-type" :variant="(form.type == 'SUCHE') ? 'danger' : 'success'">{{ form.type }}</b-badge>
-      </b-form-checkbox>
+      <b-button-group class="mb-2">
+        <b-button @click="setType('SUCHE')" :variant="(form.type) == 'SUCHE' ? 'danger' : ''">SUCHE</b-button>
+        <b-button @click="setType('BIETE')":variant="(form.type) == 'BIETE' ? 'success' : ''">BIETE</b-button>
+      </b-button-group>
 
       <b-form-group
         label="Überschrift"
@@ -213,6 +209,9 @@ export default {
     removeImage(image) {
       var index = this.form.images.indexOf(image);
       this.form.images.splice(index, 1);
+    },
+    setType(type) {
+      this.form.type = type
     },
   }
 }
