@@ -17,6 +17,7 @@ Hanami.application.routes do
     post "cards", to: 'create_card'
     get "cards/:id", to: "get_card"
     patch "cards/:id", to: "update_card"
+    post "cards/:id/authorize", to: "authorize_card"
 
     post "images", to: "upload_image"
   end

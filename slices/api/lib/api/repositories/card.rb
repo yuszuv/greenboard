@@ -1,6 +1,10 @@
 module Api
   module Repositories
     class Card < Repository[:cards]
+      def find(id)
+        cards.by_pk(id).one!
+      end
+
       def find_with_images(id)
         cards
           .combine(:images)
