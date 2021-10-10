@@ -116,7 +116,6 @@
       <b-button type="submit" variant="primary">Abschicken</b-button>
 
       <tos-modal></tos-modal>
-
     </b-form>
   </div>
 </template>
@@ -133,18 +132,7 @@ export default {
   data() {
     return {
       authorized: false,
-      form: {
-        type: 'SUCHE',
-        topic: '',
-        text: '',
-        contact: '',
-        images: [],
-        password: '',
-        password_confirmation: '',
-        tos: false,
-      },
-      errors: {},
-      wasValidated: false,
+      form: this.initialForm,
       dropzoneOptions: {
         url: '/api/images',
         createImageThumbnails: true,
@@ -158,6 +146,17 @@ export default {
       myProgress: 0,
     }
   },
+  props: {
+    wasValidated: {
+      type: Boolean,
+    },
+    initialForm: {
+      type: Object,
+    },
+    errors: {
+      type: Object,
+    },
+  },
   components: {
     TosModal,
     vueDropzone,
@@ -165,17 +164,7 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      axios.post('/api/cards', this.form)
-        .then(response => {
-          this.wasValidated = true
-          location.assign("/")
-        })
-        .catch(e => {
-          console.log(e.response.data)
-          this.errors = e.response.data
-          this.wasValidated = true
-          window.scrollTo(0,0)
-        })
+      this.$emit('submit', this.form)
     },
     errorClass(key) {
       if (key in this.errors) {
