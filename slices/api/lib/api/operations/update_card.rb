@@ -11,8 +11,9 @@ module Api
 
       def call(id:, **params)
         data = yield validate(params)
-        yield authorize(id, data[:password])
-        card = yield persist(id, transform(data.to_h))
+        # yield authorize(id, data[:password])
+        # card = yield persist(id, transform(data.to_h))
+        card = yield persist(id, data.to_h)
         # notify_admin(card)
 
         Success(card)
