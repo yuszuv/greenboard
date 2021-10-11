@@ -13,7 +13,10 @@ module Api
         case get_card.(req.params[:id])
         in Success(card)
           res.status = 200
-          res.body = card.to_h.to_json
+          res.body = card
+            .to_h
+            .reject{ |k,_| k == :password }
+            .to_json
         in Failure(:not_found)
           res.status = 404
         in Failure(:db | :storage, error)

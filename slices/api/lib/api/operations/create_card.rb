@@ -35,36 +35,10 @@ module Api
           end
       end
 
-      # TODO: extract
-      def t(*args)
-        HanfBrett::Functions[*args]
-      end
-
-      def parse_image_data(input)
-        t(:map_value,
-         :images,
-         t(:map_array,
-          t(:map_value,
-           :image_data,
-           t(-> v { JSON.parse(v) }))))
-          .(input)
-      end
-
-      def transform(data)
-        t(:map_value,
-          :images,
-          t(:map_array,
-            t(:map_value, :image_data, t(-> s { JSON.parse(s) }))
-              .>>(t(:deep_symbolize_keys))))
-          .(data)
-      end
-
       def persist(**data)
         Try[ROM::SQL::Error] do
           data
-            .merge(
-              password: encrypt_password(data[:password])
-            )
+            .merge(password: encrypt_password(data[:password]))
             .then(&repo.method(:create_with_images))
         end.to_result.or do |x|
           Failure[:db, x]

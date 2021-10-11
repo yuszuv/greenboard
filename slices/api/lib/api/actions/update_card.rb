@@ -24,6 +24,7 @@ module Api
           res.body = errors.to_json
         in Failure(:db, error)
           logger.error(error.message)
+          res.status = 500
         in Failure(x)
           res.status = 500
           res.body = x.errors
