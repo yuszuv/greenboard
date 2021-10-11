@@ -13,6 +13,8 @@ import App from "./App.vue";
 import Form from "./Form.vue";
 import AddButton from "./AddButton.vue";
 import EditButton from "./EditButton.vue";
+import UpdateForm from "./UpdateForm.vue";
+import CreateForm from "./CreateForm.vue";
 import ContactToggler from "./ContactToggler.vue";
 
 Vue.use(PortalVue);
@@ -35,17 +37,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  if (document.getElementById("add-button")) {
+  let el = document.getElementById("create-form");
+  if (el) {
     new Vue({
-      el: "#add-button",
-      render: h => h(AddButton)
+      el: el,
+      render: h => h(CreateForm)
     });
   }
 
-  if (document.getElementById("edit-button")) {
+  el = document.getElementById("update-form");
+  if (el) {
     new Vue({
-      el: "#edit-button",
-      render: h => h(EditButton)
+      el: el,
+      render: h => h(UpdateForm, { props: { id: el.dataset.id } })
     });
   }
 

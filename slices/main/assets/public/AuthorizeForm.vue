@@ -6,11 +6,13 @@
       <b-form-input
         id="topic"
         v-model="password"
+        autofocus
         type="password"
         :class="(requestSent && !isAuthorized) && 'is-invalid'"
         @input="resetRequestSent"
         ></b-form-input>
-      <small v-if="hasShowErrors" class="form-text invalid-feedback">Passwort stimmt nicht</small>
+      <small v-if="hasShowErrors" class="form-text invalid-feedback">Passwort stimmt nicht.</small>
+      <small class="form-text">Das beim Erstellen angegebene Passwort.</small>
     </b-form-group>
 
     <b-button type="submit" variant="primary">Freigeben</b-button>
@@ -53,6 +55,5 @@ export default {
       this.requestSent = false
     },
   },
-
 }
 </script>

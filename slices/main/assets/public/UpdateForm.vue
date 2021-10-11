@@ -1,18 +1,23 @@
 <template>
-  <card-form
-    v-if="isAuthorized"
-    :initialForm='form'
-    @submit='requestUpdate'
-    :errors="errors"
-    :wasValidated="wasValidated"
-    :key='form.id'>
-  </card-form>
-  <authorize-form
-    v-else
-    :id="id"
-    @authorize='onAuthorize'>
-  </authorize-form>
-
+  <div>
+    <card-form
+      :initialForm='form'
+      @submit='requestUpdate'
+      :errors="errors"
+      :wasValidated="wasValidated"
+      :key='form.id'>
+    </card-form>
+    <b-modal v-if="!isAuthorized" id="authorize-modal" hide-footer hide-backdrop>
+      <template #modal-title>
+        Eintrag freigeben
+      </template>
+      <div class="d-block text-center">
+        <authorize-form
+          :id="id"
+          @authorize='onAuthorize'>
+        </authorize-form>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -70,6 +75,9 @@ export default {
           window.scrollTo(0,0)
       })
     },
-  }
+  },
+  mounted() {
+    this.$bvModal.show('authorize-modal')
+  },
 }
 </script>
