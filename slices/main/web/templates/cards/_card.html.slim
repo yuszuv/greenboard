@@ -1,16 +1,23 @@
 .card.mb-4.shadow
-  .card-header class="text-#{mod}"
-    .d-flex.justify-content-end.align-items-center
-      h6.me-auto = card.type
-      a.link-primary.px-1 href="/karte/#{card.id}/bearbeiten"
-        i.fas.fa-pencil-alt.me-md-1
-      a.link-danger.px-1 href="/karte/#{card.id}/loeschbestaetigung"
-        i.fas.fa-trash-alt.me-md-1
+  .card-header
+    .d-flex.justify-content-between.align-items-center
+      div
+        h5.me-auto
+          span.badge.mr-2 class="badge-#{modClass}" = card.type
+          span.align-middle= card.topic
+      div
+        .dropdown.dropleft
+          button.btn.btn-link.text-dark aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+            i.fas.fa-ellipsis-v
+          .dropdown-menu
+            a.dropdown-item.text-primary href="/karte/#{card.id}/bearbeiten"
+              i.fas.fa-pencil-alt.mr-md-1
+              | bearbeiten
+            a.dropdown-item.text-danger href="/karte/#{card.id}/loeschbestaetigung"
+              i.fas.fa-trash-alt.mr-md-1
+              | löschen
   .card-body
-    h5.card-title class="text-#{mod}"
-      = card.topic
-    hr class="text-#{mod}"
-    p.card-text == markdown(card.text)
+    .card-text == markdown(card.text)
     p.card-text.contact-toggler data-id=card.id
 
     .card-gallery-list.d-flex.justify-content-center

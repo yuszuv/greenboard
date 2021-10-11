@@ -8,9 +8,9 @@
   .col-md-6
     ul
       - board.requests.each do |card|
-        == render :card, card: card, mod: 'danger'
+        == render :card, card: card, modClass: 'danger'
 
   .col-md-6
     ul
       - board.offers.each do |card|
-        == render :card, card: card, mod: 'success'
+        == render :card, card: card, modClass: 'success'
