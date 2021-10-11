@@ -9,6 +9,7 @@
     </ul>
     </b-alert>
     <b-form @submit="onSubmit">
+      <input type="hidden" name="current_password" :value="form.currentPassword">
       <b-button-group class="mb-2">
         <b-button @click="setType('SUCHE')" :variant="(form.type) == 'SUCHE' ? 'danger' : ''">SUCHE</b-button>
         <b-button @click="setType('BIETE')":variant="(form.type) == 'BIETE' ? 'success' : ''">BIETE</b-button>
