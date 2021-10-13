@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="card-text" v-if="!clicked">
-      <a href="#" v-on:click="toggleClicked" class="btn btn-outline-primary">
+      <a href="#" v-on:click="toggleClicked" class="btn btn-info">
         <i class="fas fa-address-card"></i>
         Kontaktdaten anzeigen
       </a>

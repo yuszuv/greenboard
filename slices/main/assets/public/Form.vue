@@ -85,7 +85,7 @@ Name, Telefonnummer, Email-Adresse o.ä."
           <b-form-input
             type="password"
             name="password"
-            placeholder="Passwort"
+            :placeholder="form.id ? 'Passwort ändern' : 'Passwort'"
             v-model="form.password"
             :class="errorClass('password')"
             @blur="resetError('password')"
@@ -100,7 +100,7 @@ Name, Telefonnummer, Email-Adresse o.ä."
             :class="errorClass('password_confirmation')"
             @blur="resetError('password_confirmation')"
             ></b-form-input>
-          <small class="form-text">Mit dem Passwort kann der Beitrag später bearbeitet oder gelöscht werden. Merken (lassen)!</small>
+          <small class="form-text">Mit diesem Passwort kann der Beitrag später bearbeitet oder gelöscht werden. Merken (lassen)!</small>
         </b-form-group>
 
         <b-form-group
