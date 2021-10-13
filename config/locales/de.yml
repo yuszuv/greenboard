@@ -65,9 +65,9 @@ de:
 
       time?: "must be a time"
 
-      key?: "is missing"
+      key?: "fehlt"
 
-      attr?: "is missing"
+      attr?: "fehlt"
 
       lt?: "must be less than %{num}"
 
@@ -111,10 +111,11 @@ de:
         empty?: "cannot be empty"
     rules:
       topic: 'Überschrift'
-      text: 'Nachricht'
+      text: 'Text'
       author: 'Absender'
+      contact: 'Kontaktdaten'
       password: 'Passwort'
       password_confirmation: 'Passwortbestätigung'
       type: 'Suche/Biete'
-      image: 'Bild'
+      images: 'Bild'
       tos: 'Nutzungsbestimmungen'

@@ -2,7 +2,7 @@ doctype html
 html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
   head
     meta charset="utf-8"
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
     meta name="csrf-token" content=csrf_token
 
     title
@@ -11,8 +11,8 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
         ' /
       ' Grünes Brett
     meta name="title" content="Grünes Brett"
-    / link rel="stylesheet" type="text/css" href=assets["tailwind.css"]
     link rel="stylesheet" type="text/css" href=assets["main__public.css"]
+
     link rel="preconnect" href="https://fonts.googleapis.com"
     link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=nil
     link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet"
@@ -23,7 +23,7 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
         a.navbar-brand.text-primary.fw-bold.d-flex.flex-wrap.justify-content-center.align-items-center href="/"
           img.me-2 src=assets["slices/main/assets/public/logo_transparent_small.png"]
           .d-flex.flex-column.justify-content-center
-            span.fs-1.lh-1 Grünes Brett
+            h1.mb-0 Grünes Brett
             .my-1 Suche/Biete für Alles rund um Hanf
     .container
       == yield

@@ -9,10 +9,7 @@ module Main
       ]
 
       def handle(req, res)
-        case get_form.(req.params.get(:id))
-        in Success(form)
-          res.render view, form: form, errors: []
-        end
+        res.render view, id: req.params[:id]
       end
     end
   end

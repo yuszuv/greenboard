@@ -9,6 +9,18 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 .navbar-brand {
   font-family: 'Londrina Solid';
+  h1, div {
+    line-height: 1;
+  }
+}
+
+.londrina {
+  font-family: 'Londrina Solid';
+  color: $primary;
+}
+
+.badge-type {
+  font-size: 1.0em;
 }
 
 .dropzone {
