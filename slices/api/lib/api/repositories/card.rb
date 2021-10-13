@@ -5,6 +5,13 @@ module Api
         cards.by_pk(id).one!
       end
 
+      def delete(id)
+        cards
+          .by_pk(id)
+          .command(:delete)
+          .call
+      end
+
       def find_with_images(id)
         cards
           .combine(:images)
