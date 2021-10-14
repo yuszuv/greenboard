@@ -1,30 +1,25 @@
 <template>
   <div>
-    <div v-if="showForm"><card-form></card-form></div>
-    <a v-else class="btn btn-primary" href="#" @click="setShowForm($event)">
-      <i class="fas fa-plus-md-md-1"></i>
+    <a v-b-modal.add-modal class="btn btn-primary" href="#">
+      <i class="fas fa-plus me-md-1"></i> 
       Neuer Eintrag
     </a>
+    <b-modal id="add-modal" hide-footer hide-backdrop>
+      <template #modal-title>
+        Neuer Eintrag
+      </template>
+      <create-form></create-form>
+    </b-modal>
   </div>
+
 </template>
 
 <script>
-import CardForm from './Form.vue'
+import CreateForm from "./CreateForm.vue"
 
 export default {
-  data() {
-    return {
-      showForm: false,
-    }
-  },
   components: {
-    CardForm,
-  },
-  methods: {
-    setShowForm(event) {
-      event.preventDefault()
-      this.showForm = true
-    }
+    CreateForm,
   },
 }
 </script>

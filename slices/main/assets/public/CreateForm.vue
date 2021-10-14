@@ -1,5 +1,12 @@
 <template>
-  <card-form :initialForm='form' @submit='requestCreate' :errors="errors" :wasValidated="wasValidated" :key='form.id'></card-form>
+  <card-form
+    :initialForm='form'
+    @submit='requestCreate'
+    :errors="errors"
+    :loading="loading"
+    :wasValidated="wasValidated"
+    :key='form.id'>
+  </card-form>
 </template>
 
 <script>
@@ -23,6 +30,7 @@ export default {
       },
       wasValidated: false,
       errors: {},
+      loading: false,
     }
   },
   components: {
@@ -30,8 +38,10 @@ export default {
   },
   methods: {
     requestCreate(form) {
+      this.loading = true
       axios.post('/api/cards', this.form)
         .then(response => {
+
           this.wasValidated = true
           location.assign("/")
         })
@@ -39,6 +49,9 @@ export default {
           this.errors = e.response.data
           this.wasValidated = true
           window.scrollTo(0,0)
+        })
+        .finally(e => {
+          this.loading = false
         })
     }
   },

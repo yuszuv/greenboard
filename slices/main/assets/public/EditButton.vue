@@ -1,33 +1,49 @@
 <template>
   <div>
-    <div v-if="showForm"><card-form form=form></card-form></div>
-    <a v-else class="btn btn-primary" href="#" @click="setShowForm($event)">
-      <i class="fas fa-plus-md-md-1"></i>
-      Eintrag bearbeiten
+    <a v-b-modal.edit-modal class="dropdown-item text-primary" href="#">
+      <i class="fas fa-pencil-alt mr-md-1"></i>
+      bearbeiten
     </a>
+
+    <b-modal id="edit-modal" hide-footer hide-backdrop>
+      <template #modal-title>
+        Eintrag bearbeiten
+      </template>
+      <update-form :id="id" @update="onUpdate"></update-form>
+    </b-modal>
+
+    <b-modal id="edit-success-modal" hide-footer hide-backdrop>
+      <template #modal-title>
+        Eintrag erfolgreich bearbeitet
+      </template>
+      <b-alert variant="success" show>Eintrag erfolgreich bearbeitet</b-alert>
+      <b-button type="submit" variant="success" @click="onUpdateSuccess">Schließen</b-button>
+    </b-modal>
   </div>
 </template>
 
 <script>
-import CardForm from './Form.vue'
+import UpdateForm from './UpdateForm.vue'
 
 export default {
   data() {
     return {
       showForm: false,
-      form: {
-        topic: 'foo'
-      }
     }
   },
+  props: ['id'],
   components: {
-    CardForm,
+    UpdateForm,
   },
   methods: {
-    setShowForm(event) {
-      event.preventDefault()
-      this.showForm = true
-    }
+    onUpdate(_password) {
+      this.$bvModal.hide('edit-modal')
+      this.$bvModal.show('edit-success-modal')
+    },
+    onUpdateSuccess() {
+      this.$bvModal.hide('edit-success-modal')
+      window.location.href = '/'
+    },
   },
 }
 </script>

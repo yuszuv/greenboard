@@ -4,7 +4,6 @@
       <i class="fas fa-trash-alt mr-md-1"></i>
       löschen
     </a>
-    <!-- The modal -->
     <b-modal id="delete-modal" hide-footer hide-backdrop>
       <template #modal-title>
         Eintrag löschen

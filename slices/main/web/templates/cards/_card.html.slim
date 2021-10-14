@@ -10,9 +10,7 @@
           button.btn.btn-link.text-dark aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
             i.fas.fa-ellipsis-v
           .dropdown-menu
-            a.dropdown-item.text-primary href="/karte/#{card.id}/bearbeiten"
-              i.fas.fa-pencil-alt.mr-md-1
-              | bearbeiten
+            a.edit-link data-id=card.id
             a.delete-link data-id=card.id
   .card-body
     .delete-button data-id=card.id
