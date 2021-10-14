@@ -49,7 +49,7 @@ export default {
     onVerify(response) {
       if (response) this.robot = true;
 
-      fetch(`karte/${this.cardId}/kontaktdaten`, { headers: {
+      fetch(`/api/cards/${this.cardId}/contact_data`, { headers: {
         'Content-Type': 'application/json'
       }})
         .then(response => response.json())
