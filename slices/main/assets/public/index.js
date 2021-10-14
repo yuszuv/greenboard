@@ -11,8 +11,7 @@ import PortalVue from "portal-vue";
 
 import App from "./App.vue";
 import Form from "./Form.vue";
-import AddButton from "./AddButton.vue";
-import EditButton from "./EditButton.vue";
+import DeleteLink from "./DeleteButton.vue";
 import UpdateForm from "./UpdateForm.vue";
 import CreateForm from "./CreateForm.vue";
 import ContactToggler from "./ContactToggler.vue";
@@ -67,4 +66,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   res.forEach(t => t());
+
+  const deleteLinks = document.getElementsByClassName("delete-link");
+  let rres = [];
+  for (var i = 0; i < deleteLinks.length; i++) {
+    let el = deleteLinks[i];
+    const context = { props: { id: parseInt(el.dataset.id) } };
+
+    rres.push(() => {
+      return new Vue({
+        el: el,
+        render: h => h(DeleteLink, context)
+      });
+    });
+  }
+  rres.forEach(t => t());
 });

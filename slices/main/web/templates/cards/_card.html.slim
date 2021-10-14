@@ -13,10 +13,9 @@
             a.dropdown-item.text-primary href="/karte/#{card.id}/bearbeiten"
               i.fas.fa-pencil-alt.mr-md-1
               | bearbeiten
-            a.dropdown-item.text-danger href="/karte/#{card.id}/loeschbestaetigung"
-              i.fas.fa-trash-alt.mr-md-1
-              | löschen
+            a.delete-link data-id=card.id
   .card-body
+    .delete-button data-id=card.id
     .card-text == markdown(card.text)
     p.card-text.contact-toggler data-id=card.id
 
