@@ -14,5 +14,7 @@ Hanami.application.routes do
     post "cards/:id/authorize", to: "authorize_card"
 
     post "images", to: "upload_image"
+
+    post "subscribe_updates", to: "subscribe_email"
   end
 end
