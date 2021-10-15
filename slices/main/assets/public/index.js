@@ -12,6 +12,7 @@ import PortalVue from "portal-vue";
 import App from "./App.vue";
 import Form from "./Form.vue";
 import AddButton from "./AddButton.vue";
+import SubscribeButton from "./SubscribeButton.vue";
 import EditLink from "./EditButton.vue";
 import DeleteLink from "./DeleteButton.vue";
 import UpdateForm from "./UpdateForm.vue";
@@ -59,6 +60,14 @@ document.addEventListener("DOMContentLoaded", function() {
     new Vue({
       el: el,
       render: h => h(AddButton)
+    });
+  }
+
+  el = document.getElementById("subscribe-button");
+  if (el) {
+    new Vue({
+      el: el,
+      render: h => h(SubscribeButton)
     });
   }
 

@@ -179,7 +179,7 @@ export default {
       if (key in this.errors) {
         return 'is-invalid';
       } else if (this.wasValidated) {
-        return 'in-valid';
+        return 'is-valid';
       } else {
         return null;
       }
