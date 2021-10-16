@@ -3,6 +3,7 @@
 Hanami.application.routes do
   slice :main, at: "/" do
     root to: "list_cards"
+    get "abonnement_bestaetigen", to: 'confirm_subscription'
   end
 
   slice :api, at: '/api' do

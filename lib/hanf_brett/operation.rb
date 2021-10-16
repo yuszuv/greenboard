@@ -6,7 +6,7 @@ require "dry/matcher/result_matcher"
 
 module HanfBrett
   class Operation
-    include Dry::Monads[:result, :try]
+    include Dry::Monads[:result, :try, :maybe]
 
     class << self
       def inherited(klass)
