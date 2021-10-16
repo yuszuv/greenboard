@@ -20,9 +20,11 @@
               id="subscribe-email"
               v-model="form.email"
               type="email"
+              :class="{ 'is-invalid': hasErrorOn('email') }"
               autofocus
               required
               ></b-form-input>
+            <small class="text-danger">{{ errorsOn('email') }}</small>
             <small class="form-text text-muted">
               Wir geben die Adresse <em>niemals</em> weiter
             </small>
@@ -100,6 +102,17 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    },
+    hasErrorOn(key) {
+      return key in this.errors
+    },
+    errorsOn(key) {
+      const errors = this.errors[key]
+      if (errors != null && errors.length > 0) {
+        return errors.join(", ")
+      } else {
+        return null;
+      }
     },
     resetErrors() {
       this.errors = {}
