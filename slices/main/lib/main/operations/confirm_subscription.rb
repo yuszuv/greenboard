@@ -29,7 +29,11 @@ module Main
       end
 
       def confirm(token)
-        Maybe(repo.find_by_confirmation_token(token)).to_result(:not_found)
+        Maybe(repo.find_by_confirmation_token(token))
+          .to_result(:not_found)
+          .fmap do |subscriber|
+            repo.confirm!(subscriber.id)
+          end
       end
     end
   end
