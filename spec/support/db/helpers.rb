@@ -33,9 +33,9 @@ module Test
         @entity_namespace ||=
           begin
             case type
-            when :main
-              require "main/entities"
-              Main::Entities
+            when :frontend
+              require "frontend/entities"
+              Frontend::Entities
             else
               require "hanf_brett/entities"
               HanfBrett::Entities

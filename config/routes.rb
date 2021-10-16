@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Hanami.application.routes do
-  slice :main, at: "/" do
+  slice :frontend, at: "/" do
     root to: "list_cards"
     get "abonnement_bestaetigen", to: 'confirm_subscription'
     get "abonnement_loeschen", to: 'delete_subscription'
