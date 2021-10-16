@@ -197,6 +197,8 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     lumberjack (1.2.8)
+    mail (2.7.1)
+      mini_mime (>= 0.1.1)
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.0)
@@ -391,6 +393,7 @@ DEPENDENCIES
   hanami-view (~> 2.0.0.alpha)
   i18n (~> 1.8)
   image_processing (~> 1.8)
+  mail
   pg
   pry
   pry-byebug

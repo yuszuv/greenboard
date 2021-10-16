@@ -17,6 +17,10 @@ require "hanami"
 
 module HanfBrett
   class Application < Hanami::Application
+    config.slice :api do
+      import :mailer
+    end
+
     config.sessions = :cookie, {
       key: "hanf_brett.session",
       secret: settings.session_secret,

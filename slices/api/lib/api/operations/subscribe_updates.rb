@@ -2,20 +2,22 @@
 
 module Api
   module Operations
-    class SubscribeEmail < HanfBrett::Operation
+    class SubscribeUpdates < HanfBrett::Operation
       include Deps[
+        logger: 'application.mail_logger',
         repo: 'repositories.subscriber',
-        contract: 'contracts.mailer.subscribe_updates'
+        contract: 'contracts.mailer.subscribe_updates',
+        confirmation_mailer: 'mailer.operations.request_confirmation'
       ]
 
       MINIMUM_TOKEN_LENGTH = 24
 
-      def call(input)
+      def call(input, request)
         data = yield validate(input)
-        rec = yield persist(data[:email])
-        # yield send_mail
+        subscriber = yield persist(data[:email])
+        mail = yield send_confirmation_mail(subscriber, request)
 
-        Success(rec)
+        Success(mail)
       end
 
       private
@@ -40,16 +42,12 @@ module Api
         end
       end
 
-      def generate_unique_secure_token(length: MINIMUM_TOKEN_LENGTH)
-        SecureRandom.hex(length)
+      def send_confirmation_mail(rec, request)
+        confirmation_mailer.(rec, request)
       end
 
-      def get_card(id)
-        Try[ROM::TupleCountMismatchError] do
-          repo.find_with_images(id)
-        end.or do |e|
-          Failure(:not_found)
-        end
+      def generate_unique_secure_token(length: MINIMUM_TOKEN_LENGTH)
+        SecureRandom.hex(length)
       end
     end
   end

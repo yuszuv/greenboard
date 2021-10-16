@@ -15,6 +15,6 @@ Hanami.application.routes do
 
     post "images", to: "upload_image"
 
-    post "subscribe_updates", to: "subscribe_email"
+    post "subscribe_updates", to: "subscribe_updates"
   end
 end

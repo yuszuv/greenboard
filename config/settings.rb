@@ -15,4 +15,9 @@ Hanami.application.settings do
   # Assets
   setting :precompiled_assets, HanfBrett::Types::Params::Bool.optional.default(false)
   setting :assets_server_url, HanfBrett::Types::String.optional.default("http://localhost:8080")
+
+  setting :smtp_server_url, HanfBrett::Types::String
+  setting :smtp_server_port, HanfBrett::Types::Coercible::Integer
+
+  setting :mail_log_level, HanfBrett::Types::String
 end

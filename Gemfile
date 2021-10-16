@@ -25,6 +25,8 @@ gem "rom-sql", "~> 3.2"
 gem "sequel", "~> 5.32"
 gem "shrine", "~> 3.0"
 gem "fastimage" # default analyzer 
+# gem "mailcatcher"
+gem "mail"
 
 # Application
 gem "dry-matcher"
