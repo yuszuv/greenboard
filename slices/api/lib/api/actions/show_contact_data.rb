@@ -2,7 +2,7 @@
 
 module Api
   module Actions
-    class ShowContactData < Main::Action
+    class ShowContactData < Api::Action
       include Deps[
         get_contact_data: 'operations.get_contact_data'
       ]
