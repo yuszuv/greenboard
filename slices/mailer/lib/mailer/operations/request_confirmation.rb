@@ -11,18 +11,16 @@ module Mailer
 
       ]
 
-      def call(subscriber, request)
-        res = yield send_confirmation_mail(subscriber, request)
+      def call(subscriber)
+        res = yield send_confirmation_mail(subscriber)
 
         Success(res)
       end
 
       private
 
-      def send_confirmation_mail(subscriber, request)
-        host = "%s://%s" % [request.scheme, request.env['HTTP_HOST']]
-
-        body = view.(subscriber: subscriber, host: host).to_s
+      def send_confirmation_mail(subscriber)
+        body = view.(subscriber: subscriber).to_s
 
         Try[Errno::ECONNREFUSED] do
           mail = mailer.(

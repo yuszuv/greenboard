@@ -29,6 +29,7 @@ gem "fastimage" # default analyzer
 gem "mail"
 
 # Application
+gem "dry-effects"
 gem "dry-matcher"
 gem "dry-monads"
 gem "dry-struct"

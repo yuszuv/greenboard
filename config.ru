@@ -24,4 +24,10 @@ require "rack/method_override"
 use Rack::MethodOverride
 
 require "hanami/boot"
+require_relative 'lib/hanf_brett/middleware/resolve'
+
+use HanfBrett::Middleware::Resolve
+
 run Hanami.app
+
+

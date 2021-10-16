@@ -12,10 +12,10 @@ module Api
 
       MINIMUM_TOKEN_LENGTH = 24
 
-      def call(input, request)
+      def call(input)
         data = yield validate(input)
         subscriber = yield persist(data[:email])
-        mail = yield send_confirmation_mail(subscriber, request)
+        mail = yield send_confirmation_mail(subscriber)
 
         Success(mail)
       end
@@ -42,8 +42,8 @@ module Api
         end
       end
 
-      def send_confirmation_mail(rec, request)
-        confirmation_mailer.(rec, request)
+      def send_confirmation_mail(rec)
+        confirmation_mailer.(rec)
       end
 
       def generate_unique_secure_token(length: MINIMUM_TOKEN_LENGTH)
