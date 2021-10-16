@@ -12,7 +12,7 @@ module Api
       ]
 
       def handle(req, res)
-        case update_card.(req.params.to_h)
+        case update_card.(**req.params.to_h)
         in Success(card)
           res.status = 200
           res.body = card.to_h.to_json

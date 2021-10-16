@@ -5,18 +5,19 @@ module Api
     module Cards
       class Update < HanfBrett::Validation::Contract
         json do
+          required(:id).filled(:string)
+          required(:current_password).filled(:string)
+
           optional(:type).filled(:string)
           optional(:topic).filled(:string)
           optional(:text).filled(:string)
           optional(:contact).filled(:string)
-          required(:current_password).filled(:string)
           optional(:password).filled(:string, min_size?: 6)
           optional(:password_confirmation).filled(:string)
           optional(:images).array(:hash) do
             optional(:id).maybe(:integer)
             required(:image_data).filled(:hash)
           end
-
           required(:tos).filled(:bool, :true?)
         end
 

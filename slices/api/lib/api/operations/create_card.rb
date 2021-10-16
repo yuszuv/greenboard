@@ -11,7 +11,7 @@ module Api
 
       def call(input)
         data = yield validate(input)
-        card = yield persist(data.to_h)
+        card = yield persist(**data.to_h)
         # TODO: add another mailer slice
         yield notify_subscribers.(card)
 

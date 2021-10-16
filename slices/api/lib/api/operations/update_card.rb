@@ -9,10 +9,14 @@ module Api
         mailer: 'application.mailer'
       ]
 
-      def call(id:, **params)
-        data = yield validate(params)
-        yield authorize(id, data[:current_password])
-        card = yield persist(id, data.to_h)
+      def call(**input)
+        params = yield validate(input)
+
+        params.to_h => { id:, current_password:, **data }
+
+        yield authorize(id, current_password)
+        card = yield persist(id: id, **data.to_h)
+        # TODO
         # notify_admin(card)
 
         Success(card)
@@ -44,11 +48,15 @@ module Api
           end
       end
 
-      def persist(id, **data)
-        Try[ROM::SQL::Error, ROM::SQL::NotNullConstraintError] do
-          data.merge!(password: encrypt_password(data[:password])) if data[:password]
+      def persist(**data)
+        data => { id:, **attrs }
 
-          repo.update_with_images(id.to_i, data)
+        password = attrs[:password]
+
+        Try[ROM::SQL::Error, ROM::SQL::NotNullConstraintError] do
+          data.merge!(password: encrypt_password(password)) if password
+
+          repo.update_with_images(id, data)
         end.to_result.or do |x|
           Failure[:db, x]
         end
