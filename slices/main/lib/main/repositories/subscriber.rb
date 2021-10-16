@@ -1,6 +1,8 @@
 module Main
   module Repositories
     class Subscriber < Repository[:subscribers]
+      commands delete: :by_pk
+
       def find_by_confirmation_token(token)
         subscribers
           .where(confirmation_token: token)
