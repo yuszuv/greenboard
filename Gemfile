@@ -42,6 +42,8 @@ gem "slim", "~> 4.0"
 gem "image_processing", "~> 1.8"
 gem "redcarpet"
 
+gem "rouge"
+
 gem "pry"
 gem "dotenv", "~> 2.7"
 
