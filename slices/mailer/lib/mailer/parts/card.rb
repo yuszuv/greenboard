@@ -3,12 +3,13 @@ require 'hanami/view'
 module Mailer
   module Parts
     class Card < Hanami::View::Part
-      def card_url
-        "http://TODO with dir-effects"
-      end
+      include Dry::Effects.Resolve(:host)
 
-      def unsubscribe_url
-        "https://TODO"
+      def url
+        "%s/eintraege/%s" % [
+          host.to_s,
+          id
+        ]
       end
     end
   end

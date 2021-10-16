@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require 'dry/effects'
-
 module Mailer
   module Views
-    class ConfirmSubscription < Mailer::View
+    class NotifyCreate < Mailer::View
+      expose :card
       expose :subscriber
     end
   end

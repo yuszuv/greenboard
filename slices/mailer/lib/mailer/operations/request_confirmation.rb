@@ -12,9 +12,9 @@ module Mailer
       ]
 
       def call(subscriber)
-        res = yield send_confirmation_mail(subscriber)
+        yield send_confirmation_mail(subscriber)
 
-        Success(res)
+        Success(subscriber)
       end
 
       private
@@ -29,7 +29,7 @@ module Mailer
             subject:  'Grünes Brett - Automatische Benachrichtigungen bestätigen',
             body: body
           )
-          mail_logger.info("Message sent to subscriber: #{subscriber}")
+          mail_logger.info("Message sent to subscriber: #{subscriber.to_s}")
           mail_logger.info(mail.to_s)
           Success(mail)
         end.to_result.or do |x|

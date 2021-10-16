@@ -7,6 +7,12 @@ module Mailer
           .to_a
           .empty?
       end
+
+      def active_subscribers
+        subscribers
+          .where(Sequel.~(confirmed_at: nil))
+          .to_a
+      end
     end
   end
 end
