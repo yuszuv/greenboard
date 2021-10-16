@@ -7,7 +7,6 @@ module Mailer
         'application.mail_logger',
         mailer: 'application.mailer',
         view: 'views.confirm_subscription',
-        context: 'application.view.context'
 
       ]
 

@@ -4,14 +4,5 @@ Vielen Dank für dein Interesse an unserer kleinen Platform. Wir hoffen, dass si
 
 Um automatisch benachrichtigt zu werden, falls ein neuer Eintrag eingestellt wird, bestätige dein Abonnement unter
 
-<%= subscriber.confirmation_url %>
-
---  
-Grünes Brett
-Suche/Biete für Hanf
-Landschaftspflegeverband Prignitz-Ruppiner Land e.V.
-Kirchplatz 12
-16909 Wittstock/Dosse
-
-Benachrichtungen abbestellen
-<%= subscriber.unsubscribe_url %>
+<%= subscriber.confirmation_url %><%= content_for(:unsubscribe_url) do %>Benachrichtungen abbestellen
+<%= subscriber.unsubscribe_url %><% end %>
