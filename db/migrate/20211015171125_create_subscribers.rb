@@ -6,7 +6,7 @@ ROM::SQL.migration do
       primary_key :id
       column :email, String, null: false
       column :confirmation_token, String, null: false
-      column :confirmed_at, Date
+      column :confirmed_at, Time
 
       column :created_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
       column :updated_at, DateTime, null: false, default: Sequel::CURRENT_TIMESTAMP
