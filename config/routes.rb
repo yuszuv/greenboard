@@ -8,6 +8,7 @@ Hanami.application.routes do
   end
 
   slice :api, at: '/api' do
+    get "cards", to: "list_cards"
     post "cards", to: 'create_card'
     get "cards/:id", to: "get_card"
     patch "cards/:id", to: "update_card"

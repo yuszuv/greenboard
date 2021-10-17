@@ -53,6 +53,12 @@ module Api
         end
       end
 
+      def public_cards
+        cards.combine(:images).to_a
+      end
+
+
+      # TODO
       # def delete_with_images(id)
       #   cards.transaction do
       #     cards.images.where(card_id: id).delete
