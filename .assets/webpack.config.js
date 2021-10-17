@@ -83,6 +83,11 @@ module.exports = function config(mode) {
         ...linterRules,
         // Use babel for *anything* matching *.es.js, including within
         // other dependencies in node_modules.
+        //
+        {
+          test: /\.pug$/,
+          loader: 'pug-plain-loader'
+        },
         {
           test: /\.es\.js$/,
           loader: "babel-loader",

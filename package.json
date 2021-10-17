@@ -7,6 +7,8 @@
   "devDependencies": {
     "application-assets": "file:.assets",
     "file-loader": "^6.2.0",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
     "sass": "^1.32.13",
     "sass-loader": "^10"
   },
