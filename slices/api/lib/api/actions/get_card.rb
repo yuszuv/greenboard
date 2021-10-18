@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'dry/monads'
-
 module Api
   module Actions
     class GetCard < Api::Action

@@ -1,3 +1,5 @@
+require 'rom/struct'
+
 module Api
   module Entities
     class Image < ROM::Struct
