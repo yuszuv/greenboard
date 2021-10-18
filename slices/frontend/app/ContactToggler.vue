@@ -1,44 +1,36 @@
-<template>
-  <div>
-    <p class="card-text" v-if="!clicked">
-      <a href="#" v-on:click="toggleClicked" class="btn btn-info">
-        <i class="fas fa-address-card"></i>
-        Kontaktdaten anzeigen
-      </a>
-    </p>
-    <template v-else>
-      <div>
-        <p v-if="robot" class="card-text">
-          <strong>Kontakt:</strong>
-          <br>
-          <span v-html="contact"></span>
-        </p>
-        <vue-recaptcha v-else
-                      ref="recaptcha"
-                      @verify="onVerify"
-                      sitekey="6LdVv6scAAAAAMHE9Qv0PJBWYNqUApXymde2q3q-"
-                      :loadRecaptchaScript="true">
-        </vue-recaptcha>
-      </div>
-    </template>
-  </div>
+<template lang="pug">
+div
+  p.card-text(v-if='!robot')
+    strong Kontakt:
+    br
+    span(v-html='contact')
+
+  a.btn.btn-info.shadow(href='#' v-if='!clicked' @click.prevent='clicked = true') #[i.fas.fa-address-card.mr-2] Kontaktdaten anzeigen
+  vue-recaptcha(
+    v-if='clicked && robot'
+    ref='recaptcha'
+    sitekey='6LdVv6scAAAAAMHE9Qv0PJBWYNqUApXymde2q3q-'
+    :loadRecaptchaScript='true'
+    @verify='onVerify'
+  )
 </template>
 
 <script>
 import VueRecaptcha from 'vue-recaptcha'
 import marked from 'marked'
+import axios from 'axios'
 
 export default {
   data() {
     return {
-      robot: false,
+      robot: true,
       clicked: false,
       contact: undefined,
     }
   },
   props: {
     cardId: {
-      type: Number,
+      type: String,
       required: true,
     }
   },
@@ -47,19 +39,15 @@ export default {
   },
   methods: {
     onVerify(response) {
-      if (response) this.robot = true;
+      if (response) this.robot = false;
 
-      fetch(`/api/cards/${this.cardId}/contact_data`, { headers: {
-        'Content-Type': 'application/json'
-      }})
-        .then(response => response.json())
-        .then(data => this.contact = marked(data, { breaks: true }))
+      axios.get(`/api/cards/${this.cardId}/contact_data`)
+        .then(res => {
+          this.contact = marked(res.data, { breaks: true })
+          this.robot = false
+        })
 
       this.$refs.recaptcha.reset()
-    },
-    toggleClicked(event) {
-      event.preventDefault()
-      this.clicked = !this.clicked
     },
   }
 }

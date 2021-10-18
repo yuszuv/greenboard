@@ -1,25 +1,7 @@
-<template>
-  <div>
-    <a v-b-modal.add-modal class="btn btn-primary" href="#">
-      <i class="fas fa-plus me-md-1"></i> 
-      Neuer Eintrag
-    </a>
-    <b-modal id="add-modal" hide-footer hide-backdrop>
-      <template #modal-title>
-        Neuer Eintrag
-      </template>
-      <create-form></create-form>
-    </b-modal>
-  </div>
-
+<template lang="pug">
+a.btn.btn-outline-primary.bg-white.shadow.m-2(href='#' @click="$emit('init-build')") #[i.fas.fa-plus.mr-2] Neuer Eintrag
 </template>
 
 <script>
-import CreateForm from "./CreateForm.vue"
-
-export default {
-  components: {
-    CreateForm,
-  },
-}
+export default {}
 </script>

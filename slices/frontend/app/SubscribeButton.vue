@@ -1,69 +1,52 @@
-<template>
-  <div>
-    <a v-b-modal.subscribe-modal class="btn btn-warning" href="#">
-      <i class="fas fa-bullhorn"></i>
-      Updates abonnieren
-    </a>
-    <b-modal id="subscribe-modal" hide-footer hide-backdrop>
-      <template #modal-title>
-        Bei neuen Einträgen benachrichtigen lassen
-      </template>
+<template lang="pug">
+div
+  a.btn.btn-outline-warning.bg-white.shadow.m-2(v-b-modal.subscribe-modal='' href='#') #[i.fas.fa-bullhorn] Updates abonnieren
+  b-modal#subscribe-modal(hide-footer='' hide-backdrop='')
+    template(#modal-title)
+      | Bei neuen Eintr&auml;gen benachrichtigen lassen
+    .d-flex.justify-content-center.flex-column.align-items-center(v-if='!success')
+      b-spinner(
+        v-if='loading'
+        label='Loading...'
+        variant='primary'
+        :class="{ 'form-loading': loading }"
+      )
+      b-form.d-inline-block.mx-5(
+        :class="{ 'form-loading': loading }"
+        @submit.prevent='onSubmit'
+      )
 
-      <div v-if="!success" class="d-flex justify-content-center flex-column align-items-center">
-        <b-spinner v-if="loading" label="Loading..." variant="primary" :class="{ 'form-loading': loading }"></b-spinner>
-        <b-form @submit.prevent="onSubmit" class="d-inline-block mx-5" :class="{ 'form-loading': loading }">
-          <b-form-group
-            label="E-Mail-Addresse:"
-            label-for="subscribe-email"
-            >
-            <b-form-input
-              id="subscribe-email"
-              v-model="form.email"
-              type="email"
-              :class="{ 'is-invalid': hasErrorOn('email') }"
-              autofocus
-              required
-              ></b-form-input>
-            <small class="text-danger">{{ errorsOn('email') }}</small>
-            <small class="form-text text-muted">
-              Wir geben die Adresse <em>niemals</em> weiter
-            </small>
-          </b-form-group>
+        b-form-group(label='E-Mail-Addresse:' label-for='subscribe-email')
+          b-form-input#subscribe-email(
+            v-model='form.email'
+            type='email'
+            :class="{ 'is-invalid': hasErrorOn('email') }"
+            autofocus=''
+            required=''
+            )
+          small.text-danger {{ errorsOn(&apos;email&apos;) }}
+          small.form-text.text-muted Wir geben die Adresse #[em niemals] weiter
+        b-form-group(label='Nutzungsbedingungen' label-for='subscribe-tos')
+          b-form-checkbox#subscribe-tos(
+            v-model='form.tos'
+            name='subscribe-tos'
+            :state="validationState('tos')"
+            @change='resetErrors()'
+            )
+            | Ich habe die #[a(href='#' @click.prevent="$bvModal.show('tos-modal')" v-b-modal.tos-modal='') Nutzungsbedingungen] gelesen und akzeptiert
 
-          <b-form-group
-            label="Nutzungsbedingungen"
-            label-for="subscribe-tos">
-            <b-form-checkbox
-              id="subscribe-tos"
-              v-model="form.tos"
-              name="subscribe-tos"
-              :state="validationState('tos')"
-              @change="resetErrors()"
-              >
-              Ich habe die <a href="#" @click.prevent="$bvModal.show('tos-modal')" v-b-modal.tos-modal>Nutzungsbedingungen</a> gelesen und akzeptiert
-            </b-form-checkbox>
-          </b-form-group>
+        b-button(type='submit' variant='primary') Abonnieren
+        b-button(variant='danger' @click.prevent="$bvModal.hide('subscribe-modal')") Schlie&szlig;en
 
-          <b-button type="submit" variant="primary">Abonnieren</b-button>
-          <b-button variant="danger" @click.prevent="$bvModal.hide('subscribe-modal')">Schließen</b-button>
+        tos-modal
 
-          <tos-modal></tos-modal>
-        </b-form>
-      </div>
-
-      <div v-else>
-        <h4><i class="fas fa-envelope"></i> Bestätigungs-Mail versendet</h4>
-        <p>Vielen Dank für deine Eintragung. Wir haben gerade eine Email geschickt, mit der sie noch
-        bestätigen musst.</p>
-        <b-button variant="primary" @click.prevent="$bvModal.hide('subscribe-modal')">Schließen</b-button>
-      </div>
-    </b-modal>
-  </div>
-
+    div(v-else)
+      h4 #[i.fas.fa-envelope] Bestätigungs-Mail versendet
+      p Vielen Dank für deine Eintragung. Wir haben gerade eine Email geschickt, mit der sie noch bestätigen musst.
+      b-button(variant='primary' @click.prevent="$bvModal.hide('subscribe-modal')") Schließen
 </template>
 
 <script>
-//import CreateForm from "./CreateForm.vue"
 import axios from 'axios'
 
 import TosModal from './TosModal.vue'

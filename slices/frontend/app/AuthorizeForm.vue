@@ -1,23 +1,12 @@
-<template>
-  <div class="d-flex justify-content-center flex-column align-items-center">
-    <b-spinner v-if="loading" label="Loading..." variant="primary" :class="{ 'form-loading': loading }"></b-spinner>
-    <b-form @submit.prevent='requestAuthorize' class="d-inline-block">
-      <b-form-group>
-        <b-form-input
-          id="topic"
-          v-model="password"
-          autofocus
-          type="password"
-          :class="error && 'is-invalid'"
-          @input="resetError"
-          ></b-form-input>
-        <small v-if="error" class="form-text invalid-feedback">Passwort stimmt nicht.</small>
-        <small class="form-text">Das beim Erstellen angegebene Passwort.</small>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Freigeben</b-button>
-    </b-form>
-  </div>
+<template lang="pug">
+.d-flex.justify-content-center.flex-column.align-items-center
+  b-spinner(v-if='loading' label='Loading...' variant='primary' :class="{ 'form-loading': loading }")
+  b-form.d-inline-block(@submit.prevent='requestAuthorize')
+    b-form-group
+      b-form-input#topic(v-model='password' autofocus='' type='password' :class="error && 'is-invalid'" @input='resetError')
+      small.form-text.invalid-feedback(v-if='error') Passwort stimmt nicht.
+      small.form-text Das beim Erstellen angegebene Passwort.
+    b-button(type='submit' variant='primary') Freigeben
 </template>
 
 <script>
