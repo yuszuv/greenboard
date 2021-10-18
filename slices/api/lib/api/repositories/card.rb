@@ -54,7 +54,10 @@ module Api
       end
 
       def public_cards
-        cards.combine(:images).to_a
+        cards
+          .combine(:images)
+          .order(Sequel.desc(:updated_at))
+          .to_a
       end
 
     end
