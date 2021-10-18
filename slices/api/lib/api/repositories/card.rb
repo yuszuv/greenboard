@@ -5,11 +5,11 @@ module Api
         cards.by_pk(id).one!
       end
 
-      def delete(id)
-        cards
-          .by_pk(id)
-          .command(:delete)
-          .call
+      def delete_with_images(id)
+        cards.transaction do
+          cards.images.where(card_id: id).delete
+          cards.by_pk(id).delete
+        end
       end
 
       def find_with_images(id)
@@ -57,14 +57,6 @@ module Api
         cards.combine(:images).to_a
       end
 
-
-      # TODO
-      # def delete_with_images(id)
-      #   cards.transaction do
-      #     cards.images.where(card_id: id).delete
-      #     cards.by_pk(id).delete
-      #   end
-      # end
     end
   end
 end

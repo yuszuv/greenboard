@@ -33,7 +33,7 @@ module Api
       end
 
       def delete_card(id)
-        Maybe(repo.delete(id)).to_result(:not_found)
+        Maybe(repo.delete_with_images(id)).to_result(:not_found)
       end
     end
   end
