@@ -12,8 +12,11 @@ module Api
             :type,
             :topic,
             :text,
-            :images
+            :images,
+            :updated_at
           ]
+          map_value :updated_at, :to_i.to_proc
+          rename_keys updated_at: :timestamp
           map_value :images do
             map_array do |image|
               deep_symbolize_keys

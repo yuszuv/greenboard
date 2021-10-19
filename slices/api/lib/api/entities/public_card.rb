@@ -8,6 +8,7 @@ module Api
       attribute :topic, HanfBrett::Types::String
       attribute :text, HanfBrett::Types::String
       attribute :images, HanfBrett::Types::Array
+      attribute :timestamp, HanfBrett::Types::Integer
     end
   end
 end
