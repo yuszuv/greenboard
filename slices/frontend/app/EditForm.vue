@@ -1,21 +1,20 @@
 <template lang="pug">
-div
-  b-modal#edit-modal(hide-footer hide-backdrop)
-    template(#modal-title) {{ modalTitle }}
-    template(v-if="isAuthorized && !success")
-      card-form(
-        :key="form.id"
-        :wasValidated="wasValidated"
-        :loading="loading"
-        :initialForm="form"
-        :errors="errors"
-          @submit="requestUpdate"
+b-modal#edit-modal(hide-footer hide-backdrop)
+  template(#modal-title) {{ modalTitle }}
+  template(v-if="isAuthorized && !success")
+    card-form(
+      :key="form.id"
+      :wasValidated="wasValidated"
+      :loading="loading"
+      :initialForm="form"
+      :errors="errors"
+        @submit="requestUpdate"
+    )
+  template(v-if="!isAuthorized")
+    authorize-form(
+      :id="id"
+      @authorize="onAuthorize"
       )
-    template(v-if="!isAuthorized")
-      authorize-form(
-        :id="id"
-        @authorize="onAuthorize"
-        )
 </template>
 
 <script>
@@ -40,9 +39,9 @@ export default {
   },
   computed: {
     modalTitle() {
-      if (!this.wasValidated) {
+      if (!this.isAuthorized) {
         return "Eintrag freigeben"
-      } else if (this.wasValidated && !success) {
+      } else if (this.isAuthorized && !this.success) {
         return "Eintrag bearbeiten"
       }
     },
@@ -64,7 +63,7 @@ export default {
         .then(response => {
           // wait for modal to be closed
           // avoids a FOUC
-          this.$emit('update')
+          this.$emit('update', this.id)
           setTimeout(() =>{
             this.resetForm()
             this.isAuthorized = false

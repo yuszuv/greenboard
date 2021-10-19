@@ -73,3 +73,11 @@ form.form-loading {
   top: 50%;
   margin-top: -50px;
 }
+
+#footer .btn-outline-secondary {
+  background-color: $white;
+
+  &:hover {
+    background-color: $dark;
+  }
+}
