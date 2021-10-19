@@ -4,13 +4,10 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
     meta name="csrf-token" content=csrf_token
-
-    title
-      - if content_for :title
-        ==> content_for :title
-        ' /
-      ' Grünes Brett
     meta name="title" content="Grünes Brett"
+
+    title Grünes Brett
+
     link rel="stylesheet" type="text/css" href=assets["frontend__public.css"]
 
     link rel="preconnect" href="https://fonts.googleapis.com"
@@ -21,21 +18,30 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .container-fluid.justify-content-center
         a.navbar-brand.text-primary.fw-bold.d-flex.flex-wrap.justify-content-center.align-items-center href="/"
-          img.me-2 src=assets["slices/frontend/assets/public/logo_transparent_small.png"]
+          img.mr-3 src=assets["slices/frontend/assets/public/logo_transparent_small.png"]
           .d-flex.flex-column.justify-content-center
             h1.mb-0 Grünes Brett
             .my-1 Suche/Biete für Alles rund um Hanf
+
     .container
       == yield
       .row
         .col-md.text-center.my-1.d-flex.justify-content-center
           #footer.mb-2
-            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="#" data-toggle="modal" data-target="#impressModal" Impressum
-            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="#" data-toggle="modal" data-target="#privacyModal" Datenschutzerklärung
-            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="mailto:j.paki@lpv-prignitz-ruppin.de" Kontakt
-            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="mailto:j.paki@lpv-prignitz-ruppin.de" Fehler melden
-            / a.px-1 href="https://github.com/yuszuv/greenboard" target="_blank" Quelltext
-      .row.mb-5
+            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="#" data-toggle="modal" data-target="#impressModal"
+              i.fas.fa-file-alt.mr-1
+              | Impressum
+            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="#" data-toggle="modal" data-target="#privacyModal"
+              i.fas.fa-key.mr-1
+              | Datenschutzerklärung
+            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="mailto:j.paki@lpv-prignitz-ruppin.de"
+              i.fas.fa-envelope.mr-1
+              | Kontakt
+            a.btn.btn-outline-secondary.p-2.mx-3.shadow href="mailto:j.paki@lpv-prignitz-ruppin.de"
+              i.fas.fa-bug.mr-1
+              | Fehler melden
+
+      .row
         .col-md.text-center.my-1
           #dev-infos.d-inline-block.border.border-secondary.p-2.mx-3.shadow.bg-white
             | developer experience brought to the developer by 
@@ -48,190 +54,12 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
             a.px-1 href="https://vuejs.org" target="_blank"
               img src=assets['slices/frontend/assets/public/vuejs.svg'] width="20"
 
-      .row.mb-5
+      // TODO
+      //.row.mb-5
         .col-md.text-center.my-1
-          pre Version xxxx
+          pre.m-3 Version xxxx
 
-    #impressModal.modal.fade aria-hidden="true" aria-labelledby="impressModalLabel" tabindex="-1"
-      .modal-dialog.modal-xl
-        .modal-content
-          .modal-header
-            h5#impressModalLabel.modal-title Impressum
-            button.btn-close aria-label="Schließen" data-dismiss="modal" type="button"
-          .modal-body
-            h2 Angaben gemäß § 5 TMG
-            p
-              | Landschaftspflegeverband Prignitz-Ruppiner Land e.V.
-              br/
-              | Kirchplatz 12
-              br/
-              | 16909 Wittstock
-            p
-              | Vereinsregister: VR 5143 NP
-              br/
-              | Registergericht: Amtsgericht Neuruppin
-            p
-              strong Vertreten durch den Vorstand:
-              br/
-              | Andreas Bergmann (Vorsitzender)
-            h2 Kontakt
-            p
-              | Telefon: +49 03394 4059424
-              br/
-              | E-Mail: kontakt@lpv-prignitz-ruppin.de
-            p Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-            h3 Haftung für Inhalte
-            p Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-            p Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
-            h3 Haftung für Links
-            p Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.
-            p Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
-            h3 Urheberrecht
-            p Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
-            p Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
-            p
-              | Quelle:
-              a href="https://www.e-recht24.de"  eRecht24
-          .modal-footer
-            button.btn.btn-secondary data-dismiss="modal" type="button"  Schließen
-
-
-    #privacyModal.modal.fade aria-hidden="true" aria-labelledby="privacyModalLabel" tabindex="-1"
-      .modal-dialog.modal-xl
-        .modal-content
-          .modal-header
-            h5#privacyModalLabel.modal-title Datenschutzerklärung
-            button.btn-close aria-label="Schließen" data-dismiss="modal" type="button"
-          .modal-body
-            h2 1. Datenschutz auf einen Blick
-            h3 Allgemeine Hinweise
-            p Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
-            h3 Datenerfassung auf unserer Website
-            p
-              strong Wer ist verantwortlich für die Datenerfassung auf dieser Website?
-            p Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
-            p
-              strong Wie erfassen wir Ihre Daten?
-            p Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
-            p Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie unsere Website betreten.
-            p
-              strong Wofür nutzen wir Ihre Daten?
-            p Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
-            p
-              strong Welche Rechte haben Sie bezüglich Ihrer Daten?
-            p Sie haben jederzeit das Recht unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung, Sperrung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
-            p Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Details hierzu entnehmen Sie der Datenschutzerklärung unter „Recht auf Einschränkung der Verarbeitung“.
-            h3 Analyse-Tools und Tools von Drittanbietern
-            p Beim Besuch unserer Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit Cookies und mit sogenannten Analyseprogrammen. Die Analyse Ihres Surf-Verhaltens erfolgt in der Regel anonym; das Surf-Verhalten kann nicht zu Ihnen zurückverfolgt werden. Sie können dieser Analyse widersprechen oder sie durch die Nichtbenutzung bestimmter Tools verhindern. Detaillierte Informationen dazu finden Sie in der folgenden Datenschutzerklärung.
-            p Sie können dieser Analyse widersprechen. Über die Widerspruchsmöglichkeiten werden wir Sie in dieser Datenschutzerklärung informieren.
-            h2 2. Allgemeine Hinweise und Pflichtinformationen
-            h3 Datenschutz
-            p Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
-            p Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.
-            p Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
-            h3 Hinweis zur verantwortlichen Stelle
-            p Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
-            p
-              | Landschaftspflegeverband Prignitz-Ruppiner Land e.V.
-              br/
-              | Kirchplatz 12
-              br/
-              | 16909 Wittstock
-            p
-              | Telefon: +49 03394 4059424
-              br/
-              | E-Mail: LPV-Prignitz-Ruppiner-Land@posteo.de
-            p Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
-            h3 Widerruf Ihrer Einwilligung zur Datenverarbeitung
-            p Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Dazu reicht eine formlose Mitteilung per E-Mail an uns. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
-            h3 Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)
-            p
-              strong Wenn die Datenverarbeitung auf Grundlage von Art. 6 Abs. 1 lit. e oder f DSGVO erfolgt, haben Sie jederzeit das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen; dies gilt auch für ein auf diese Bestimmungen gestütztes Profiling. Die jeweilige Rechtsgrundlage, auf denen eine Verarbeitung beruht, entnehmen Sie dieser Datenschutzerklärung. Wenn Sie Widerspruch einlegen, werden wir Ihre betroffenen personenbezogenen Daten nicht mehr verarbeiten, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen (Widerspruch nach Art. 21 Abs. 1 DSGVO).
-            p
-              strong Werden Ihre personenbezogenen Daten verarbeitet, um Direktwerbung zu betreiben, so haben Sie das Recht, jederzeit Widerspruch gegen die Verarbeitung Sie betreffender personenbezogener Daten zum Zwecke derartiger Werbung einzulegen; dies gilt auch für das Profiling, soweit es mit solcher Direktwerbung in Verbindung steht. Wenn Sie widersprechen, werden Ihre personenbezogenen Daten anschließend nicht mehr zum Zwecke der Direktwerbung verwendet (Widerspruch nach Art. 21 Abs. 2 DSGVO).
-            h3 Beschwerderecht bei der zuständigen Aufsichtsbehörde
-            p Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.
-            h3 Recht auf Datenübertragbarkeit
-            p Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.
-            h3 SSL- bzw. TLS-Verschlüsselung
-            p Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL-bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von “http://” auf “https://” wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
-            p Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
-            h3 Auskunft, Sperrung, Löschung und Berichtigung
-            p Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.
-            h3 Recht auf Einschränkung der Verarbeitung
-            p Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:
-            ul
-              li Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
-              li Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah / geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen.
-              li Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
-              li Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
-            p Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.
-            h2 3. Datenerfassung auf unserer Website
-            h3 Cookies
-            p Die Internetseiten verwenden teilweise so genannte Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Cookies dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. Cookies sind kleine Textdateien, die auf Ihrem Rechner abgelegt werden und die Ihr Browser speichert.
-            p Die meisten der von uns verwendeten Cookies sind so genannte “Session-Cookies”. Sie werden nach Ende Ihres Besuchs automatisch gelöscht. Andere Cookies bleiben auf Ihrem Endgerät gespeichert bis Sie diese löschen. Diese Cookies ermöglichen es uns, Ihren Browser beim nächsten Besuch wiederzuerkennen.
-            p Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browser aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.
-            p Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs oder zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (z.B. Warenkorbfunktion) erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert. Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung von Cookies zur technisch fehlerfreien und optimierten Bereitstellung seiner Dienste. Soweit andere Cookies (z.B. Cookies zur Analyse Ihres Surfverhaltens) gespeichert werden, werden diese in dieser Datenschutzerklärung gesondert behandelt.
-            h3 Server-Log-Dateien
-            p Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
-            ul
-              li Browsertyp und Browserversion
-              li verwendetes Betriebssystem
-              li Referrer URL
-              li Hostname des zugreifenden Rechners
-              li Uhrzeit der Serveranfrage
-              li IP-Adresse
-            p Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
-            p Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website – hierzu müssen die Server-Log-Files erfasst werden.
-            h3 Kontaktformular
-            p Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
-            p Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt somit ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können diese Einwilligung jederzeit widerrufen. Dazu reicht eine formlose Mitteilung per E-Mail an uns. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.
-            p Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
-            h3 Anfrage per E-Mail, Telefon oder Telefax
-            p Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
-            p Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) und / oder auf unseren berechtigten Interessen (Art. 6 Abs. 1 lit. f DSGVO), da wir ein berechtigtes Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen haben.
-            p Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.
-            p
-              | Quelle:
-              a href="https://www.e-recht24.de/muster-datenschutzerklaerung.html"  https://www.e-recht24.de/muster-datenschutzerklaerung.html
-          .modal-footer
-            button.btn.btn-secondary data-dismiss="modal" type="button"  Schließen
-
-    .pswp aria-hidden="true" role="dialog" tabindex="-1"
-      /!
-        | Background of PhotoSwipe
-        | It's a separate element as animating opacity is faster than rgba()
-      .pswp__bg
-      /! Slides wrapper with overflow:hidden.
-      .pswp__scroll-wrap
-        /!
-          | Container that holds slides.
-          | PhotoSwipe keeps only 3 of them in the DOM to save memory.
-          | Don't modify these 3 pswp__item elements, data is added later on.
-        .pswp__container
-          .pswp__item
-          .pswp__item
-          .pswp__item
-        /! Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed.
-        .pswp__ui.pswp__ui--hidden
-          .pswp__top-bar
-            /! Controls are self-explanatory. Order can be changed.
-            .pswp__counter
-            button.pswp__button.pswp__button--close title=("Close (Esc)") 
-            button.pswp__button.pswp__button--share title="Share" 
-            button.pswp__button.pswp__button--fs title=("Toggle fullscreen") 
-            button.pswp__button.pswp__button--zoom title=("Zoom in/out") 
-            /! Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR
-            /! element will get class pswp__preloader--active when preloader is running
-            .pswp__preloader
-              .pswp__preloader__icn
-                .pswp__preloader__cut
-                  .pswp__preloader__donut
-          .pswp__share-modal.pswp__share-modal--hidden.pswp__single-tap
-            .pswp__share-tooltip
-          button.pswp__button.pswp__button--arrow--left title=("Previous (arrow left)") 
-          button.pswp__button.pswp__button--arrow--right title=("Next (arrow right)") 
-          .pswp__caption
-            .pswp__caption__center
+    == render :impress_modal
+    == render :privacy_modal
 
     script src=assets["frontend__public.js"] defer=true
