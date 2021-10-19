@@ -19,10 +19,11 @@
     .card-text {{ text }}
 
   .card-body
-    .card-gallery-list.d-flex.justify-content-center
-      figure(v-for="image in images")
-        a(:href="image.url" :data-size="`${image.width}x${image.height}`")
-          img.img-thumbnail.m-2(:src="image.thumbnail_url" :data-src="image.url" itemprop="thumbnail")
+    photoswipe
+      .card-gallery.d-flex.flex-wrap
+        figure.mr-3(v-for="image in images")
+          img.img-thumbnail(:src="image.thumbnail_url" v-pswp="{ src: image.url, size: `${image.width}x${image.height}` }" )
+          //a(@click.stop :href="image.url" :data-size="`${image.width}x${image.height}`")
 
   .card-body
     p.card-text

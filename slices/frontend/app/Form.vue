@@ -26,6 +26,7 @@ b-form.d-inline-block(@submit='onSubmit' :class="{ 'form-loading': loading }")
 Name, Telefonnummer, Email-Adresse o.ä.' :class="errorClass('contact')" @blur="resetError('contact')" rows='3')
     small.form-text Diese Daten sind sp&auml;ter nach L&ouml;sen eines sog.  #[a(href='https://de.wikipedia.org/wiki/Captcha' target='_blank') #[em #[i.fas.fa-external-link-alt.fa-sm] Captchas]] &ouml;ffentlich einsehbar
 
+
   b-form-group(label='Bilder anhängen')
     vue-dropzone#dropzone(ref='dropzone' @vdropzone-success='addImage' @vdropzone-total-upload-progress='vprogress' :options='dropzoneOptions' :duplicatecheck='true')
     .alert.alert-info.my-2 Maximale Dateigr&ouml;&szlig;e: 5MB
@@ -35,6 +36,7 @@ Name, Telefonnummer, Email-Adresse o.ä.' :class="errorClass('contact')" @blur="
         input(v-if='image.id' type='hidden' name='images[][id]' :value='image.id')
         input(type='hidden' name='images[][image_data]' :value='JSON.stringify(image.image_data)')
         img(:src="'/uploads/' + image.image_data.derivatives.thumbnail.id")
+
   b-form-group
     b-form-input(type='password' name='password' :placeholder="form.id ? 'Passwort ändern' : 'Passwort'" v-model='form.password' :class="errorClass('password')" @blur="resetError('password')")
   b-form-group

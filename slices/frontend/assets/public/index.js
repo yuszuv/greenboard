@@ -3,4 +3,3 @@
 import "@popperjs/core";
 import "@fortawesome/fontawesome-free";
 import "bootstrap";
-import "./photoswipe";

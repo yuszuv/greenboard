@@ -2,7 +2,7 @@
 div
   .row.mb-3.d-flex.justify-content-center
     add-button(@init-build="onInitBuild")
-    subscribe-button
+    subscribe-button(@init-subscribe="onInitSubscribe")
 
   .row.mb-3
     .col-md-6.d-flex.flex-column
