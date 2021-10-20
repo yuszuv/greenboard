@@ -2,8 +2,6 @@ require 'mail'
 
 module HanfBrett
   class Mailer
-    # include Deps['loggering.mail_logger']
-
     def call(from:, to:, subject:, body:)
       mail = Mail.new
       mail.from = from

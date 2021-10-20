@@ -1,6 +1,8 @@
 # auto_register: false
 # frozen_string_literal: true
 
+require 'dry/effects'
+
 module Mailer
   module Parts
   end

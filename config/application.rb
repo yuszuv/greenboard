@@ -6,11 +6,11 @@ rescue LoadError => e
   raise unless e.path == "break"
 end
 
-require 'i18n'
+require "i18n"
 I18n.load_path << Dir[File.expand_path("config/locales") + "/*.yml"]
 I18n.default_locale = :de
 
-require 'slim'
+require "slim"
 Slim::Embedded.options[:markdown] = { hard_wrap: true }
 
 require "hanami"
