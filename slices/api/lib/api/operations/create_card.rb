@@ -6,23 +6,19 @@ module Api
       include Deps[
         contract: 'contracts.cards.create',
         repo: 'repositories.card',
-        notify_subscribers: 'mailer.operations.notify_subscribers'
+        notify_subscribers: 'mailer.operations.notify_subscribers',
+        notify_admin: 'mailer.operations.notify_admin'
       ]
 
       def call(input)
         data = yield validate(input)
         card = yield persist(**data.to_h)
-        # TODO: add another mailer slice
-        yield notify_subscribers.(card)
+        yield notify_admin.(card)
 
         Success(card)
       end
 
       private
-
-      def notify_admin(res)
-        mailer.(res.text)
-      end
 
       def validate(input)
         contract.(input)

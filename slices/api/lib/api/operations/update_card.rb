@@ -6,27 +6,22 @@ module Api
       include Deps[
         contract: 'contracts.cards.update',
         repo: 'repositories.card',
-        mailer: 'application.mailer'
+        mailer: 'application.mailer',
+        notify_admin: 'mailer.workers.notify_admin'
       ]
 
       def call(**input)
-        params = yield validate(input)
-
-        params.to_h => { id:, current_password:, **data }
+        (yield validate(input).fmap(&:to_h)) => { id:, current_password:, **data }
 
         yield authorize(id, current_password)
         card = yield persist(id: id, **data.to_h)
-        # TODO
-        # notify_admin(card)
+
+        yield notify_admin.(card.id)
 
         Success(card)
       end
 
       private
-
-      def notify_admin(res)
-        mailer.(res.text)
-      end
 
       def validate(input)
         contract.(input)
