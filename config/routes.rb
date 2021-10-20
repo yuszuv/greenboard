@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Hanami.application.routes do
+  if Hanami.env?(:development)
+    require 'sidekiq/web'
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
+
   slice :frontend, at: "/" do
     root to: "list_cards"
     get "abonnement_bestaetigen", to: 'confirm_subscription'

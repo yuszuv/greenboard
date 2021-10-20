@@ -27,6 +27,7 @@ gem "shrine", "~> 3.0"
 gem "fastimage" # default analyzer 
 # gem "mailcatcher"
 gem "mail"
+gem "sidekiq"
 
 # Application
 gem "dry-effects"
