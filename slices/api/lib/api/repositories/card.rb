@@ -27,17 +27,19 @@ module Api
         cards.transaction do
           card = cards.by_pk(id).changeset(:update, **data).commit
 
-          existing_ids = cards.combine(:images).by_pk(id).one.images.map(&:id)
-          image_ids = data[:images].map{ _1[:id] }
+          existing_image_ids = cards.combine(:images).by_pk(id).one.images.map(&:id)
 
-          (existing_ids - image_ids).each do |id|
+          images_data = data[:images].to_a
+          image_ids = images_data.map{ _1[:id] }
+
+          (existing_image_ids - image_ids).each do |id|
             images.by_pk(id).changeset(:delete).commit
           end
 
-          data[:images].each do |i|
-            if i[:id]
+          images_data.each do |i|
+            if id = i[:id]
               images
-                .by_pk(i[:id])
+                .by_pk(id)
                 .changeset(:update, **i)
                 .associate(card)
                 .commit
