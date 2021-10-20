@@ -16,6 +16,12 @@ module Api
         rule(:email) do
           key.failure("ist schon eingetragen") if repo.exists?(values[:email])
         end
+
+        rule(:email) do
+          unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
+            key.failure(:format)
+          end
+        end
       end
     end
   end

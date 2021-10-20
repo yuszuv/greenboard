@@ -8,11 +8,11 @@ module Api
           required(:id).filled(:string)
           required(:current_password).filled(:string)
 
-          optional(:type).filled(:string)
+          required(:type).filled(HanfBrett::Types::CardType)
           optional(:topic).filled(:string)
           optional(:text).filled(:string)
           optional(:contact).filled(:string)
-          optional(:password).filled(:string, min_size?: 6)
+          required(:password).filled(HanfBrett::Types::CardPassword)
           optional(:password_confirmation).filled(:string)
           optional(:images).array(:hash) do
             optional(:id).maybe(:integer)
@@ -23,10 +23,6 @@ module Api
 
         rule(:password, :password_confirmation) do
           key.failure('stimmt nicht mit Passwortbestätigung überein') unless values[:password] == values[:password_confirmation]
-        end
-        rule :type do
-          list = %w(SUCHE BIETE)
-          key.failure(:inclusion?, list: list) unless list.include?(value)
         end
       end
     end
