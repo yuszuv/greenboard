@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+require 'dry/effects'
+
 module Api
   module Operations
     class CreateCard < HanfBrett::Operation
+      include Dry::Effects.CurrentTime
+
       include Deps[
         contract: 'contracts.cards.create',
         repo: 'repositories.card',
@@ -11,9 +15,12 @@ module Api
       ]
 
       def call(input)
+        send_at = current_time + 60 * 60
+
         data = yield validate(input)
         card = yield persist(**data.to_h)
         yield notify_admin.(card)
+        yield notify_subscribers.(card, send_at)
 
         Success(card)
       end

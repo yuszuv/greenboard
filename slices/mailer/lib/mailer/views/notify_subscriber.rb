@@ -2,7 +2,7 @@
 
 module Mailer
   module Views
-    class NotifyCreate < Mailer::View
+    class NotifySubscriber < Mailer::View
       expose :card
       expose :subscriber
     end

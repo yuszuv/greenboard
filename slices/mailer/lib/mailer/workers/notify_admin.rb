@@ -50,14 +50,12 @@ module Mailer
 
       def send_mail(body)
         Try[Errno::ECONNREFUSED] do
-          mail = mailer.(
+          mailer.(
             from: '[DEV] Gruenes Brett<no-reply@gruenesbrett.de',
             to: 'j.paki@lpv-prignitz-ruppin.de',
             subject: 'HEADS UP!!! Neuer oder geänderter Eintrag auf dem "Grünen Brett"',
             body: body
           )
-
-          Success(mail)
         end.to_result
       end
 
