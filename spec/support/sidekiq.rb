@@ -2,6 +2,7 @@ require 'dry/effects'
 
 class DependencyProvider
   include Dry::Effects::Handler.Resolve
+  include Dry::Effects::Handler.CurrentTime
 
   def initialize(hash)
     @context = hash[:context]
@@ -15,8 +16,10 @@ class DependencyProvider
   # @return [Void]
   def call(worker, job, queue)
     begin
-      provide(**@context) do
-        yield
+      with_current_time do
+        provide(**@context) do
+          yield
+        end
       end
     rescue => ex
       puts ex.message

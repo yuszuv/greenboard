@@ -25,8 +25,10 @@ use Rack::MethodOverride
 
 require "hanami/boot"
 require_relative 'lib/hanf_brett/middleware/resolve'
+require_relative 'lib/hanf_brett/middleware/current_time'
 
 use HanfBrett::Middleware::Resolve
+use HanfBrett::Middleware::CurrentTime
 
 run Hanami.app
 
