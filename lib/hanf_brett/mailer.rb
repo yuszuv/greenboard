@@ -9,8 +9,17 @@ module HanfBrett
       mail.subject = subject
       mail.body = body
 
+      mail = append_to_subject(mail) if Hanami.env?(:development, :test)
+
       mail.deliver!
 
+      mail
+    end
+
+    private
+
+    def append_to_subject(mail)
+      mail.subject = "[%s] %s" % [Hanami.env, mail.subject]
       mail
     end
   end
