@@ -27,7 +27,7 @@ module Api
         cards.transaction do
           card = cards.by_pk(id).changeset(:update, **data).commit
 
-          existing_image_ids = cards.combine(:images).by_pk(id).one.images.map(&:id)
+          existing_image_ids = cards.images.where(card_id: id).pluck(:id)
 
           images_data = data[:images].to_a
           image_ids = images_data.map{ _1[:id] }

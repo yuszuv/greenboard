@@ -30,8 +30,8 @@ Name, Telefonnummer, Email-Adresse o.ä.' :class="errorClass('contact')" @blur="
   b-form-group(label='Bilder anhängen')
     vue-dropzone#dropzone(ref='dropzone' @vdropzone-success='addImage' @vdropzone-total-upload-progress='vprogress' :options='dropzoneOptions' :duplicatecheck='true')
     .alert.alert-info.my-2 Maximale Dateigr&ouml;&szlig;e: 5MB
-    .d-flex.flex-wrap
-      .image-list.m-3(v-for='image in form.images')
+    .d-flex.flex-wrap.image-list
+      .m-3(v-for='image in form.images')
         a.btn-remove-image(v-on:click='removeImage(image)'): i.fas.fa-times-circle.rounded-circle
         input(v-if='image.id' type='hidden' name='images[][id]' :value='image.id')
         input(type='hidden' name='images[][image_data]' :value='JSON.stringify(image.image_data)')

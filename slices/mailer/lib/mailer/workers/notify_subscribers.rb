@@ -37,7 +37,6 @@ module Mailer
 
         if !card.notification_sent_at
           recipients = yield get_subscribers
-
           card = yield add_timestamp(card, current_time)
 
           sent_to = recipients.map do |recipient|

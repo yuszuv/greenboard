@@ -12,7 +12,7 @@ module Api
           optional(:topic).filled(:string)
           optional(:text).filled(:string)
           optional(:contact).filled(:string)
-          required(:password).filled(HanfBrett::Types::CardPassword)
+          optional(:password).filled(HanfBrett::Types::CardPassword)
           optional(:password_confirmation).filled(:string)
           optional(:images).array(:hash) do
             optional(:id).maybe(:integer)

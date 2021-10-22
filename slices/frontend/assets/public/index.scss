@@ -53,9 +53,8 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   height: 50px;
 }
 
-.image-list {
-  // margin: 0.5rem;
-  position: relative;
+.image-list img {
+  max-width: 100%;
 }
 
 a.btn-remove-image {
