@@ -95,4 +95,14 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  # Using global time
+  require "dry/effects"
+  frozen_time = Time.now
+
+  puts "Running with time #{frozen_time.iso8601}" if ENV['CI']
+
+  config.include Dry::Effects::Handler.CurrentTime
+  config.include(Module.new { define_method(:current_time) { frozen_time } })
+  config.around { |ex| with_current_time(proc { frozen_time }, &ex) }
 end
