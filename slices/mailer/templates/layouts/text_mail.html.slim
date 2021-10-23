@@ -1,16 +1,22 @@
-img.mr-3 src="data:image/png;base64, #{Base64.encode64(File.open(File.join(__dir__, 'logo.png')).read)}"
+a href="https://www.gruenesbrett.de"
+  img.mr-3 src="data:image/png;base64, #{Base64.encode64(File.open(File.join(__dir__, 'logo.png')).read)}"
 
 h1 Grünes Brett
 
 == yield
 
-p == content_for :unsubscribe_url
+p
+  strong Grünes Brett - Suche/Biete für alles rund um Hanf
+  br
+  | Landschaftspflegeverband Prignitz-Ruppiner Land e.V.
+  br
+  | Kirchplatz 12
+  br
+  | 16909 Wittstock/Dosse
+  br
+  | https://netzwerk-hanf.de
+  br
+  | https://gruenesbrett.de
 
-pre --  
-  Grünes Brett - Suche/Biete für alles rund um Hanf
-  Landschaftspflegeverband Prignitz-Ruppiner Land e.V.
-  Kirchplatz 12
-  16909 Wittstock/Dosse
-  https://netzwerk-hanf.de
-  https://gruenesbrett.de
+p == content_for :unsubscribe_url
 
