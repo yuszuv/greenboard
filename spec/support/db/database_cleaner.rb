@@ -1,7 +1,7 @@
 require "database_cleaner"
 require_relative "helpers"
 
-DatabaseCleaner[:sequel, connection: Test::DB::Helpers.db].strategy = :transaction
+DatabaseCleaner[:sequel, db: Test::DB::Helpers.db].strategy = :transaction
 
 RSpec.configure do |config|
   config.before :suite do

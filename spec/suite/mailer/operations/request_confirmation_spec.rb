@@ -1,4 +1,4 @@
-RSpec.describe Mailer::Operations::RequestConfirmation, :focus do
+RSpec.describe Mailer::Operations::RequestConfirmation do
   let!(:subscriber){ double('subscriber', email: Faker::Internet.email) }
   let!(:mail){ double('mail') }
 
