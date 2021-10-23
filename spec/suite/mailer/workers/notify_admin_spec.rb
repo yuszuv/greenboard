@@ -1,6 +1,6 @@
 RSpec.describe Mailer::Workers::NotifyAdmin do
   let(:id) { 137 }
-  let(:email) { described_class::ADMIN_EMAIL }
+  let(:email) { Faker::Internet.email }
 
   let(:mailer) { ->(*args) { double('mail', to: email) } }
   let(:view) { ->(card:) { double('body') } }
@@ -40,7 +40,7 @@ RSpec.describe Mailer::Workers::NotifyAdmin do
     it "sends an email to the admin" do
       expect(mailer).to receive(:call).and_call_original
       expect(result).to be_success
-      expect(result.value!).to eql({ card: card, recipient: described_class::ADMIN_EMAIL })
+      expect(result.value!).to eql(card: card, recipient: email)
     end
   end
 end

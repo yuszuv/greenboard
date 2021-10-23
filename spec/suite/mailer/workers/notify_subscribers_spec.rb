@@ -2,7 +2,7 @@ RSpec.describe Mailer::Workers::NotifySubscribers do
   let(:id) { 137 }
 
   let(:mailer) { ->(*args) { double('mail') } }
-  let(:view) { ->(subscriber:, card:) { double('body') } }
+  let(:view) { ->(subscriber:, card:, format:) { double('body') } }
   let(:card_repo) { instance_double(Mailer::Repositories::Card) }
   let(:subscriber_repo) { instance_double(Mailer::Repositories::Subscriber) }
 
@@ -45,7 +45,7 @@ RSpec.describe Mailer::Workers::NotifySubscribers do
 
     context "and no notification was sent yet" do
       let(:card) { double('Mailer::Entities::Card', notification_sent_at: nil, id: id) }
-      let(:recipients) { 2.times.map{ double('subscriber') } }
+      let(:recipients) { 2.times.map{ double('subscriber', email: Faker::Internet.email) } }
 
       before do
         allow(subscriber_repo).to receive(:active_subscribers) { recipients }
