@@ -18,6 +18,8 @@ Hanami.application.settings do
 
   setting :smtp_server_url, HanfBrett::Types::String
   setting :smtp_server_port, HanfBrett::Types::Coercible::Integer
+  setting :smtp_server_username, HanfBrett::Types::String
+  setting :smtp_server_password, HanfBrett::Types::String
 
   setting :mail_log_level, HanfBrett::Types::String
 end
