@@ -7,9 +7,8 @@ module Mailer
     class NotifyAdmin < HanfBrett::Operation
       include Sidekiq::Worker
 
-      ADMIN_EMAIL = "jan@sternprodukt.de"
-
       include Deps[
+        settings: 'application.settings',
         mailer: 'application.mailer',
         logger: 'application.mail_logger',
         repo: 'repositories.card',
@@ -44,8 +43,8 @@ module Mailer
       def send_mail(body)
         Try[Errno::ECONNREFUSED] do
           mailer.(
-            from: 'Gruenes Brett<no-reply@gruenesbrett.de',
-            to: ADMIN_EMAIL,
+            from: 'no-reply@gruenesbrett.de',
+            to: settings.smtp_server_admin_email,
             subject: 'HEADS UP!!! Neuer oder geänderter Eintrag auf dem "Grünen Brett"',
             body: body
           )
