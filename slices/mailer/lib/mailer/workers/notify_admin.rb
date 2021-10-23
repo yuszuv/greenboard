@@ -7,6 +7,8 @@ module Mailer
     class NotifyAdmin < HanfBrett::Operation
       include Sidekiq::Worker
 
+      ADMIN_EMAIL = "jan@sternprodukt.de"
+
       include Deps[
         mailer: 'application.mailer',
         logger: 'application.mail_logger',
@@ -19,14 +21,6 @@ module Mailer
         case call(card_id)
         in Success(_)
           0
-        # in Failure(:not_found)
-        #   puts "bar" * 2
-        #   raise "🦄" * 100
-
-        # in Failure(Exception, stacktrace)
-        # trigger monitoring stuff
-        # else
-        # do something else
         end
       rescue NoMatchingPatternError => e
         raise e
@@ -38,8 +32,7 @@ module Mailer
         mail = yield send_mail(body)
         yield log_mail(mail)
 
-        # case Failure(Exception)
-        Success(mail)
+        Success(card: card, recipient: mail.to)
       end
 
       private
@@ -51,8 +44,8 @@ module Mailer
       def send_mail(body)
         Try[Errno::ECONNREFUSED] do
           mailer.(
-            from: '[DEV] Gruenes Brett<no-reply@gruenesbrett.de',
-            to: 'j.paki@lpv-prignitz-ruppin.de',
+            from: 'Gruenes Brett<no-reply@gruenesbrett.de',
+            to: ADMIN_EMAIL,
             subject: 'HEADS UP!!! Neuer oder geänderter Eintrag auf dem "Grünen Brett"',
             body: body
           )
