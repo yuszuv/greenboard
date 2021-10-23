@@ -128,10 +128,10 @@ RSpec.configure do |config|
 
   # Add more derived metadata rules here, e.g.
   #
-  # config.define_derived_metadata type: :request do |metadata|
-  #   metadata[:db] = true
-  #   metadata[:web] = true
-  # end
+  config.define_derived_metadata file_path: %r{/actions/} do |metadata|
+    metadata[:db] = true
+    metadata[:type] = :action
+  end
   #
   # config.define_derived_metadata :db do |metadata|
   #   metadata[:factory] = true unless metadata.key?(:factory)
@@ -157,5 +157,16 @@ RSpec.configure do |config|
       require_relative group.to_s
     rescue LoadError # rubocop:disable Lint/SuppressedException
     end
+  end
+
+
+  config.around(:example, type: :action) do |ex|
+    extend Dry::Effects::Handler.Resolve
+
+    request = {
+      host: 'https://domain.com'
+    }
+
+    provide(**request, &ex)
   end
 end

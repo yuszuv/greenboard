@@ -34,8 +34,9 @@ module Test
           begin
             case type
             when :frontend
-              require "frontend/entities"
               Frontend::Entities
+            when :api
+              Api::Entities
             else
               require "hanf_brett/entities"
               HanfBrett::Entities

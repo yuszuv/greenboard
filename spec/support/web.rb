@@ -47,3 +47,8 @@ RSpec.configure do |config|
   config.include Capybara::DSL, Capybara::RSpecMatchers, :web
   config.include Test::Web::Helpers, :web
 end
+
+require_relative 'mail'
+Mail.defaults do
+  delivery_method :test
+end
