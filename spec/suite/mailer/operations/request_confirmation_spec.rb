@@ -3,7 +3,7 @@ RSpec.describe Mailer::Operations::RequestConfirmation do
   let!(:mail){ double('mail') }
 
   let(:mailer){ ->(*args){ mail } }
-  let(:view){ ->(subscriber:){ nil } }
+  let(:view){ ->(subscriber:, format:){ nil } }
 
   let(:subject) do
     described_class.new(
@@ -17,7 +17,7 @@ RSpec.describe Mailer::Operations::RequestConfirmation do
 
   it "sends a confirmation mail to the subscriber" do
     expect(mailer).to receive(:call){ mail }
-    expect(view).to receive(:call).with(hash_including(subscriber: subscriber))
+    expect(view).to receive(:call).with(hash_including(subscriber: subscriber)).twice
     expect(result).to be_a_success
     expect(result.value!).to eq(mail: mail, subscriber: subscriber)
   end

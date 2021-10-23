@@ -19,13 +19,15 @@ module Mailer
 
       def send_confirmation_mail(subscriber)
         Try[Errno::ECONNREFUSED] do
-          body = view.(subscriber: subscriber).to_s
+          body = view.(subscriber: subscriber, format: :txt).to_s
+          body_html = view.(subscriber: subscriber, format: :html).to_s
 
           mail = mailer.(
             from: "[DEV] Gruenes Brett<no-reply@gruenesbrett.de",
             to: subscriber.email,
             subject:  'Grünes Brett - Automatische Benachrichtigungen bestätigen',
-            body: body
+            body: body,
+            body_html: body_html
           )
 
           logger.(:info, mail)

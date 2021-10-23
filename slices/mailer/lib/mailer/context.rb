@@ -1,5 +1,9 @@
 module Mailer
   class Context < Hanami::View::Context
+    include Deps[
+      'application.assets'
+    ]
+
     def initialize(**args)
       defaults = {content: {}}
 

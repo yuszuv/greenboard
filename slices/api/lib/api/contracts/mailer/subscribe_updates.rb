@@ -19,7 +19,7 @@ module Api
 
         rule(:email) do
           unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
-            key.failure(:format)
+            key.failure(:format?)
           end
         end
       end

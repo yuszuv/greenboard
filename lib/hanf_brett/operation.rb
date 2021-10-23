@@ -11,7 +11,6 @@ module HanfBrett
     class << self
       def inherited(klass)
         klass.include Dry::Monads[:do]
-        klass.include Dry::Matcher::ResultMatcher.for(:call)
       end
     end
   end
