@@ -30,11 +30,11 @@ module Mailer
             body_html: body_html
           )
 
-          logger.(:info, mail)
+          logger.info(mail)
 
           mail
         end.to_result.or do |x|
-          logger.(:error, x)
+          logger.error(x)
 
           Failure[:mail, x]
         end

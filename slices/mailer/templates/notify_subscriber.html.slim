@@ -1,0 +1,16 @@
+h2 Neuer Eintrag
+
+h3 = "[%s] %s" % [card.type, card.topic]
+
+p = card.text
+
+p
+  | Eintrag online ansehen unter 
+  br
+  a href="https://www.gruenesbrett.de" http://www.gruenesbrett.de
+
+
+= content_for(:unsubscribe_url) do
+  | Benachrichtungen abbestellen
+  br
+  a href=subscriber.unsubscribe_url = subscriber.unsubscribe_url

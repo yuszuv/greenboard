@@ -20,7 +20,7 @@ module Mailer
 
       FROM = '[DEV] Gruenes Brett<no-reply@gruenesbrett.de'
       TO = 'j.paki@lpv-prignitz-ruppin.de'
-      SUBJECT = 'HEADS UP!!! Neuer oder geänderter Eintrag auf dem "Grünen Brett"'
+      SUBJECT = '"Grünes Brett" für Hanf: Neuer Eintrag'
 
       def perform(card_id)
         case call(card_id)
@@ -40,8 +40,10 @@ module Mailer
           card = yield add_timestamp(card, current_time)
 
           sent_to = recipients.map do |recipient|
-            body = view.(subscriber: recipient, card: card).to_s
-            mail = send_mail(body).or(&log_error)
+            body = view.(subscriber: recipient, card: card, format: :txt).to_s
+            body_html = view.(subscriber: recipient, card: card, format: :html).to_s
+
+            mail = send_mail(recipient.email, body, body_html).or(&log_error)
             [recipient, mail]
           end
             .filter{ |_,r| r.success? }
@@ -67,13 +69,14 @@ module Mailer
         Success(card_repo.update(card.id, notification_sent_at: timestamp))
       end
 
-      def send_mail(body)
+      def send_mail(recipient, body, body_html)
         Try[Errno::ECONNREFUSED] do
           mailer.(
             from: FROM,
-            to: TO,
+            to: recipient,
             subject: SUBJECT,
-            body: body
+            body: body,
+            body_html: body_html
           )
         end.to_result
       end
@@ -81,7 +84,7 @@ module Mailer
       def log_error
         # TODO: add monitoring
         Proc.new do |e|
-          logger.(e)
+          logger.error(e)
           Failure(e)
         end
       end
