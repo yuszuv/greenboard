@@ -33,8 +33,8 @@ b-modal#subscribe-modal(hide-footer='' hide-backdrop='')
           )
           | Ich habe die #[a(href='#' @click.prevent="$bvModal.show('tos-modal')" v-b-modal.tos-modal='') Nutzungsbedingungen] gelesen und akzeptiert
 
-      b-button(type='submit' variant='primary') Abonnieren
-      b-button(variant='danger' @click.prevent="$bvModal.hide('subscribe-modal')") Schlie&szlig;en
+      b-button.mr-2(type='submit' variant='primary') #[i.fas.fa-paper-plane] Abonnieren
+      b-button.mr-2(variant='secondary' @click.prevent="$bvModal.hide('subscribe-modal')") #[i.fas.fa-times] Schlieẞen
 
       tos-modal
 
