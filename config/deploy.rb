@@ -4,7 +4,7 @@ lock "~> 3.16.0"
 set :application, "gruenes-brett"
 set :repo_url, "git@sternprodukt.de:gruenes-brett.git"
 
-set :rvm_ruby_version, '2.7.3'      # Defaults to: 'default'
+set :rvm_ruby_version, '3.0.2'      # Defaults to: 'default'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
