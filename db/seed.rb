@@ -6,5 +6,5 @@ require_relative '../spec/support/db/factory'
 
 Hanami.application.boot
 
-3.times { Factory[:card, :with_images] }
+10.times { Factory[:card, :with_images] }
 3.times { Factory[:subscriber] }
