@@ -23,7 +23,7 @@ module Mailer
           body_html = view.(subscriber: subscriber, format: :html).to_s
 
           mail = mailer.(
-            from: "Gruenes Brett<no-reply@gruenesbrett.de",
+            from: "no-reply@gruenesbrett.de",
             to: subscriber.email,
             subject:  'Grünes Brett - Automatische Benachrichtigungen bestätigen',
             body: body,
