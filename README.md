@@ -1,6 +1,19 @@
-# HanfBrett
+# Grünes Brett - Green Board
 
-This is a Hanami 2 application.
+## a board for everything hemp related
+
+This is a side project. It is a board where you can post your offers/requests. You also can subscribe to updates (e.g. new entries).
+
+This code is written using the incredible awesome gems of
+
+* [hanami-rb](https://www.hanamirb.org)
+* [dry-rb](https://dry-rb.org) (actually using f*cking awesome algebraic effects /w dry-effects 🦄)
+* [rom-rb](https://www.rom-rb.org)
+* [vue.js](https://www.vuejs.org)
+
+I used this task to get used to this gems ... and I can truely recommend the developing experience :)
+
+The application was set up using the [Hanami 2 application template](https://github.com/hanami/hanami-2-application-template)
 
 ## Docker development
 
