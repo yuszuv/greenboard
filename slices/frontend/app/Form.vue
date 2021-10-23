@@ -32,7 +32,7 @@ Name, Telefonnummer, Email-Adresse o.ä.' :class="errorClass('contact')" @blur="
     .alert.alert-info.my-2 Maximale Dateigr&ouml;&szlig;e: 5MB
     .d-flex.flex-wrap.image-list
       .m-3(v-for='image in form.images')
-        a.btn-remove-image(v-on:click='removeImage(image)'): i.fas.fa-times-circle.rounded-circle
+        a.btn-remove-image(href="#" v-on:click='removeImage(image)'): i.fas.fa-times-circle.rounded-circle
         input(v-if='image.id' type='hidden' name='images[][id]' :value='image.id')
         input(type='hidden' name='images[][image_data]' :value='JSON.stringify(image.image_data)')
         img(:src="'/uploads/' + image.image_data.derivatives.thumbnail.id")
@@ -48,7 +48,7 @@ Name, Telefonnummer, Email-Adresse o.ä.' :class="errorClass('contact')" @blur="
       | Ich habe die 
       a(href='#' v-on:click='$event.preventDefault()' v-b-modal.tos-modal='') Nutzungsbedingungen
       |  gelesen und akzeptiert
-  b-button(type='submit' variant='primary') Abschicken
+  b-button(type='submit' variant='primary') #[i.fas.fa-paper-plane] Abschicken
   tos-modal
 </template>
 

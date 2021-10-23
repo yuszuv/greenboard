@@ -5,7 +5,7 @@ div
     br
     span(v-html='contact')
 
-  a.btn.btn-info.shadow(href='#' v-if='!clicked' @click.prevent='clicked = true') #[i.fas.fa-address-card.mr-2] Kontaktdaten anzeigen
+  a.btn.btn-info.shadow(href='#' v-if='!clicked' @click.prevent='clicked = true') #[i.fas.fa-address-card] Kontaktdaten anzeigen
   vue-recaptcha(
     v-if='clicked && robot'
     ref='recaptcha'

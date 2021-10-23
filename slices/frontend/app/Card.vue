@@ -16,21 +16,21 @@
             delete-link(:id="id" @init-delete="onInitDelete")
 
   .card-body
-    .card-text {{ text }}
+    .card-text(v-html="markdown(text)")
 
-  .card-body
-    photoswipe
+    photoswipe.py-2(v-if="images.length > 0")
       .card-gallery.d-flex.flex-wrap
         figure.mr-3(v-for="image in images")
           img.img-thumbnail(:src="image.thumbnail_url" v-pswp="{ src: image.url, size: `${image.width}x${image.height}` }" )
           //a(@click.stop :href="image.url" :data-size="`${image.width}x${image.height}`")
 
-  .card-body
-    p.card-text
+    .card-text
       contact-toggler(:cardId="id")
 </template>
 
 <script>
+import marked from 'marked'
+
 import DeleteLink from './DeleteLink.vue'
 import EditLink from './EditLink.vue'
 import ContactToggler from './ContactToggler.vue'
@@ -70,6 +70,9 @@ export default {
     EditLink,
   },
   methods: {
+    markdown(str) {
+      return marked(str, { breaks: true })
+    },
     onInitEdit(_id) {
       this.$emit('init-edit', this.id)
     },

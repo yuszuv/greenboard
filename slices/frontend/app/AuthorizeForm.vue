@@ -6,7 +6,7 @@ b-form.d-inline-block(@submit.prevent='requestAuthorize')
     b-form-input#topic(v-model='password' autofocus='' type='password' :class="error && 'is-invalid'" @input='resetError')
     small.form-text.invalid-feedback(v-if='error') Passwort stimmt nicht.
     small.form-text Das beim Erstellen angegebene Passwort.
-  b-button(type='submit' variant='primary') Freigeben
+  b-button(type='submit' variant='primary') #[i.fas.fa-unlock] Freigeben
 </template>
 
 <script>

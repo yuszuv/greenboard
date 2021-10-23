@@ -1,8 +1,9 @@
 <template lang="pug">
 div
-  .row.mb-3.d-flex.justify-content-center
-    add-button(@init-build="onInitBuild")
-    subscribe-button(@init-subscribe="onInitSubscribe")
+  .row.mb-3
+    #buttons.col-md-12.d-flex.justify-content-center
+      add-button(@init-build="onInitBuild")
+      subscribe-button(@init-subscribe="onInitSubscribe")
 
   .row.mb-3
     .col-md-6.d-flex.flex-column
@@ -32,6 +33,7 @@ div
 
 <script>
 import axios from 'axios'
+import marked from 'marked'
 
 import AddButton from './AddButton.vue'
 import SubscribeButton from './SubscribeButton.vue'
@@ -94,8 +96,9 @@ export default {
       this.$bvModal.hide('edit-modal')
       this.updateCard(id)
     },
-    onCreate() {
+    onCreate(id) {
       this.$bvModal.hide('build-modal')
+      this.updateCard(id)
     },
     onDelete() {
       this.$bvModal.hide('delete-modal')
@@ -113,7 +116,12 @@ export default {
           const card = cards.find(card => card.id === id)
           const idx = this.cards.findIndex(c => c.id === card.id)
 
-          this.cards.splice(idx, 1, card)
+          if (idx >= 0) {
+            this.cards.splice(idx, 1, card)
+          } else {
+            this.cards = [card, ...this.cards]
+          }
+
           this.success = true
         })
         .catch(e => {
@@ -124,9 +132,9 @@ export default {
         })
 
       return res
-
     },
     initCards() {
+      console.log('initing cards')
       this.loading = true
       this.success = false
 

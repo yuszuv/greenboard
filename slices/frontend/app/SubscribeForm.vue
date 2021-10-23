@@ -41,7 +41,7 @@ b-modal#subscribe-modal(hide-footer='' hide-backdrop='')
   div(v-else)
     h4 #[i.fas.fa-envelope] Bestätigungs-Mail versendet
     p Vielen Dank für deine Eintragung. Wir haben gerade eine Email geschickt, mit der sie noch bestätigen musst.
-    b-button(variant='primary' @click.prevent="$bvModal.hide('subscribe-modal')") Schließen
+    b-button(variant='primary' @click.prevent="$bvModal.hide('subscribe-modal')") #[i.fas.fa-times] Schließen
 </template>
 
 <script>

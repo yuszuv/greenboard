@@ -55,7 +55,9 @@ export default {
         .then(response => {
           // wait for modal to be closed
           // avoids a FOUC
-          this.$emit('create')
+          const card = response.data
+
+          this.$emit('create', card.id.toString())
           setTimeout(() =>{
             this.resetForm()
             this.isAuthorized = false

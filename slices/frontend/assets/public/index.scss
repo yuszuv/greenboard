@@ -53,8 +53,14 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   height: 50px;
 }
 
-.image-list img {
-  max-width: 100%;
+.image-list {
+  img {
+    max-width: 100%;
+  }
+
+  & > div {
+    position: relative;
+  }
 }
 
 a.btn-remove-image {
@@ -98,3 +104,20 @@ form.form-loading {
   }
 }
 
+#buttons {
+  .btn-outline-primary {
+    background-color: $white;
+
+    &:hover {
+      background-color: $primary;
+    }
+  }
+
+  .btn-outline-warning {
+    background-color: $white;
+
+    &:hover {
+      background-color: $warning;
+    }
+  }
+}
