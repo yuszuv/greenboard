@@ -55,6 +55,7 @@ group :development do
   gem 'capistrano-nvm'
   gem 'capistrano-rvm'
   gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq'
 end
 
 # Development/test

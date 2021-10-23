@@ -66,3 +66,4 @@ namespace :deploy do
 end
 
 after 'deploy:updated', 'deploy:assets'
+after 'deploy:published', 'sidekiq:restart'
