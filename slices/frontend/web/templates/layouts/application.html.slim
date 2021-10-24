@@ -53,6 +53,12 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
               img src=assets['slices/frontend/assets/public/rom.svg'] width="20"
             a.px-1 href="https://vuejs.org" target="_blank"
               img src=assets['slices/frontend/assets/public/vuejs.svg'] width="20"
+      .row
+        .col-md.text-center.my-1
+          #code-info.d-inline-block.p-2.mx-3
+            small
+              | version 1.0.0-beta / source: 
+              a href="https://github.com/yuszuv/greenboard" target="_blank" github
 
       // TODO
       //.row.mb-5
@@ -61,5 +67,6 @@ html.text-gray-900.leading-tight.h-full.bg-gray-50.snippet-html.js-focus-visible
 
     == render :impress_modal
     == render :privacy_modal
+
 
     script src=assets["frontend__public.js"] defer=true
