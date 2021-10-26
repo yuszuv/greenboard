@@ -18,8 +18,7 @@ module Mailer
         view: 'views.notify_subscriber'
       ]
 
-      FROM = '[DEV] Gruenes Brett<no-reply@gruenesbrett.de'
-      TO = 'j.paki@lpv-prignitz-ruppin.de'
+      FROM = 'no-reply@gruenesbrett.de'
       SUBJECT = '"Grünes Brett" für Hanf: Neuer Eintrag'
 
       def perform(card_id)
