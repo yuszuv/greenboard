@@ -85,7 +85,6 @@ export default {
       this.$bvModal.show('edit-modal')
     },
     onInitDelete(id) {
-      console.log('init delete')
       this.currentCardId = id
       this.$bvModal.show('delete-modal')
     },
@@ -100,8 +99,9 @@ export default {
       this.$bvModal.hide('build-modal')
       this.updateCard(id)
     },
-    onDelete() {
+    onDelete(id) {
       this.$bvModal.hide('delete-modal')
+      this.updateCard(id)
     },
     onSubscribe() {
       this.$bvModal.hide('subscribe-modal')
@@ -114,12 +114,19 @@ export default {
         .then(res => {
           const cards = res.data
           const card = cards.find(card => card.id === id)
-          const idx = this.cards.findIndex(c => c.id === card.id)
 
-          if (idx >= 0) {
-            this.cards.splice(idx, 1, card)
+          if (card) {
+            const idx = this.cards.findIndex(c => c.id === card.id)
+
+            if (idx >= 0) {
+              this.cards.splice(idx, 1, card)
+            } else {
+              this.cards = [card, ...this.cards]
+            }
           } else {
-            this.cards = [card, ...this.cards]
+            const idx = this.cards.findIndex(c => c.id === id)
+
+            this.cards.splice(idx, 1)
           }
 
           this.success = true
@@ -134,7 +141,6 @@ export default {
       return res
     },
     initCards() {
-      console.log('initing cards')
       this.loading = true
       this.success = false
 
@@ -175,7 +181,9 @@ export default {
 }
 
 .cards-leave-to {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s .5s, opacity .5s linear;
 }
 </style>
 
